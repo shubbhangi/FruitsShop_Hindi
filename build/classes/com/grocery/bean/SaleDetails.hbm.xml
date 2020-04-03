@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 28, 2020 3:09:44 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.grocery.bean.SaleDetails" table="sale_details" catalog="hindi_project_shubhangi" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="itemMaster" class="com.grocery.bean.ItemMaster" fetch="select">
+            <column name="itemId" />
+        </many-to-one>
+        <many-to-one name="saleMaster" class="com.grocery.bean.SaleMaster" fetch="select">
+            <column name="saleId" />
+        </many-to-one>
+        <property name="unitPrice" type="big_decimal">
+            <column name="unitPrice" precision="10" />
+        </property>
+        <property name="sellingPrice" type="big_decimal">
+            <column name="sellingPrice" precision="10" />
+        </property>
+        <property name="quantity" type="big_decimal">
+            <column name="quantity" precision="10" scale="3" />
+        </property>
+        <property name="gstPercent" type="big_decimal">
+            <column name="gstPercent" precision="10" />
+        </property>
+        <property name="igstPercent" type="big_decimal">
+            <column name="igstPercent" precision="10" />
+        </property>
+        <property name="total" type="big_decimal">
+            <column name="total" precision="10" />
+        </property>
+        <property name="finalSellingPrice" type="big_decimal">
+            <column name="finalSellingPrice" precision="10" />
+        </property>
+        <property name="gstType" type="string">
+            <column name="gstType" length="60" />
+        </property>
+    </class>
+</hibernate-mapping>

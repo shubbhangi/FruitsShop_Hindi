@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 27, 2018 12:20:05 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.grocery.bean.SaleDetails" table="sale_details" catalog="grocery" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="itemMaster" class="com.grocery.bean.ItemMaster" fetch="select">
+            <column name="itemId" />
+        </many-to-one>
+        <many-to-one name="saleMaster" class="com.grocery.bean.SaleMaster" fetch="select">
+            <column name="saleId" />
+        </many-to-one>
+        <property name="unitPrice" type="big_decimal">
+            <column name="unitPrice" precision="10" />
+        </property>
+        <property name="gstPercent" type="big_decimal">
+            <column name="gstPercent" precision="10" />
+        </property>
+        <property name="sellingPrice" type="big_decimal">
+            <column name="sellingPrice" precision="10" />
+        </property>
+        <property name="quantity" type="big_decimal">
+            <column name="quantity" precision="10" scale="3" />
+        </property>
+        <property name="total" type="big_decimal">
+            <column name="total" precision="10" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="hindi_project_shubhangi"/>
+  <table-filter match-name="sale_return_details"/>
+  <table-filter match-name="item_master"/>
+  <table-filter match-name="employee_master"/>
+  <table-filter match-name="purchase_master"/>
+  <table-filter match-name="stock_details"/>
+  <table-filter match-name="item_availability"/>
+  <table-filter match-name="counter"/>
+  <table-filter match-name="customer_partial_payment"/>
+  <table-filter match-name="beginning_cash"/>
+  <table-filter match-name="expenses"/>
+  <table-filter match-name="purchase_return_details"/>
+  <table-filter match-name="vendor_master"/>
+  <table-filter match-name="sale_details"/>
+  <table-filter match-name="purchase_return"/>
+  <table-filter match-name="sale_return"/>
+  <table-filter match-name="vendor_bill_master"/>
+  <table-filter match-name="vendor_partial_payment"/>
+  <table-filter match-name="login_user"/>
+  <table-filter match-name="store_details"/>
+  <table-filter match-name="customer_details"/>
+  <table-filter match-name="sale_master"/>
+</hibernate-reverse-engineering>

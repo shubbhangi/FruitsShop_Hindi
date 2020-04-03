@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 27, 2018 12:20:05 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.grocery.bean.ItemMaster" table="item_master" catalog="grocery" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="hsnCode" type="string">
+            <column name="hsnCode" />
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column name="unitPrice" precision="10" />
+        </property>
+        <property name="gstPercent" type="big_decimal">
+            <column name="gstPercent" precision="10" />
+        </property>
+        <property name="sellingPrice" type="big_decimal">
+            <column name="sellingPrice" precision="10" />
+        </property>
+        <property name="sellingGstPercent" type="big_decimal">
+            <column name="sellingGstPercent" precision="10" />
+        </property>
+        <property name="finalSellingPrice" type="big_decimal">
+            <column name="finalSellingPrice" precision="10" />
+        </property>
+        <set name="itemAvailabilities" table="item_availability" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="itemId" />
+            </key>
+            <one-to-many class="com.grocery.bean.ItemAvailability" />
+        </set>
+        <set name="saleDetailses" table="sale_details" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="itemId" />
+            </key>
+            <one-to-many class="com.grocery.bean.SaleDetails" />
+        </set>
+        <set name="stockDetailses" table="stock_details" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="itemId" />
+            </key>
+            <one-to-many class="com.grocery.bean.StockDetails" />
+        </set>
+        <set name="saleReturnDetailses" table="sale_return_details" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="itemId" />
+            </key>
+            <one-to-many class="com.grocery.bean.SaleReturnDetails" />
+        </set>
+        <set name="purchaseReturnDetailses" table="purchase_return_details" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="itemId" />
+            </key>
+            <one-to-many class="com.grocery.bean.PurchaseReturnDetails" />
+        </set>
+    </class>
+</hibernate-mapping>

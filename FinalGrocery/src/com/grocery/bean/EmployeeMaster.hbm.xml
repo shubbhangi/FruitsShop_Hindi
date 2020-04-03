@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 27, 2018 12:20:05 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.grocery.bean.EmployeeMaster" table="employee_master" catalog="grocery" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="contact" type="string">
+            <column name="contact" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="5000" />
+        </property>
+        <property name="username" type="string">
+            <column name="username" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" />
+        </property>
+        <property name="salary" type="big_decimal">
+            <column name="salary" precision="10" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>

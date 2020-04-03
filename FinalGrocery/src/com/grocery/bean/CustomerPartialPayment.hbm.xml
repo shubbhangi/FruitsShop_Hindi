@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 27, 2018 12:20:05 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.grocery.bean.CustomerPartialPayment" table="customer_partial_payment" catalog="grocery" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="customerMaster" class="com.grocery.bean.CustomerMaster" fetch="select">
+            <column name="customerId" />
+        </many-to-one>
+        <property name="date" type="date">
+            <column name="date" length="10" />
+        </property>
+        <property name="paidAmount" type="big_decimal">
+            <column name="paidAmount" precision="10" />
+        </property>
+        <property name="paymentMode" type="string">
+            <column name="paymentMode" />
+        </property>
+        <property name="chequeOrCardNumber" type="string">
+            <column name="chequeOrCardNumber" />
+        </property>
+        <property name="bank" type="string">
+            <column name="bank" />
+        </property>
+        <property name="chequeDate" type="date">
+            <column name="chequeDate" length="10" />
+        </property>
+        <property name="chequeClearanceDate" type="date">
+            <column name="chequeClearanceDate" length="10" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 28, 2020 3:09:44 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.grocery.bean.StoreDetails" table="store_details" catalog="hindi_project_shubhangi" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="5000" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" />
+        </property>
+        <property name="pincode" type="string">
+            <column name="pincode" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" />
+        </property>
+        <property name="website" type="string">
+            <column name="website" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" />
+        </property>
+        <property name="gstNumber" type="string">
+            <column name="gstNumber" />
+        </property>
+        <property name="photo" type="binary">
+            <column name="photo" />
+        </property>
+        <property name="hsnCode" type="string">
+            <column name="hsnCode" />
+        </property>
+        <set name="vendorBillMasters" table="vendor_bill_master" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="storeId" />
+            </key>
+            <one-to-many class="com.grocery.bean.VendorBillMaster" />
+        </set>
+        <set name="saleMasters" table="sale_master" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="storeId" />
+            </key>
+            <one-to-many class="com.grocery.bean.SaleMaster" />
+        </set>
+    </class>
+</hibernate-mapping>

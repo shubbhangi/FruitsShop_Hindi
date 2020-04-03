@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 28, 2020 3:09:44 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.grocery.bean.VendorMaster" table="vendor_master" catalog="hindi_project_shubhangi" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="contact" type="string">
+            <column name="contact" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="5000" />
+        </property>
+        <property name="registration" type="string">
+            <column name="registration" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" />
+        </property>
+        <property name="pincode" type="java.lang.Integer">
+            <column name="pincode" />
+        </property>
+        <property name="gstNumber" type="string">
+            <column name="gstNumber" />
+        </property>
+        <property name="balance" type="big_decimal">
+            <column name="balance" precision="10" />
+        </property>
+        <property name="percentageMrp" type="java.lang.Float">
+            <column name="percentage_mrp" precision="10" />
+        </property>
+        <set name="vendorBillMasters" table="vendor_bill_master" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vendorId" />
+            </key>
+            <one-to-many class="com.grocery.bean.VendorBillMaster" />
+        </set>
+        <set name="vendorPartialPayments" table="vendor_partial_payment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vendorId" />
+            </key>
+            <one-to-many class="com.grocery.bean.VendorPartialPayment" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 28, 2020 3:09:44 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.grocery.bean.PurchaseMaster" table="purchase_master" catalog="hindi_project_shubhangi" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="brand" type="string">
+            <column name="brand" />
+        </property>
+        <property name="weight" type="string">
+            <column name="weight" />
+        </property>
+        <property name="unit" type="string">
+            <column name="unit" length="150" />
+        </property>
+        <property name="quantity" type="big_decimal">
+            <column name="quantity" precision="10" />
+        </property>
+        <property name="total" type="big_decimal">
+            <column name="total" precision="10" />
+        </property>
+        <property name="gstType" type="string">
+            <column name="gstType" length="60" />
+        </property>
+         <property name="gstPercent" type="big_decimal">
+            <column name="gst_percent" precision="10" />
+        </property>
+        <property name="actualAmount" type="big_decimal">
+            <column name="actual_amount" precision="10" />
+        </property>
+        <property name="gstAmount" type="big_decimal">
+            <column name="gst_amount" precision="10" />
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column name="unitPrice" precision="10" />
+        </property>
+        <property name="vendorId" type="java.lang.Integer">
+            <column name="vendor_id" />
+        </property>
+    </class>
+</hibernate-mapping>
