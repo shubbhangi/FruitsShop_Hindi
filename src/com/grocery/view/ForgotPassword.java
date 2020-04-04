@@ -5,7 +5,7 @@
  */
 package com.grocery.view;
 
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -385,7 +385,7 @@ public class ForgotPassword extends javax.swing.JFrame {
     private void uname1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_uname1KeyPressed
 
         int key=evt.getKeyCode();
-        if(key==KeyEvent.VK_BACKSPACE || key==KeyEvent.VK_DELETE)
+        if(key==KeyEvent.VK_BACK_SPACE || key==KeyEvent.VK_DELETE)
         {
 
             jLabel141.setText("");

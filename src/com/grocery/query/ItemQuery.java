@@ -205,6 +205,33 @@ public class ItemQuery
         return list;
     }
 
+        public List<ItemMaster> getItemByBarCode(ItemMaster itemMaster)
+    {
+        List<ItemMaster> list = new ArrayList<>();
+        
+        String query = "FROM ItemMaster WHERE barCode = '" + itemMaster.getBarCode()+"'";
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            list = q.list();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        
+        return list;
+    }
+
+    
     public List<ItemMaster> getBrandDetails1(ItemMaster itemMaster)
     {
      

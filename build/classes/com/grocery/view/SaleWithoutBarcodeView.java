@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -44,14 +45,16 @@ import javax.swing.table.TableModel;
  * @author GanpatiBappa
  */
 public class SaleWithoutBarcodeView extends javax.swing.JFrame {
-     private boolean itemFlag;
-     private boolean brandFlag;
-     private int currRow_g = 0;
-     private int currRow_s = 0;
-     private double sumOfSellingPrice = 0.0;
-     private boolean waresumOfSellingPricehouseFlag;
-     private boolean warehouseFlag;
-     private boolean newWarehouseFlag;
+
+    private boolean itemFlag;
+    private boolean brandFlag;
+    private int currRow_g = 0;
+    private int currRow_s = 0;
+    private double sumOfSellingPrice = 0.0;
+    private boolean waresumOfSellingPricehouseFlag;
+    private boolean warehouseFlag;
+    private boolean newWarehouseFlag;
+
     /**
      * Creates new form SaleWithoutBarcodeView
      */
@@ -62,13 +65,13 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         loadWarehouswe();
         getTotal();
         loadCounter();
-       // getTotal();
-        
+        // getTotal();
+
         jLabel33.setVisible(false);
         billId.setVisible(false);
-        
+
         ItemMaster itemMaster = new ItemMaster();
-        loadTable(itemMaster);
+        //loadTable(itemMaster);
         loadCounter();
         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
         defaultTableModel.setRowCount(0);
@@ -958,17 +961,16 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
     }//GEN-LAST:event_totalActionPerformed
 
     private void totalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_totalKeyReleased
-        if(!(total.getText().trim().isEmpty()))
-        {
+        if (!(total.getText().trim().isEmpty())) {
             DecimalFormat decimalFormat = new DecimalFormat("#0.00");
             float quantity = Float.parseFloat(this.quantity.getText());
             float total = Float.parseFloat(this.total.getText());
 
             //  float unitPrice = getUnitPrice(total, quantity);
             this.unitPrice1.setText(decimalFormat.format(unitPrice1));
+        } else {
+            unitPrice1.setText("0.00");
         }
-        else
-        unitPrice1.setText("0.00");
     }//GEN-LAST:event_totalKeyReleased
 
     private void brandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandActionPerformed
@@ -1003,7 +1005,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             float quantity = Float.parseFloat(this.quantity.getText());
             float total = Float.parseFloat(this.total.getText());
             float unitPrice1 = Float.parseFloat(this.unitPrice1.getText());
-               
+
             //this.unitPrice1.setText(decimalFormat.format(unitPrice1.getText()));
         } else {
             unitPrice1.setText("0.00");
@@ -1030,7 +1032,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
     }//GEN-LAST:event_removeKeyPressed
 
     private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed
-        // changeQuantity();
+        changeQuantity();
     }//GEN-LAST:event_changeActionPerformed
 
     private void changeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_changeKeyPressed
@@ -1064,37 +1066,17 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
     }//GEN-LAST:event_amountKeyReleased
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-         try {
-             //save();
-             addToTable();
-         } catch (Exception ex) {
-             Logger.getLogger(SaleWithoutBarcodeView.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
+        try {
+            //save();
+            addToTable();
+        } catch (Exception ex) {
+            Logger.getLogger(SaleWithoutBarcodeView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_addActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-//        SalesPayment salesPayment = new SalesPayment();
-//        String totalAmount = amount.getText().trim();
-//       // String gstAmount2 = gstAmount.getText().trim();
-////        String finalAmount = finalAmountPaid.getText().trim();
-//         String vendorName1 = warehouseName.getSelectedItem().toString();
-////        String discountAmount = discount.getText();
-//        Date purDate = purchaseDate.getDate();
-//        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy"); 
-//        String mfg = dateFormat.format(purDate);
-//       
-//        String barCodeType ;
-//        if(withoutBbarcodeFlag.isSelected()){
-//           barCodeType="without_BarcodeFlag"; 
-//       
-//        }else
-//           barCodeType="with_BarcodeFlag"; 
-//        
-//
-//         salesPayment.setValues(purchaseDate, totalAmount, getTableData(), vendorName1,barCodeType);
-//         salesPayment.setVisible(true);
-       //  save();
+
         pay();
     }//GEN-LAST:event_saveActionPerformed
 
@@ -1103,48 +1085,48 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
     }//GEN-LAST:event_cancel1ActionPerformed
 
     private void fullPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullPaymentActionPerformed
-       pay();
+        pay();
     }//GEN-LAST:event_fullPaymentActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-                HomePage1 obj = new HomePage1();
-                obj.show();
-                 this.dispose();
+        HomePage1 obj = new HomePage1();
+        obj.show();
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void warehouseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warehouseNameActionPerformed
         /*     newWarehouswe.setText("");
-        contact.setText("N/A");
-        address.setText("N/A");
-        gstNumber.setText("N/A");
+         contact.setText("N/A");
+         address.setText("N/A");
+         gstNumber.setText("N/A");
 
-        try
-        {
-            if(warehouseName.getItemCount() != 0)
-            {
-                if(warehouseName.getSelectedIndex() == 0)
-                {
-                    warehouseFlag = false;
-                    jPanelNewWarehouswe.setVisible(false);
-                }
-                else
-                if(warehouseName.getSelectedIndex() == 1)
-                {
-                    warehouseFlag = false;
-                    jPanelNewWarehouswe.setVisible(true);
-                }
-                else
-                {
-                    warehouseFlag = true;
-                    jPanelNewWarehouswe.setVisible(false);
-                    loadWarehouswe();
-                }
-            }
-        }
-        catch(Exception e)
-        {
-        }
-        */
+         try
+         {
+         if(warehouseName.getItemCount() != 0)
+         {
+         if(warehouseName.getSelectedIndex() == 0)
+         {
+         warehouseFlag = false;
+         jPanelNewWarehouswe.setVisible(false);
+         }
+         else
+         if(warehouseName.getSelectedIndex() == 1)
+         {
+         warehouseFlag = false;
+         jPanelNewWarehouswe.setVisible(true);
+         }
+         else
+         {
+         warehouseFlag = true;
+         jPanelNewWarehouswe.setVisible(false);
+         loadWarehouswe();
+         }
+         }
+         }
+         catch(Exception e)
+         {
+         }
+         */
     }//GEN-LAST:event_warehouseNameActionPerformed
 
     private void add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add1ActionPerformed
@@ -1159,45 +1141,44 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
     }//GEN-LAST:event_unitPrice1FocusGained
 
     private void unitPrice1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_unitPrice1FocusLost
-        if(unitPrice1.getText().trim().isEmpty())
-        {
+        if (unitPrice1.getText().trim().isEmpty()) {
             unitPrice1.setText("0.00");
             total.setText("0.00");
         }
-        if(Float.parseFloat(unitPrice1.getText()) == 0)
-        total.setText("0.00");
+        if (Float.parseFloat(unitPrice1.getText()) == 0) {
+            total.setText("0.00");
+        }
     }//GEN-LAST:event_unitPrice1FocusLost
 
     private void unitPrice1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unitPrice1KeyReleased
 
-         if(!(quantity.getText().trim().isEmpty()))
-        {
+        if (!(quantity.getText().trim().isEmpty())) {
             DecimalFormat decimalFormat = new DecimalFormat("#0.00");
             float quantity = Float.parseFloat(this.quantity.getText());
             float unitPrice1 = Float.parseFloat(this.unitPrice1.getText());
-        
+
             float total = getUnitPrice(unitPrice1, quantity);
             this.total.setText(decimalFormat.format(total));
+        } else {
+            total.setText("0.00");
         }
-        else
-        total.setText("0.00");
-	
+
     }//GEN-LAST:event_unitPrice1KeyReleased
 
     private void barcodeFlagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barcodeFlagActionPerformed
 
-        if(barcodeFlag.isSelected()){
+        if (barcodeFlag.isSelected()) {
             jPanelWithoutBaracode.setVisible(false);
-            jPanelSearch.setVisible(true);    
-            
-        }else{
-             jPanelWithoutBaracode.setVisible(true);
-             jPanelSearch.setVisible(false);   
-            
+            jPanelSearch.setVisible(true);
+
+        } else {
+            jPanelWithoutBaracode.setVisible(true);
+            jPanelSearch.setVisible(false);
+
 //            jTable1.getColumnModel().getColumn(2).setMinWidth(0);
 //            jTable1.getColumnModel().getColumn(2).setMaxWidth(0);
         }
-        
+
     }//GEN-LAST:event_barcodeFlagActionPerformed
 
     private void barcodeFlagKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barcodeFlagKeyPressed
@@ -1206,22 +1187,20 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
     }//GEN-LAST:event_barcodeFlagKeyPressed
 
     private void withoutBbarcodeFlagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withoutBbarcodeFlagActionPerformed
-        if(withoutBbarcodeFlag.isSelected()){
+        if (withoutBbarcodeFlag.isSelected()) {
             jPanelSearch.setVisible(false);
             jPanelWithoutBaracode.setVisible(true);
 //            jTable1.getColumnModel().getColumn(2).setMinWidth(0);
 //            jTable1.getColumnModel().getColumn(2).setMaxWidth(0);
-        }
-        else
-        {
+        } else {
             jPanelSearch.setVisible(true);
             jPanelWithoutBaracode.setVisible(false);
-           
+
         }
     }//GEN-LAST:event_withoutBbarcodeFlagActionPerformed
 
     private void barCode1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barCode1KeyPressed
-       
+
     }//GEN-LAST:event_barCode1KeyPressed
 
     private void barCode1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barCode1KeyReleased
@@ -1229,11 +1208,27 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         if (!(barCode1.getText().trim().isEmpty())) {
             // itemMaster.setName(item.getText().trim());
             itemMaster.setBarCode(barCode1.getText().trim());
-              getTotalBarCode();
+            //getTotalBarCode();
+            if (jTable1.getRowCount() > 0) {
+                for (int i = 0; i < jTable1.getRowCount(); i++) {
+
+                    String barcode = jTable1.getValueAt(i, 2).toString();
+
+                    BigDecimal unitPrice = new BigDecimal(jTable1.getValueAt(i, 5).toString());
+                    BigDecimal quantity = new BigDecimal(jTable1.getValueAt(i, 6).toString());
+                    BigDecimal total = new BigDecimal(jTable1.getValueAt(i, 7).toString());
+                    if (itemMaster.getBarCode().equalsIgnoreCase(barcode)) {
+                        jTable1.setValueAt((Integer.parseInt(jTable1.getValueAt(i, 6).toString().trim()) + 1), i, 6);
+                        jTable1.setValueAt((new BigDecimal(jTable1.getValueAt(i, 7).toString().trim()).add(new BigDecimal(jTable1.getValueAt(i, 5).toString()))), i, 7);
+                        barCode1.setText("");
+                    }
+                }
+            } else {
+                loadBarcodeItem(itemMaster);
+            }
         }
-  
-        loadTable(itemMaster);
-      
+
+
     }//GEN-LAST:event_barCode1KeyReleased
 
     private void barCode1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barCode1KeyTyped
@@ -1249,13 +1244,13 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
 
     private void paymentModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentModeActionPerformed
         number.setText("");
-       // bank.setSelectedIndex(0);
+        // bank.setSelectedIndex(0);
         if (paymentMode.getSelectedIndex() == 0 || paymentMode.getSelectedIndex() == 1) {
             jPanelTds.setVisible(false);
         } else if (paymentMode.getSelectedIndex() == 2) {
-           // bank.setSelectedIndex(0);
+            // bank.setSelectedIndex(0);
             jPanelTds.setVisible(false);
-           // chequeDate.setVisible(false);
+            // chequeDate.setVisible(false);
         } else {
             jPanelTds.setVisible(true);
         }
@@ -1282,7 +1277,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
     }//GEN-LAST:event_billIdActionPerformed
 
     private void counterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_counterActionPerformed
-     if (counter.getItemCount() > 0) {
+        if (counter.getItemCount() > 0) {
             ItemMaster itemMaster = new ItemMaster();
             loadTable(itemMaster);
             getDetails();
@@ -1390,8 +1385,8 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField weight1;
     private javax.swing.JRadioButton withoutBbarcodeFlag;
     // End of variables declaration//GEN-END:variables
- 
-     private void getDetails() {
+
+    private void getDetails() {
         Counter counter = new Counter();
         CounterQuery counterQuery = new CounterQuery();
 
@@ -1416,8 +1411,8 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         }
         getSaleDetails(saleMaster);
     }
-    
-private void getSaleDetails(SaleMaster saleMaster) {
+
+    private void getSaleDetails(SaleMaster saleMaster) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
         defaultTableModel.setRowCount(0);
 
@@ -1441,13 +1436,14 @@ private void getSaleDetails(SaleMaster saleMaster) {
         }
         jTable1.setModel(defaultTableModel);
         getTotal();
-    }    
-private void addToTable1() throws Exception {
+    }
+
+    private void addToTable1() throws Exception {
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
         DecimalFormat intFormat = new DecimalFormat("#0");
         String itemName = item.getSelectedItem().toString();
         String brandName = brand.getSelectedItem().toString();
-       // String barCode = this.barCode1.getText().trim();
+        // String barCode = this.barCode1.getText().trim();
         String unitName = unit1.getSelectedItem().toString();
         /**
          * *********************manifacturing and Expairy Date Add to jTAble in
@@ -1485,54 +1481,53 @@ private void addToTable1() throws Exception {
 //                itemName = newItem.getText().trim();
 //            }
      /*   if (brandName.equalsIgnoreCase("--select--")) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Brand"), "Error Message", JOptionPane.ERROR_MESSAGE);
-            brand.requestFocus();
-            return;
-        }
-        if (brandName.equalsIgnoreCase("add new")) {
-            if (newBrand.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the brand name of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
-                newBrand.requestFocus();
-                return;
-            } else {
-                brandName = newBrand.getText().trim();
-            }
-        }
-        if (weight1.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the weight"), "Error Message", JOptionPane.ERROR_MESSAGE);
-            weight1.requestFocus();
-            return;
-        }
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Brand"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         brand.requestFocus();
+         return;
+         }
+         if (brandName.equalsIgnoreCase("add new")) {
+         if (newBrand.getText().trim().isEmpty()) {
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the brand name of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         newBrand.requestFocus();
+         return;
+         } else {
+         brandName = newBrand.getText().trim();
+         }
+         }
+         if (weight1.getText().trim().isEmpty()) {
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the weight"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         weight1.requestFocus();
+         return;
+         }
         
          if (unitName.equalsIgnoreCase("--select--")) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Unit"), "Error Message", JOptionPane.ERROR_MESSAGE);
-            unit1.requestFocus();
-            return;
-        }
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Unit"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         unit1.requestFocus();
+         return;
+         }
          
-        unitName = this.unit1.getSelectedItem().toString();
+         unitName = this.unit1.getSelectedItem().toString();
         
-        if (quantity.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the Quantity"), "Error Message", JOptionPane.ERROR_MESSAGE);
-            quantity.requestFocus();
-            return;
-        }
-        if (unitPrice1.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the Quantity"), "Error Message", JOptionPane.ERROR_MESSAGE);
-            unitPrice1.requestFocus();
-            return;
-        }
-*/
+         if (quantity.getText().trim().isEmpty()) {
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the Quantity"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         quantity.requestFocus();
+         return;
+         }
+         if (unitPrice1.getText().trim().isEmpty()) {
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the Quantity"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         unitPrice1.requestFocus();
+         return;
+         }
+         */
         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
 //        String name = this.newItem.getText().trim();
 //        String brand = this.newBrand.getText().trim();
         float quantity = Float.parseFloat(this.quantity.getText().trim());
         float weight = Float.parseFloat(this.weight1.getText().trim());
         float unitPrice1 = Float.parseFloat(this.unitPrice1.getText().trim());
-       // float unitPrice1 = Float.parseFloat(this.unitPrice1.getText());
+        // float unitPrice1 = Float.parseFloat(this.unitPrice1.getText());
         float total = getUnitPrice(unitPrice1, quantity);
-       
-        
+
 //            if (itemName.equalsIgnoreCase("add new")) {
 //            if (newItem.getText().trim().isEmpty()) {
 //                JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the name of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
@@ -1553,17 +1548,16 @@ private void addToTable1() throws Exception {
 //                
 //                itemName = newItem.getText().trim();
 //            }
-        
-        
-        defaultTableModel.addRow(new Object[]{itemName, brandName,weight,unitName, quantity, unitPrice1,total, mfg, exp});   
+        defaultTableModel.addRow(new Object[]{itemName, brandName, weight, unitName, quantity, unitPrice1, total, mfg, exp});
         jTable1.setModel(defaultTableModel);
-        
+
         getTotal();
         clear();
-        item.requestFocus();  
-   // }   
- }
-private void getTotal() {
+        item.requestFocus();
+        // }   
+    }
+
+    private void getTotal() {
         int i = 0;
         float sum = 0;
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
@@ -1573,10 +1567,11 @@ private void getTotal() {
         }
         amount.setText(decimalFormat.format(sum));
     }
-private void clear() {
+
+    private void clear() {
         item.setSelectedIndex(0);
         brand.setSelectedIndex(0);
-      //  barCode1.setText("00");
+        //  barCode1.setText("00");
         weight1.setText("00");
         unit1.setSelectedIndex(0);
         quantity.setText("00");
@@ -1584,24 +1579,21 @@ private void clear() {
         total.setText("0.00");
         mfgDateText.setDate(null);
         expDateText.setDate(null);
-      
-      //  discount.setText("0.00");
-       
-      
+
+        //  discount.setText("0.00");
     }
 
- public void loadTable(ItemMaster itemMaster) {
+    public void loadTable(ItemMaster itemMaster) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-       // defaultTableModel.setRowCount(0);
+        // defaultTableModel.setRowCount(0);
         List<Object[]> list = new ArrayList<>();
         ItemAvailability itemAvailability = new ItemAvailability();
         ItemAvailabilityQuery itemAvailabilityQuery = new ItemAvailabilityQuery();
-        
+
         float quantity = 1;
-        
+
 //        float quantity = Float.parseFloat(this.quantity.getText().trim());
 //         amount.setText(decimalFormat.format(sum));
-        
         itemAvailability.setItemMaster(itemMaster);
         list = itemAvailabilityQuery.getAvailability(itemAvailability);
 
@@ -1609,21 +1601,36 @@ private void clear() {
             ItemAvailability ia = (ItemAvailability) object[0];
 
             //if(ia.getItemMaster().getGstType().equals("GST")){
-             
             //  if(!(Double.valueOf(String.valueOf(ia.getAvailability()))<=0)) {
-
-              //     getTotalBarCode();
-               defaultTableModel.addRow(new Object[]{ia.getItemMaster().getName(),ia.getItemMaster().getBrand(), ia.getItemMaster().getBarCode(),ia.getItemMaster().getWeight(), ia.getItemMaster().getUnit(),ia.getItemMaster().getUnitPrice(),quantity,ia.getItemMaster().getTotalAmount(),ia.getItemMaster().getEfgDate(),ia.getItemMaster().getExpDate()});
+            //     getTotalBarCode();
+            defaultTableModel.addRow(new Object[]{ia.getItemMaster().getName(), ia.getItemMaster().getBrand(), ia.getItemMaster().getBarCode(), ia.getItemMaster().getWeight(), ia.getItemMaster().getUnit(), ia.getItemMaster().getUnitPrice(), quantity, ia.getItemMaster().getTotalAmount(), ia.getItemMaster().getEfgDate(), ia.getItemMaster().getExpDate()});
               // defaultTableModel.addRow(new Object[]{ia.getItemMaster().getName(),ia.getItemMaster().getBrand(), ia.getItemMaster().getBarCode(),ia.getItemMaster().getWeight(), ia.getItemMaster().getUnit(),ia.getItemMaster().getUnitPrice(),ia.getAvailability(),ia.getItemMaster().getTotalAmount(),ia.getItemMaster().getEfgDate(),ia.getItemMaster().getExpDate()});
-            
-          
-             //  } 
+
+            //  } 
         }
         jTable1.setModel(defaultTableModel);
- }
+        barCode1.setText("");
+    }
 
- 
- private void getTotalBarCode() {
+    public void loadBarcodeItem(ItemMaster itemMaster) {
+        DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+        // defaultTableModel.setRowCount(0);
+        List<ItemMaster> list = new ArrayList<>();
+        int quantity = 1;
+
+        ItemQuery itemQuery = new ItemQuery();
+        list = itemQuery.getItemByBarCode(itemMaster);
+        if (!list.isEmpty()) {
+            ItemMaster ia = (ItemMaster) list.get(0);
+
+            defaultTableModel.addRow(new Object[]{ia.getName(), ia.getBrand(), ia.getBarCode(), ia.getWeight(), ia.getUnit(), ia.getUnitPrice(), quantity, ia.getUnitPrice().multiply(new BigDecimal(quantity)), ia.getEfgDate(), ia.getExpDate()});
+            // defaultTableModel.addRow(new Object[]{ia.getItemMaster().getName(),ia.getItemMaster().getBrand(), ia.getItemMaster().getBarCode(),ia.getItemMaster().getWeight(), ia.getItemMaster().getUnit(),ia.getItemMaster().getUnitPrice(),ia.getAvailability(),ia.getItemMaster().getTotalAmount(),ia.getItemMaster().getEfgDate(),ia.getItemMaster().getExpDate()});
+        }
+        jTable1.setModel(defaultTableModel);
+        barCode1.setText("");
+    }
+
+    private void getTotalBarCode() {
         int i = 0;
         float sum = 0;
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
@@ -1634,8 +1641,7 @@ private void clear() {
         amount.setText(decimalFormat.format(sum));
     }
 
-
-private void addToTable() throws Exception {
+    private void addToTable() throws Exception {
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
         DecimalFormat intFormat = new DecimalFormat("#0");
         String itemName = item.getSelectedItem().toString();
@@ -1652,100 +1658,99 @@ private void addToTable() throws Exception {
         String mfg = dateFormat.format(mfgDate);
         String exp = dateFormat.format(expDate);
 
-     /*   if (itemName.equalsIgnoreCase("--select--")) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
-            item.requestFocus();
-            return;
-        }
-        if (itemName.equalsIgnoreCase("add new")) {
-            if (newItem.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the name of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
-                newItem.requestFocus();
-                return;
-            } else {
-                itemName = newItem.getText().trim();
-      /*      }
-        if (brandName.equalsIgnoreCase("--select--")) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Brand"), "Error Message", JOptionPane.ERROR_MESSAGE);
-            brand.requestFocus();
-            return;
-        }
-        if (brandName.equalsIgnoreCase("add new")) {
-            if (newBrand.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the brand name of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
-                newBrand.requestFocus();
-                return;
-            } else {
-                brandName = newBrand.getText().trim();
-            }
-        }
-        if (weight1.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the weight"), "Error Message", JOptionPane.ERROR_MESSAGE);
-            weight1.requestFocus();
-            return;
-        }
+        /*   if (itemName.equalsIgnoreCase("--select--")) {
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         item.requestFocus();
+         return;
+         }
+         if (itemName.equalsIgnoreCase("add new")) {
+         if (newItem.getText().trim().isEmpty()) {
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the name of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         newItem.requestFocus();
+         return;
+         } else {
+         itemName = newItem.getText().trim();
+         /*      }
+         if (brandName.equalsIgnoreCase("--select--")) {
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Brand"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         brand.requestFocus();
+         return;
+         }
+         if (brandName.equalsIgnoreCase("add new")) {
+         if (newBrand.getText().trim().isEmpty()) {
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the brand name of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         newBrand.requestFocus();
+         return;
+         } else {
+         brandName = newBrand.getText().trim();
+         }
+         }
+         if (weight1.getText().trim().isEmpty()) {
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the weight"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         weight1.requestFocus();
+         return;
+         }
         
          if (unitName.equalsIgnoreCase("--select--")) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Unit"), "Error Message", JOptionPane.ERROR_MESSAGE);
-            unit1.requestFocus();
-            return;
-        }
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Unit"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         unit1.requestFocus();
+         return;
+         }
          
-        unitName = this.unit1.getSelectedItem().toString();
+         unitName = this.unit1.getSelectedItem().toString();
         
-        if (quantity.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the Quantity"), "Error Message", JOptionPane.ERROR_MESSAGE);
-            quantity.requestFocus();
-            return;
-        }
-        if (unitPrice1.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the Quantity"), "Error Message", JOptionPane.ERROR_MESSAGE);
-            unitPrice1.requestFocus();
-            return;
-        }
-*/
-        
+         if (quantity.getText().trim().isEmpty()) {
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the Quantity"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         quantity.requestFocus();
+         return;
+         }
+         if (unitPrice1.getText().trim().isEmpty()) {
+         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the Quantity"), "Error Message", JOptionPane.ERROR_MESSAGE);
+         unitPrice1.requestFocus();
+         return;
+         }
+         */
         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
         float quantity = Float.parseFloat(this.quantity.getText().trim());
         float weight = Float.parseFloat(this.weight1.getText().trim());
         float unitPrice = Float.parseFloat(this.unitPrice1.getText().trim());
         float unitPrice1 = Float.parseFloat(this.unitPrice1.getText());
         float total = getUnitPrice(unitPrice1, quantity);
-        
+
         float totalSellingPrice = (unitPrice * quantity);
         // total.setText(decimalFormat.format(totalSellingPrice));
         int id = 1;
-       
-        defaultTableModel.addRow(new Object[]{itemName, brandName,barCode,weight,unitName, quantity, unitPrice,total, mfg, exp});   
+
+        defaultTableModel.addRow(new Object[]{itemName, brandName, barCode, weight, unitName, quantity, unitPrice, total, mfg, exp});
         jTable1.setModel(defaultTableModel);
         getTotal();
         clear();
-        item.requestFocus(); 
-        
- }
+        item.requestFocus();
+
+    }
 //  private void getFinalAmountPaid(String discount) {
 //        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
 //        finalAmount.setText(decimalFormat.format(Float.parseFloat(total.getText()) - Float.parseFloat(discount)));
 //    }
-  private float getUnitPrice(float unitPrice1, float quantity) {
-    float total = 0;
-        try
-        {
-           if(quantity == 0)
-           throw new RuntimeException();
-           total = unitPrice1 * quantity;
-            
-        }
-        catch(Exception e)
-        {
+
+    private float getUnitPrice(float unitPrice1, float quantity) {
+        float total = 0;
+        try {
+            if (quantity == 0) {
+                throw new RuntimeException();
+            }
+            total = unitPrice1 * quantity;
+
+        } catch (Exception e) {
             this.total.setText("0.00");
         }
-        return total; 
+        return total;
     }
-    
-  public TableModel getTableData() {
+
+    public TableModel getTableData() {
         return jTable1.getModel();
     }
+
     private void loadCounter() {
         DefaultComboBoxModel defaultComboBoxModel = (DefaultComboBoxModel) counter.getModel();
 
@@ -1761,7 +1766,7 @@ private void addToTable() throws Exception {
         this.counter.setModel(defaultComboBoxModel);
     }
 
-   private void loadItem() {
+    private void loadItem() {
         ItemMaster itemMaster = new ItemMaster();
         ItemQuery itemQuery = new ItemQuery();
 
@@ -1789,8 +1794,8 @@ private void addToTable() throws Exception {
         }
         item.setModel(defaultComboBoxModel);
     }
-    
-   private void loadBrand() {
+
+    private void loadBrand() {
         ItemMaster itemMaster = new ItemMaster();
         ItemQuery itemQuery = new ItemQuery();
 
@@ -1818,7 +1823,8 @@ private void addToTable() throws Exception {
         }
         brand.setModel(defaultComboBoxModel);
     }
-   private void remove() {
+
+    private void remove() {
         try {
             DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
             defaultTableModel.removeRow(jTable1.getSelectedRow());
@@ -1828,8 +1834,8 @@ private void addToTable() throws Exception {
             JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select the row you want to remove"), "Error Message", JOptionPane.ERROR_MESSAGE);
         }
     }
-   
-private void pay() {
+
+    private void pay() {
         try {
 //            newWarehouseFlag = false;
             if (jTable1.getRowCount() == 0) {
@@ -1853,41 +1859,40 @@ private void pay() {
                 this.paymentMode.requestFocus();
                 return;
             }
-           
-/*             StoreDetails storeDetails = new StoreDetails();
-          //  WarehoseDetailsQuery123 customerDetailsQuery = new WarehoseDetailsQuery123();
-            StoreDetailsQuery storeDetailsQuery = new StoreDetailsQuery();
-            storeDetails.setName("1");
 
-            List<StoreDetails> list = storeDetailsQuery.getStoreDetails(storeDetails);
-            if (list.isEmpty()) // customerDetailsQuery.insertWarehouse(customerDetails);        
-            {
-                customerDetailsQuery.insertCustomer(customerDetails);
-            } else {
-                for (CustomerDetails cm : list) {
-                    customerDetails.setId(cm.getId());
-                    customerDetails.setBalance(cm.getBalance().add(new BigDecimal(0.00)));
-                }
-                customerDetailsQuery.updateCustomerBalance(customerDetails);
-            }
- */           
- StoreDetails storeDetails = new StoreDetails();
+            /*             StoreDetails storeDetails = new StoreDetails();
+             //  WarehoseDetailsQuery123 customerDetailsQuery = new WarehoseDetailsQuery123();
+             StoreDetailsQuery storeDetailsQuery = new StoreDetailsQuery();
+             storeDetails.setName("1");
+
+             List<StoreDetails> list = storeDetailsQuery.getStoreDetails(storeDetails);
+             if (list.isEmpty()) // customerDetailsQuery.insertWarehouse(customerDetails);        
+             {
+             customerDetailsQuery.insertCustomer(customerDetails);
+             } else {
+             for (CustomerDetails cm : list) {
+             customerDetails.setId(cm.getId());
+             customerDetails.setBalance(cm.getBalance().add(new BigDecimal(0.00)));
+             }
+             customerDetailsQuery.updateCustomerBalance(customerDetails);
+             }
+             */
+            StoreDetails storeDetails = new StoreDetails();
             CounterQuery counterQuery = new CounterQuery();
             Counter counter = new Counter();
-             Date date = this.purchaseDate.getDate();
-                        storeDetails.setId(1);
-                       
-                        saleMaster.setDate(date);
-                        saleMaster.setStoreDetails(storeDetails);
-                        saleMaster.setId(1);
+            Date date = this.purchaseDate.getDate();
+            storeDetails.setId(1);
+
+            saleMaster.setDate(date);
+            saleMaster.setStoreDetails(storeDetails);
+            saleMaster.setId(1);
 
             CustomerDetails customerDetails = new CustomerDetails();
             CustomerDetailsQuery customerDetailsQuery = new CustomerDetailsQuery();
             customerDetails.setName(warehouseName);
 
-            counter.setName(this.counter.getSelectedItem().toString());
+            //counter.setName(this.counter.getSelectedItem().toString());
             // List<Counter> list = counterQuery.getCounterDetails(counter);
-                   
             List<CustomerDetails> list = customerDetailsQuery.getCustomerDetails(customerDetails);
             if (list.isEmpty()) // customerDetailsQuery.insertWarehouse(customerDetails);        
             {
@@ -1906,42 +1911,42 @@ private void pay() {
             customerPartialPayment.setCustomerDetails(customerDetails);
             customerPartialPayment.setDate(this.purchaseDate.getDate());
             customerPartialPayment.setStatus("1");
-           // customerPartialPayment.setPaidAmount(new BigDecimal(total.getText().trim()));
+            // customerPartialPayment.setPaidAmount(new BigDecimal(total.getText().trim()));
             customerPartialPayment.setPaidAmount(new BigDecimal(amount.getText().trim()));
             CustomerPartialPaymentQuery customerPartialPaymentQuery = new CustomerPartialPaymentQuery();
             if ((paymentMode.equalsIgnoreCase("Cash"))) {
             }
- 
+
             if ((paymentMode.equalsIgnoreCase("Card"))) {
             }
 
-        //    saleMaster.setGstAmount(BigDecimal.valueOf(getTotalGSTAmount()));
+            //    saleMaster.setGstAmount(BigDecimal.valueOf(getTotalGSTAmount()));
             saleMaster.setBillAmount(new BigDecimal(getTotalBillAmount()));
-           // saleMaster.setFinalBillAmount(new BigDecimal(total.getText().trim()));
+            // saleMaster.setFinalBillAmount(new BigDecimal(total.getText().trim()));
             saleMaster.setFinalBillAmount(new BigDecimal(amount.getText().trim()));
- //           saleMaster.setDiscount(new BigDecimal(0));
+            //           saleMaster.setDiscount(new BigDecimal(0));
             saleMaster.setDiscount(new BigDecimal(0.00));
             //saleMaster.setFinalBillAmount(new BigDecimal(total.getText().trim()));
             saleMaster.setFinalBillAmount(new BigDecimal(amount.getText().trim()));
             customerPartialPayment.setPaidAmount(new BigDecimal(amount.getText().trim()));
-         //   customerPartialPayment.setPaidAmount(new BigDecimal(total.getText().trim()));
+            //   customerPartialPayment.setPaidAmount(new BigDecimal(total.getText().trim()));
 
             int confirm = JOptionPane.showConfirmDialog(null, MessageFormat.getMessage("Are you sure of this Sale?"));
             if (confirm == JOptionPane.YES_OPTION) {
                 //saleMaster.setId(Integer.parseInt(billId.getText()));
                 saleMaster.setCustomerDetails(customerDetails);
-                
-              //  saleMaster.setStoreDetails(customerDetails);
-               // saleMaster.setCounter();
+
+                //  saleMaster.setStoreDetails(customerDetails);
+                // saleMaster.setCounter();
                 saleMaster.setCustomerDetails(customerDetails);
                 saleMaster.setStatus("1");
-                saleMasterQuery.updateSaleMaster(saleMaster);
+                saleMasterQuery.insertIntoSaleMaster(saleMaster);
 
                 customerPartialPaymentQuery.insertIntoCustomerPartialPaymentView(customerPartialPayment);
+                saveSaleDetails(saleMaster);
                 JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Sale successful"));
 
-                 //printBill(saleMaster);
-               
+                //printBill(saleMaster);
                 clear();
                 //clear1();
                 DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
@@ -1949,22 +1954,24 @@ private void pay() {
                 jTable1.setModel(defaultTableModel);
                 getTotal();
             }
-            
-      } catch (Exception e) {
-         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Invalid Entry!!!"), "Error Message", JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Invalid Entry!!!"), "Error Message", JOptionPane.ERROR_MESSAGE);
+        }
     }
- }
- double getTotalBillAmount() {
+
+    double getTotalBillAmount() {
         int index = jTable1.getRowCount();
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
         while (currRow_s < index) {
             sumOfSellingPrice = sumOfSellingPrice + Float.parseFloat(jTable1.getValueAt(currRow_s, 6).toString());
             currRow_s++;
         }
-        
+
         return sumOfSellingPrice;
     }
-private void getTotal1() {
+
+    private void getTotal1() {
         int i = 0;
         float sum = 0;
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
@@ -1975,10 +1982,8 @@ private void getTotal1() {
         }
         total.setText(decimalFormat.format(sum));
     }
- 
- 
- 
-private void loadWarehouswe() {
+
+    private void loadWarehouswe() {
         CustomerDetails customerDetails = new CustomerDetails();
         WarehoseDetailsQuery123 customerQuery = new WarehoseDetailsQuery123();
 
@@ -1995,13 +2000,124 @@ private void loadWarehouswe() {
             for (CustomerDetails vm : list) {
                 defaultComboBoxModel.addElement(vm.getName());
             }
-           } else {
+        } else {
             for (CustomerDetails vm : list) {
                 warehouseName.setSelectedItem(vm.getName());
             }
         }
         warehouseName.setModel(defaultComboBoxModel);
-   
+
     }
 
+    private void saveSaleDetails(SaleMaster saleMaster) {
+
+        //DefaultTableModel tm = (DefaultTableModel) this.jTable1;
+        int i = 0;
+        String itemName = "";
+        String brand;
+        String barcode;
+        String weight;
+        BigDecimal quantity;
+        BigDecimal total;
+        BigDecimal unitPrice;
+        String unit;
+        Date mfg;
+        Date exp;
+        while (i < jTable1.getRowCount()) {
+
+            itemName = jTable1.getValueAt(i, 0).toString();
+            brand = jTable1.getValueAt(i, 1).toString();
+            barcode = jTable1.getValueAt(i, 2).toString();
+            weight = jTable1.getValueAt(i, 3).toString();
+            unit = jTable1.getValueAt(i, 4).toString();
+            unitPrice = new BigDecimal(jTable1.getValueAt(i, 5).toString());
+            quantity = new BigDecimal(jTable1.getValueAt(i, 6).toString());
+            total = new BigDecimal(jTable1.getValueAt(i, 7).toString());
+//            try{
+//                
+//            mfg=new SimpleDateFormat("dd/MM/yyyy").parse(jTable1.getValueAt(i, 8).toString()); 
+//            //mfg = new Date(jTable1.getValueAt(i, 8).toString());
+//            exp = new Date(jTable1.getValueAt(i, 9).toString());
+//            }catch(Exception e){
+//                e.printStackTrace();
+//            }
+            //  mrp = new BigDecimal(tm.getValueAt(i ,12).toString());
+
+            ItemMaster im = new ItemMaster();
+            im.setBarCode(barcode);
+            im.setName(itemName);
+            im.setBrand(brand);
+//            im.setEfgDate(mfg);
+//            im.setExpDate(exp);
+            im.setQuantity(quantity);
+            im.setUnit(unit);
+            im.setUnitPrice(unitPrice);
+            im.setTotalAmount(total);
+            im.setWeight(new BigDecimal(weight));
+            List<ItemMaster> list = new ArrayList<>();
+            if (!barcode.equals("0")) {
+
+                ItemQuery itemQuery = new ItemQuery();
+                list = itemQuery.getItemByBarCode(im);
+                if (!list.isEmpty()) {
+
+                    SaleDetails saleDetails = new SaleDetails();
+                    saleDetails.setItemMaster(list.get(0));
+                    saleDetails.setQuantity(quantity);
+                    saleDetails.setUnitPrice(unitPrice);
+                    saleDetails.setSaleMaster(saleMaster);
+                    saleDetails.setTotal(total);
+
+                    SaleDetailsQuery saleDetailsQuery = new SaleDetailsQuery();
+                    saleDetailsQuery.insertIntoSaleDetails(saleDetails);
+                } else {
+                    JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Invalid Barcode!!!"), "Error Message", JOptionPane.ERROR_MESSAGE);
+
+                }
+
+            } else {
+                //without barcode code here 
+            }
+
+            i++;
+        }
+
+    }
+
+    private void changeQuantity() {
+        int i = jTable1.getSelectedRow();
+
+        try {
+            DecimalFormat decimalFormat = new DecimalFormat("#0.000");
+
+           
+            BigDecimal newQuantity ;
+
+            JFrame frame = new JFrame("Input");
+            String itemName = jTable1.getValueAt(i, 0).toString();
+            newQuantity = new BigDecimal(JOptionPane.showInputDialog(frame, "<HTML><FONT color=\"#000000\">Enter the quantity of: <strong><U>" + itemName + "</U></strong><br><strong><U> Quantity </U></strong></FONT></HTML>"));
+            //int compare = new BigDecimal(newQuantity).compareTo(eAvailability.getAvailability());
+
+            /*  if(compare == 1)
+             {
+             JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Entered Quantity is greater than Available Quantity"), "Error Message", JOptionPane.ERROR_MESSAGE);
+             return;
+             } */
+            if (newQuantity.equals(0)) {
+                JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Quantity can't be zero"), "Error Message", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            BigDecimal unitPrice = new BigDecimal(jTable1.getValueAt(i, 5).toString());
+            jTable1.setValueAt(newQuantity,i, 6);
+
+            jTable1.setValueAt(unitPrice.multiply(newQuantity), i, 7);
+            barCode1.setText("");
+
+            clear();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select the Item you want to change the quantity of"), "Error Message", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
 }
