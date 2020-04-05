@@ -1210,6 +1210,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             itemMaster.setBarCode(barCode1.getText().trim());
             //getTotalBarCode();
             if (jTable1.getRowCount() > 0) {
+                boolean notfound = true;
                 for (int i = 0; i < jTable1.getRowCount(); i++) {
 
                     String barcode = jTable1.getValueAt(i, 2).toString();
@@ -1221,8 +1222,12 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                         jTable1.setValueAt((Integer.parseInt(jTable1.getValueAt(i, 6).toString().trim()) + 1), i, 6);
                         jTable1.setValueAt((new BigDecimal(jTable1.getValueAt(i, 7).toString().trim()).add(new BigDecimal(jTable1.getValueAt(i, 5).toString()))), i, 7);
                         barCode1.setText("");
+                        notfound = false;
                     }
                 }
+                if(notfound) {
+                      loadBarcodeItem(itemMaster);  
+                    }
             } else {
                 loadBarcodeItem(itemMaster);
             }
