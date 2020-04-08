@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 28, 2020 3:09:44 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="hindi_project_shubhangi" name="com.grocery.bean.ItemMaster" optimistic-lock="version" table="item_master">
+    <id name="id" type="java.lang.Integer">
+      <column name="Id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="name" type="string">
+      <column name="name"/>
+    </property>
+    <property name="brand" type="string">
+      <column name="brand"/>
+    </property>
+    <property name="barCode" type="string">
+      <column name="barCode"/>
+    </property>
+    <property name="weight" type="big_decimal">
+      <column name="weight" precision="10"/>
+    </property>
+    <property name="unit" type="string">
+      <column length="150" name="unit"/>
+    </property>
+    <property name="unitPrice" type="big_decimal">
+      <column name="unitPrice" precision="10"/>
+    </property>
+    <property name="quantity" type="big_decimal">
+      <column name="quantity" precision="10"/>
+    </property>
+    <property name="totalAmount" type="big_decimal">
+      <column name="totalAmount" precision="10"/>
+    </property>
+    <property name="efgDate" type="date">
+      <column length="10" name="efgDate"/>
+    </property>
+    <property name="expDate" type="date">
+      <column length="10" name="expDate"/>
+    </property>
+    <property name="gstPercent" type="big_decimal">
+      <column name="gstPercent" precision="10"/>
+    </property>
+    <property name="sellingPrice" type="big_decimal">
+      <column name="sellingPrice" precision="10"/>
+    </property>
+    <property name="sellingGstPercent" type="big_decimal">
+      <column name="sellingGstPercent" precision="10"/>
+    </property>
+    <property name="finalSellingPrice" type="big_decimal">
+      <column name="finalSellingPrice" precision="10"/>
+    </property>
+    <property name="gstType" type="string">
+      <column length="60" name="gstType"/>
+    </property>
+    <property name="igstPercent" type="big_decimal">
+      <column name="igstPercent" precision="10"/>
+    </property>
+    <property name="isDeleted" type="java.lang.Integer">
+      <column name="is_deleted"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="itemAvailabilities" table="item_availability">
+      <key>
+        <column name="itemId"/>
+      </key>
+      <one-to-many class="com.grocery.bean.ItemAvailability"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="saleDetailses" table="sale_details">
+      <key>
+        <column name="itemId"/>
+      </key>
+      <one-to-many class="com.grocery.bean.SaleDetails"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="stockDetailses" table="stock_details">
+      <key>
+        <column name="itemId"/>
+      </key>
+      <one-to-many class="com.grocery.bean.StockDetailsPurchase"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="saleReturnDetailses" table="sale_return_details">
+      <key>
+        <column name="itemId"/>
+      </key>
+      <one-to-many class="com.grocery.bean.SaleReturnDetails"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="purchaseReturnDetailses" table="purchase_return_details">
+      <key>
+        <column name="itemId"/>
+      </key>
+      <one-to-many class="com.grocery.bean.PurchaseReturnDetails"/>
+    </set>
+  </class>
+</hibernate-mapping>
