@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 4, 2020 10:49:21 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.grocery.bean.ItemMasterWithoutBarcode" table="item_master_without_barcode" catalog="hindi_project_shubhangi" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="brand" type="string">
+            <column name="brand" />
+        </property>
+        <property name="barCode" type="string">
+            <column name="barCode" />
+        </property>
+        <property name="weight" type="big_decimal">
+            <column name="weight" precision="10" />
+        </property>
+        <property name="unit" type="string">
+            <column name="unit" length="150" />
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column name="unitPrice" precision="10" />
+        </property>
+        <property name="quantity" type="big_decimal">
+            <column name="quantity" precision="10" />
+        </property>
+        <property name="totalAmount" type="big_decimal">
+            <column name="totalAmount" precision="10" />
+        </property>
+        <property name="efgDate" type="date">
+            <column name="efgDate" length="10" />
+        </property>
+        <property name="expDate" type="date">
+            <column name="expDate" length="10" />
+        </property>
+        <property name="isDeleted" type="java.lang.Integer">
+            <column name="is_deleted" />
+        </property>
+    </class>
+</hibernate-mapping>

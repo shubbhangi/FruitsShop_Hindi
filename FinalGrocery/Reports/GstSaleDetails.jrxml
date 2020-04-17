@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="950" pageHeight="842" columnWidth="910" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="366"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[$F{sale_master_Id}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     counter.`Id` AS counter_Id,
+     counter.`name` AS counter_name,
+     counter.`status` AS counter_status,
+     item_master.`Id` AS item_master_Id,
+     item_master.`name` AS item_master_name,
+     item_master.`unitPrice` AS item_master_unitPrice,
+     item_master.`gstPercent` AS item_master_gstPercent,
+     item_master.`sellingPrice` AS item_master_sellingPrice,
+     item_master.`sellingGstPercent` AS item_master_sellingGstPercent,
+     item_master.`finalSellingPrice` AS item_master_finalSellingPrice,
+     item_master.`hsnCode` AS hsnCode,
+     sale_details.`Id` AS sale_details_Id,
+     sale_details.`saleId` AS sale_details_saleId,
+     sale_details.`itemId` AS sale_details_itemId,
+     sale_details.`unitPrice` AS sale_details_unitPrice,
+     sale_details.`gstPercent` AS sale_details_gstPercent,
+     sale_details.`sellingPrice` AS sale_details_sellingPrice,
+     sale_details.`quantity` AS sale_details_quantity,
+     sale_details.`total` AS sale_details_total,
+     sale_master.`Id` AS sale_master_Id,
+     sale_master.`date` AS sale_master_date,
+     sale_master.`storeId` AS sale_master_storeId,
+     sale_master.`counterId` AS sale_master_counterId,
+     sale_master.`customerId` AS sale_master_customerId,
+     sale_master.`billAmount` AS sale_master_billAmount,
+     sale_master.`discount` AS sale_master_discount,
+     sale_master.`finalBillAmount` AS sale_master_finalBillAmount,
+     sale_master.`status` AS sale_master_status,
+     sale_master.`remark` AS sale_master_remark,
+     store_details.`Id` AS store_details_Id,
+     store_details.`name` AS store_details_name,
+     store_details.`address` AS store_details_address,
+     store_details.`city` AS store_details_city,
+     store_details.`state` AS store_details_state,
+     store_details.`pincode` AS store_details_pincode,
+     store_details.`phone` AS store_details_phone,
+     store_details.`website` AS store_details_website,
+     store_details.`email` AS store_details_email,
+     store_details.`gstNumber` AS store_details_gstNumber,
+     store_details.`photo` AS store_details_photo
+FROM
+     `item_master` item_master INNER JOIN `sale_details` sale_details ON item_master.`Id` = sale_details.`itemId`
+     INNER JOIN `sale_master` sale_master ON sale_details.`saleId` = sale_master.`Id`
+     INNER JOIN `counter` counter ON sale_master.`counterId` = counter.`Id`
+     INNER JOIN `store_details` store_details ON sale_master.`storeId` = store_details.`Id` 
+WHERE sale_master.id = 1;]]>
+	</queryString>
+	<field name="counter_Id" class="java.lang.Integer"/>
+	<field name="counter_name" class="java.lang.String"/>
+	<field name="counter_status" class="java.lang.String"/>
+	<field name="item_master_Id" class="java.lang.Integer"/>
+	<field name="item_master_name" class="java.lang.String"/>
+	<field name="item_master_unitPrice" class="java.math.BigDecimal"/>
+	<field name="item_master_gstPercent" class="java.math.BigDecimal"/>
+	<field name="item_master_sellingPrice" class="java.math.BigDecimal"/>
+	<field name="item_master_sellingGstPercent" class="java.math.BigDecimal"/>
+	<field name="item_master_finalSellingPrice" class="java.math.BigDecimal"/>
+	<field name="hsnCode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sale_details_Id" class="java.lang.Integer"/>
+	<field name="sale_details_saleId" class="java.lang.Integer"/>
+	<field name="sale_details_itemId" class="java.lang.Integer"/>
+	<field name="sale_details_unitPrice" class="java.math.BigDecimal"/>
+	<field name="sale_details_gstPercent" class="java.math.BigDecimal"/>
+	<field name="sale_details_sellingPrice" class="java.math.BigDecimal"/>
+	<field name="sale_details_quantity" class="java.math.BigDecimal"/>
+	<field name="sale_details_total" class="java.math.BigDecimal"/>
+	<field name="sale_master_Id" class="java.lang.Integer"/>
+	<field name="sale_master_date" class="java.sql.Date"/>
+	<field name="sale_master_storeId" class="java.lang.Integer"/>
+	<field name="sale_master_counterId" class="java.lang.Integer"/>
+	<field name="sale_master_customerId" class="java.lang.Integer"/>
+	<field name="sale_master_billAmount" class="java.math.BigDecimal"/>
+	<field name="sale_master_discount" class="java.math.BigDecimal"/>
+	<field name="sale_master_finalBillAmount" class="java.math.BigDecimal"/>
+	<field name="sale_master_status" class="java.lang.String"/>
+	<field name="sale_master_remark" class="java.lang.String"/>
+	<field name="store_details_Id" class="java.lang.Integer"/>
+	<field name="store_details_name" class="java.lang.String"/>
+	<field name="store_details_address" class="java.lang.String"/>
+	<field name="store_details_city" class="java.lang.String"/>
+	<field name="store_details_state" class="java.lang.String"/>
+	<field name="store_details_pincode" class="java.lang.String"/>
+	<field name="store_details_phone" class="java.lang.String"/>
+	<field name="store_details_website" class="java.lang.String"/>
+	<field name="store_details_email" class="java.lang.String"/>
+	<field name="store_details_gstNumber" class="java.lang.String"/>
+	<field name="store_details_photo" class="java.io.InputStream"/>
+	<variable name="total" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{sale_details_total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="220" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="90" width="908" height="32"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_details_address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="122" width="908" height="32"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_details_state} + ","]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="122" height="90"/>
+				<imageExpression><![CDATA[$F{store_details_photo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="122" y="0" width="787" height="90"/>
+				<textElement textAlignment="Center">
+					<font size="70" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_details_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="185" width="908" height="32"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Phone: " + $F{store_details_phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="154" width="908" height="31"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_details_city} + " : " + $F{store_details_pincode}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="217" width="909" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="372" y="1" width="78" height="31"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Counter:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="0" width="66" height="31"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bill Id:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="453" y="1" width="69" height="31"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{counter_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="0" width="100" height="31"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_master_Id}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy">
+				<reportElement x="727" y="1" width="141" height="31"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_master_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="675" y="1" width="44" height="31"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="33" width="909" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="819" y="2" width="71" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="2" width="112" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Unit Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="2" width="82" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[GST %]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="0" width="132" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Item Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="529" y="2" width="145" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Selling Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="684" y="2" width="112" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="34" width="909" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="202" y="0" width="58" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[HSN]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="86" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="2" width="175" height="80"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{item_master_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="322" y="2" width="90" height="26"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_details_unitPrice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="2" width="71" height="26"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_details_gstPercent}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="551" y="2" width="90" height="26"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_details_sellingPrice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="696" y="2" width="90" height="26"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_details_quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="819" y="2" width="90" height="26"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_details_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="2" width="112" height="26"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hsnCode}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="110" splitType="Stretch">
+			<textField>
+				<reportElement x="727" y="5" width="182" height="33" forecolor="#FF0000"/>
+				<textElement verticalAlignment="Top">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="727" y="72" width="182" height="33" forecolor="#000000"/>
+				<textElement verticalAlignment="Top">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_master_finalBillAmount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="727" y="39" width="182" height="33" forecolor="#000000"/>
+				<textElement verticalAlignment="Top">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_master_discount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="522" y="39" width="173" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Discount:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="522" y="72" width="155" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Final Amount:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="522" y="6" width="71" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="5" width="909" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="6" width="83" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[GSTIN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="96" y="6" width="182" height="33" forecolor="#000000"/>
+				<textElement verticalAlignment="Top">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_details_gstNumber}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

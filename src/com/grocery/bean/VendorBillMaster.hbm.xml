@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 28, 2020 3:09:44 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="hindi_project_shubhangi" name="com.grocery.bean.VendorBillMaster" optimistic-lock="version" table="vendor_bill_master">
+    <id name="id" type="java.lang.Integer">
+      <column name="Id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="com.grocery.bean.StoreDetails" fetch="select" name="storeDetails">
+      <column name="storeId"/>
+    </many-to-one>
+    <many-to-one class="com.grocery.bean.VendorMaster" fetch="select" name="vendorMaster">
+      <column name="vendorId"/>
+    </many-to-one>
+    <property name="date" type="date">
+      <column length="10" name="date"/>
+    </property>
+    <property name="challan" type="string">
+      <column name="challan"/>
+    </property>
+    <property name="billAmount" type="big_decimal">
+      <column name="billAmount" precision="10"/>
+    </property>
+    <property name="discount" type="big_decimal">
+      <column name="discount" precision="10"/>
+    </property>
+    <property name="finalBillAmount" type="big_decimal">
+      <column name="finalBillAmount" precision="10"/>
+    </property>
+    <property name="remark" type="string">
+      <column name="remark"/>
+    </property>
+    <property name="reference" type="string">
+      <column name="reference"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="purchaseReturns" table="purchase_return">
+      <key>
+        <column name="billId"/>
+      </key>
+      <one-to-many class="com.grocery.bean.PurchaseReturn"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="stockDetailses" table="stock_details">
+      <key>
+        <column name="billId"/>
+      </key>
+      <one-to-many class="com.grocery.bean.StockDetailsPurchase"/>
+    </set>
+  </class>
+</hibernate-mapping>

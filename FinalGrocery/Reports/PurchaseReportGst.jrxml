@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="800" pageHeight="842" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="from" class="java.lang.String"/>
+	<parameter name="to" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     vendor_bill_master.`Id` AS vendor_bill_master_Id,
+     vendor_bill_master.`date` AS vendor_bill_master_date,
+     vendor_bill_master.`storeId` AS vendor_bill_master_storeId,
+     vendor_bill_master.`vendorId` AS vendor_bill_master_vendorId,
+     vendor_bill_master.`challan` AS vendor_bill_master_challan,
+     SUM(vendor_bill_master.`billAmount`) AS billAmount,
+     SUM(vendor_bill_master.`discount`) AS discount,
+     SUM(vendor_bill_master.`finalBillAmount`) AS finalBillAmount,
+     vendor_bill_master.`remark` AS vendor_bill_master_remark,
+     store_details.`Id` AS store_details_Id,
+     store_details.`name` AS store_details_name,
+     store_details.`address` AS store_details_address,
+     store_details.`city` AS store_details_city,
+     store_details.`state` AS store_details_state,
+     store_details.`pincode` AS store_details_pincode,
+     store_details.`phone` AS store_details_phone,
+     store_details.`website` AS store_details_website,
+     store_details.`email` AS store_details_email,
+     store_details.`gstNumber` AS store_details_gstNumber,
+     store_details.`hsnCode` AS store_details_hsnCode,
+     store_details.`photo` AS store_details_photo
+FROM
+     `store_details` store_details INNER JOIN `vendor_bill_master` vendor_bill_master ON store_details.`Id` = vendor_bill_master.`storeId` 
+WHERE ((vendor_bill_master.date BETWEEN '2018-03-15' AND '2018-04-01') AND vendor_bill_master.remark = 'GST Taken') GROUP BY vendor_bill_master.date ASC;]]>
+	</queryString>
+	<field name="vendor_bill_master_Id" class="java.lang.Integer"/>
+	<field name="vendor_bill_master_date" class="java.sql.Date"/>
+	<field name="vendor_bill_master_storeId" class="java.lang.Integer"/>
+	<field name="vendor_bill_master_vendorId" class="java.lang.Integer"/>
+	<field name="vendor_bill_master_challan" class="java.lang.String"/>
+	<field name="billAmount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="discount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="finalBillAmount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vendor_bill_master_remark" class="java.lang.String"/>
+	<field name="store_details_Id" class="java.lang.Integer"/>
+	<field name="store_details_name" class="java.lang.String"/>
+	<field name="store_details_address" class="java.lang.String"/>
+	<field name="store_details_city" class="java.lang.String"/>
+	<field name="store_details_state" class="java.lang.String"/>
+	<field name="store_details_pincode" class="java.lang.String"/>
+	<field name="store_details_phone" class="java.lang.String"/>
+	<field name="store_details_website" class="java.lang.String"/>
+	<field name="store_details_email" class="java.lang.String"/>
+	<field name="store_details_gstNumber" class="java.lang.String"/>
+	<field name="store_details_hsnCode" class="java.lang.String"/>
+	<field name="store_details_photo" class="java.io.InputStream"/>
+	<variable name="billAmount" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{billAmount}]]></variableExpression>
+	</variable>
+	<variable name="discount" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{discount}]]></variableExpression>
+	</variable>
+	<variable name="finalAmount" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{finalBillAmount}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="312" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="220" width="760" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="221" width="760" height="89" forecolor="#FF0000"/>
+				<textElement textAlignment="Center">
+					<font size="60"/>
+				</textElement>
+				<text><![CDATA[Purchase Report (GST)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="310" width="759" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="122" width="761" height="32"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_details_state} + ","]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="90" width="759" height="32"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_details_address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="154" width="757" height="31"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_details_city} + " : " + $F{store_details_pincode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="185" width="757" height="32"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Phone: " + $F{store_details_phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="0" width="638" height="90"/>
+				<textElement textAlignment="Center">
+					<font size="70" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_details_name}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="1" y="0" width="122" height="90"/>
+				<imageExpression><![CDATA[$F{store_details_photo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="550" y="0" width="32" height="31"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="583" y="0" width="162" height="31"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{to}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="31" width="761" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="23" y="0" width="47" height="31"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[From:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="0" width="165" height="31"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{from}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="23" y="0" width="69" height="31"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Sr No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="0" width="69" height="31"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="0" width="125" height="31"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Bill Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="0" width="115" height="31"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Discount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="603" y="0" width="156" height="31"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Final Amount]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="34" width="760" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="467" y="0" width="111" height="31"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{discount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="631" y="0" width="128" height="31"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{finalBillAmount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="41" y="0" width="51" height="31"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="299" y="0" width="125" height="31"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{billAmount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement x="107" y="0" width="140" height="31"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vendor_bill_master_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="106" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="4" width="760" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="585" y="72" width="173" height="33" forecolor="#FF0000"/>
+				<textElement verticalAlignment="Top">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{finalAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="371" y="38" width="205" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Total Discount:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="585" y="38" width="173" height="33" forecolor="#FF0000"/>
+				<textElement verticalAlignment="Top">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{discount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="585" y="5" width="173" height="33" forecolor="#FF0000"/>
+				<textElement verticalAlignment="Top">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{billAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="371" y="71" width="205" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Final Bill Amount:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="5" width="192" height="33"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Total Bill Amount:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

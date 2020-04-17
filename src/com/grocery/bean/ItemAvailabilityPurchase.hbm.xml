@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 14, 2020 12:40:40 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.grocery.bean.ItemAvailabilityPurchase" table="item_availability_purchase" catalog="hindi_project_shubhangi" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="purchaseMaster" class="com.grocery.bean.PurchaseMaster" fetch="select">
+            <column name="purId" />
+        </many-to-one>
+        <property name="availability" type="big_decimal">
+            <column name="availability" precision="10" scale="3" />
+        </property>
+        <property name="threshold" type="big_decimal">
+            <column name="threshold" precision="10" scale="3" />
+        </property>
+    </class>
+</hibernate-mapping>
