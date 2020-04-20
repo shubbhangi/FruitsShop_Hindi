@@ -2193,6 +2193,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
 
                 ItemQuery itemQuery = new ItemQuery();
                 list = itemQuery.getItemByBarCode(im);
+                
                 if (!list.isEmpty()) {
 
                     SaleDetails saleDetails = new SaleDetails();
@@ -2204,6 +2205,25 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
 
                     SaleDetailsQuery saleDetailsQuery = new SaleDetailsQuery();
                     saleDetailsQuery.insertIntoSaleDetails(saleDetails);
+                    
+                    ItemAvailability itemAvailability = new ItemAvailability();
+                    ItemAvailabilityQuery itemAvailabilityQuery = new ItemAvailabilityQuery();
+
+                    itemAvailability.setItemMaster(list.get(0));
+                    List<ItemAvailability> list1 = itemAvailabilityQuery.getBarcodeAvailability(itemAvailability);
+                    ItemAvailability item=list1.get(0);
+                    
+                    itemAvailability.setAvailability(item.getAvailability().subtract(quantity));
+
+                    List<ItemAvailability> itemAvailabilityList = itemAvailabilityQuery.checkItem(itemAvailability);
+                    for (ItemAvailability ia : itemAvailabilityList) {
+                        itemAvailability.setId(ia.getId());
+                    }
+
+                    itemAvailabilityQuery.updateItemAvailability(itemAvailability);
+                    
+                    
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Invalid Barcode!!!"), "Error Message", JOptionPane.ERROR_MESSAGE);
 
