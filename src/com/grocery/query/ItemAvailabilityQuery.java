@@ -219,9 +219,9 @@ public class ItemAvailabilityQuery
     
     
     
-          public List<ItemAvailability> getBarcodeAvailability(ItemAvailability itemAvailability)
+          public List<Object[]> getBarcodeAvailability(ItemAvailability itemAvailability)
     {
-        List<ItemAvailability> list = new ArrayList<>();
+        List<Object[]> list = new ArrayList<>();
         
         String query = "";
         

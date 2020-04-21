@@ -2210,15 +2210,15 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                     ItemAvailabilityQuery itemAvailabilityQuery = new ItemAvailabilityQuery();
 
                     itemAvailability.setItemMaster(list.get(0));
-                    List<ItemAvailability> list1 = itemAvailabilityQuery.getBarcodeAvailability(itemAvailability);
-                    ItemAvailability item=list1.get(0);
-                    
-                    itemAvailability.setAvailability(item.getAvailability().subtract(quantity));
+                    List<Object[]> list1 = itemAvailabilityQuery.getBarcodeAvailability(itemAvailability);
+                    Object[] item1=list1.get(0);
+                    ItemAvailability itmavl = (ItemAvailability)item1[0];
 
                     List<ItemAvailability> itemAvailabilityList = itemAvailabilityQuery.checkItem(itemAvailability);
                     for (ItemAvailability ia : itemAvailabilityList) {
                         itemAvailability.setId(ia.getId());
                     }
+                    itemAvailability.setAvailability(itmavl.getAvailability().subtract(quantity));
 
                     itemAvailabilityQuery.updateItemAvailability(itemAvailability);
                     

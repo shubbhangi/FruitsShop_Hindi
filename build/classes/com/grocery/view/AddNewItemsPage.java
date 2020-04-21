@@ -1251,10 +1251,7 @@ public class AddNewItemsPage extends javax.swing.JFrame {
         }
         brand.setModel(defaultComboBoxModel);
     }
-     
-     
-    
-    
+
 
     private void addToTable() throws Exception {
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
@@ -1368,8 +1365,6 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                 itemName = newItem.getText().trim();
             }
             
-            
-            
             if (brandName.equalsIgnoreCase("add new")) {
             if (newBrand.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the name of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
@@ -1390,9 +1385,7 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                 
                 brandName = newBrand.getText().trim();
             }
-        
-         
-        
+   
         defaultTableModel.addRow(new Object[]{itemName, brandName,barCode,weight,unitName, unitPrice, quantity ,total, mfg, exp});   
         jTable1.setModel(defaultTableModel);
         //getTotal();
