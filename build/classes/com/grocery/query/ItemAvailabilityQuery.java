@@ -219,7 +219,42 @@ public class ItemAvailabilityQuery
     
     
     
-    
+          public List<Object[]> getBarcodeAvailability(ItemAvailability itemAvailability)
+    {
+        List<Object[]> list = new ArrayList<>();
+        
+        String query = "";
+        
+        if(itemAvailability.getItemMaster().getBarCode()== null)
+       // if(itemAvailability.getItemMaster().getName() == null)
+          // query = "FROM ItemAvailability ia JOIN ia.itemMaster im ORDER BY im.name ASC";
+           query = "FROM ItemAvailability ia JOIN ia.itemMaster im ORDER BY im.name ASC";
+
+        
+        else
+//            query = "FROM ItemAvailability ia JOIN ia.itemMaster im WHERE im.name LIKE '%" + itemAvailability.getItemMaster().getName() + "' "
+//                  + "OR im.name LIKE '%" + itemAvailability.getItemMaster().getName() + "%' ORDER BY im.name ASC";
+            query = "FROM ItemAvailability ia JOIN ia.itemMaster im WHERE im.barCode = '" + itemAvailability.getItemMaster().getBarCode()+ "' ";
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            list = q.list();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        
+        return list;
+    }
+
     
     
     

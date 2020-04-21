@@ -26,7 +26,7 @@ public class MyConnection
                 //Properties pr = new Properties();
 
                 Class.forName("com.mysql.jdbc.Driver");
-		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hindi_project_shubhangi?useUnicode=yes&characterEncoding=UTF-8","root","vertrigo");
+		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hindi_project_shubhangi?useUnicode=yes&characterEncoding=UTF-8","root","password");
               //  String connectionURL = "jdbc:mysql://localhost:3306/student?useUnicode=yes&characterEncoding=UTF-8";
                 return con;
     }

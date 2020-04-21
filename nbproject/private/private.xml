@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/satvix/Documents/FruitsShop_Hindi/src/com/grocery/view/HomePage1.java</file>
+            <file>file:/home/satvix/Documents/FruitsShop_Hindi/src/com/grocery/view/SaleWithoutBarcodeView.java</file>
+            <file>file:/home/satvix/Documents/FruitsShop_Hindi/src/com/grocery/view/SalesPageViewNew.java</file>
+            <file>file:/home/satvix/Documents/FruitsShop_Hindi/src/com/grocery/query/ItemAvailabilityQuery.java</file>
+            <file>file:/home/satvix/Documents/FruitsShop_Hindi/src/com/grocery/bean/ItemAvailability.java</file>
+            <file>file:/home/satvix/Documents/FruitsShop_Hindi/src/com/grocery/bean/ItemMaster.java</file>
+        </group>
     </open-files>
 </project-private>
