@@ -6,6 +6,7 @@
 package com.grocery.query;
 
 import com.grocery.bean.ItemMaster;
+import com.grocery.bean.PurchaseMaster;
 import com.grocery.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,17 +19,17 @@ import org.hibernate.Session;
  */
 public class PurchaseBrandQuery {
 
-    public List<ItemMaster> getPurchaseBrandDetails(ItemMaster itemMaster) {
+    public List<PurchaseMaster> getPurchaseBrandDetails(PurchaseMaster purchaseMaster) {
       {
      
-        List<ItemMaster> list = new ArrayList<>();
+        List<PurchaseMaster> list = new ArrayList<>();
         
         String query = "";
 
-        if(itemMaster.getName() != null)
-            query = "FROM ItemMaster WHERE name = '" + itemMaster.getName() + "'";
+        if(purchaseMaster.getName() != null)
+            query = "FROM PurchaseMaster WHERE brand = '" + purchaseMaster.getBrand()+ "'";
         else
-            query = "FROM ItemMaster WHERE name <> 'N/A' ORDER BY name ASC";
+            query = "FROM PurchaseMaster WHERE brand <> 'N/A' ORDER BY brand ASC";
         
         Session session = HibernateUtil.getSessionFactory().openSession();
         
@@ -49,6 +50,37 @@ public class PurchaseBrandQuery {
         
         return list;
     }
-    
-   }
+  }
+    public List<PurchaseMaster> getItemDetails2(PurchaseMaster purchaseMaster) 
+    {
+        List<PurchaseMaster> list = new ArrayList<>();
+        
+        String query = "";
+
+        if(purchaseMaster.getName() != null)
+            query = "FROM PurchaseMaster WHERE name = '" + purchaseMaster.getName() + "'";
+        else
+            query = "FROM PurchaseMaster WHERE name <> 'N/A' ORDER BY name ASC";
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            list = q.list();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        
+        return list;
+    }
+      
+   
 }

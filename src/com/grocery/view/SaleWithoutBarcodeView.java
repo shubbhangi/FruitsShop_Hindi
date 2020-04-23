@@ -1802,7 +1802,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             defaultComboBoxModel.removeAllElements();
 
             defaultComboBoxModel.addElement("--Select--");
-            defaultComboBoxModel.addElement("Add New");
+    //        defaultComboBoxModel.addElement("Add New");
 
             for (ItemMaster im : list) {
                 defaultComboBoxModel.addElement(im.getName());
@@ -1831,7 +1831,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             defaultComboBoxModel.removeAllElements();
 
             defaultComboBoxModel.addElement("--Select--");
-            defaultComboBoxModel.addElement("Add New");
+          //  defaultComboBoxModel.addElement("Add New");
 
             for (ItemMaster im : list) {
                 defaultComboBoxModel.addElement(im.getBrand());
@@ -1954,8 +1954,8 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                 
                 ItemMaster itemMaster = new ItemMaster();
                 
-                 ItemAvailability itemAvailability = new ItemAvailability();
-                 ItemAvailabilityQuery itemAvailabilityQuery = new ItemAvailabilityQuery();
+                ItemAvailability itemAvailability = new ItemAvailability();
+                ItemAvailabilityQuery itemAvailabilityQuery = new ItemAvailabilityQuery();
 
  //////////               String avalilability itemAvailability.getAvailability());
                  
@@ -1966,11 +1966,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                     List<ItemAvailability> itemAvailabilityList = itemAvailabilityQuery.checkItem(itemAvailability);
                     for (ItemAvailability ia : itemAvailabilityList) {
                         itemAvailability.setId(ia.getId());
-                
-                
-                
-                
-                
+
                     }
                 
                 JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Sale successful"));

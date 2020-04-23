@@ -7,10 +7,12 @@ package com.grocery.view;
 
 import com.grocery.bean.Expenses;
 import com.grocery.bean.ItemAvailability;
+import com.grocery.bean.ItemAvailabilityPurchase;
 import com.grocery.bean.ItemMaster;
 import com.grocery.bean.StockDetailsPurchase;
 import com.grocery.bean.StoreDetails;
 import com.grocery.query.ExpensesQuery;
+import com.grocery.query.ItemAvailabilityPurchaseQuery;
 import com.grocery.query.ItemAvailabilityQuery;
 import com.grocery.query.ItemQuery;
 import com.grocery.query.StockDetailsQuery;
@@ -22,6 +24,7 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import static java.util.Collections.list;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -1344,6 +1347,11 @@ public class AddNewItemsPage extends javax.swing.JFrame {
         float total = getUnitPrice(unitPrice1, quantity);
        
         
+        if (itemName.equalsIgnoreCase("--select--")) {
+            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
+            item.requestFocus();
+            return;
+        }
             if (itemName.equalsIgnoreCase("add new")) {
             if (newItem.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the name of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
@@ -1364,7 +1372,11 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                 
                 itemName = newItem.getText().trim();
             }
-            
+//            if (brandName.equalsIgnoreCase("--select--")) {
+//            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Brand"), "Error Message", JOptionPane.ERROR_MESSAGE);
+//            brand.requestFocus();
+//            return;
+//        }
             if (brandName.equalsIgnoreCase("add new")) {
             if (newBrand.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the name of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
@@ -1499,16 +1511,30 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                         for (ItemMaster im : itemList) {
                             itemMaster.setId(im.getId());
                         }
+                        
+                        
+   /*                 ItemAvailabilityPurchase itemAvailabilityPurchase = new ItemAvailabilityPurchase();
+                    ItemAvailabilityPurchaseQuery itemAvailabilityPurchaseQuery = new ItemAvailabilityPurchaseQuery();
+
+        //            itemAvailabilityPurchase.setP(list.get(0));
+                    List<Object[]> list1 = itemAvailabilityPurchaseQuery.getWeightAvailability(itemAvailabilityPurchase);
+                    Object[] item1=list1.get(0);
+                    ItemAvailabilityPurchase itmavl = (ItemAvailabilityPurchase)item1[0];
+
+                    List<ItemAvailabilityPurchase> itemAvailabilityList = itemAvailabilityPurchaseQuery.checkItem(itemAvailabilityPurchase);
+                    for (ItemAvailabilityPurchase ia : itemAvailabilityList) {
+                        itemAvailabilityPurchase.setId(ia.getId());
                     }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                    itemAvailabilityPurchase.setAvailability(itmavl.getAvailability().subtract(quantity));
+                    itemAvailabilityPurchaseQuery.updateItemAvailability(itemAvailabilityPurchase);
+     */               
+                        
+                        
+                        
+                        
+                        
+                    }
+            
                     BigDecimal thresholdPercent = new BigDecimal(0.25);
                     itemAvailability.setItemMaster(itemMaster);
                     itemAvailability.setAvailability(quantity);
@@ -1517,7 +1543,28 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                     List<ItemAvailability> itemAvailabilityList = itemAvailabilityQuery.checkItem(itemAvailability);
 
                     if (itemAvailabilityList.isEmpty()) {
+                        
                         itemAvailabilityQuery.insertIntoItemAvailability(itemAvailability);
+                         ItemAvailabilityPurchase itemAvailabilityPurchase = new ItemAvailabilityPurchase();
+                    ItemAvailabilityPurchaseQuery itemAvailabilityPurchaseQuery = new ItemAvailabilityPurchaseQuery();
+
+        //            itemAvailabilityPurchase.setP(list.get(0));
+                    List<Object[]> list1 = itemAvailabilityPurchaseQuery.getWeightAvailability(itemAvailabilityPurchase);
+                    Object[] item1=list1.get(0);
+                    ItemAvailabilityPurchase itmavl = (ItemAvailabilityPurchase)item1[0];
+
+                    List<ItemAvailabilityPurchase> itemAvailabilityList1 = itemAvailabilityPurchaseQuery.checkItem(itemAvailabilityPurchase);
+                    for (ItemAvailabilityPurchase ia : itemAvailabilityList1) {
+                        itemAvailabilityPurchase.setId(ia.getId());
+                    }
+                    itemAvailabilityPurchase.setAvailability(itmavl.getAvailability().subtract(quantity));
+                    itemAvailabilityPurchaseQuery.updateItemAvailability(itemAvailabilityPurchase);
+                      
+                        
+                        
+                        
+                        
+                        
                     } else {
                         for (ItemAvailability ia : itemAvailabilityList) {
                             itemAvailability.setId(ia.getId());

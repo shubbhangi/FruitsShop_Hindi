@@ -219,7 +219,7 @@ public class ItemAvailabilityQuery
     
     
     
-          public List<Object[]> getBarcodeAvailability(ItemAvailability itemAvailability)
+    public List<Object[]> getBarcodeAvailability(ItemAvailability itemAvailability)
     {
         List<Object[]> list = new ArrayList<>();
         

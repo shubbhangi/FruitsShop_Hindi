@@ -7,6 +7,7 @@ package com.grocery.query;
 
 
 import com.grocery.bean.ItemMaster;
+import com.grocery.bean.PurchaseMaster;
 import com.grocery.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -294,4 +295,5 @@ public class ItemQuery
         
         return list;
     }
+
 }
