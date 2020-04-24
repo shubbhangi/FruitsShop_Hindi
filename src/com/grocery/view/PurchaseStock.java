@@ -6,6 +6,7 @@
 package com.grocery.view;
 
 import com.grocery.bean.ItemMaster;
+import com.grocery.bean.PurchaseMaster;
 import com.grocery.bean.VendorMaster;
 import com.grocery.query.BeginningCashQuery;
 import com.grocery.query.ExpensesQuery;
@@ -855,7 +856,6 @@ public class PurchaseStock extends javax.swing.JFrame {
         jPanelItem.setVisible(true);
         else
         jPanelItem.setVisible(false);
-
         newItem.setText("");
         try
         {
@@ -1335,15 +1335,16 @@ public class PurchaseStock extends javax.swing.JFrame {
      
      private void loadItem() 
     {
-        ItemMaster itemMaster = new ItemMaster();
-        ItemQuery itemQuery = new ItemQuery();
+        
+        PurchaseMaster purchaseMaster = new PurchaseMaster();
+        PurchaseBrandQuery purchaseBrandQuery = new PurchaseBrandQuery();
         
 	  if(itemFlag)
-            itemMaster.setName(item.getSelectedItem().toString());
+            purchaseMaster.setName(item.getSelectedItem().toString());
        	
         DefaultComboBoxModel defaultComboBoxModel = (DefaultComboBoxModel)item.getModel();
 
-         List<ItemMaster> list = itemQuery.getItemDetails1(itemMaster);
+         List<PurchaseMaster> list = purchaseBrandQuery.getItemDetails2(purchaseMaster);
         if(!(itemFlag))
         {
 	   defaultComboBoxModel.removeAllElements();
@@ -1351,12 +1352,12 @@ public class PurchaseStock extends javax.swing.JFrame {
         defaultComboBoxModel.addElement("--Select--");
         defaultComboBoxModel.addElement("Add New");
        
-	   for(ItemMaster im: list)
+	   for(PurchaseMaster im: list)
                 defaultComboBoxModel.addElement(im.getName());
         }
         else
 		{
-            for(ItemMaster im: list)
+            for(PurchaseMaster im: list)
             {
                 item.setSelectedItem(im.getName());
             }      
@@ -1367,15 +1368,15 @@ public class PurchaseStock extends javax.swing.JFrame {
      
       private void loadBrand() 
     {
-        ItemMaster itemMaster = new ItemMaster();
+        PurchaseMaster purchaseMaster = new PurchaseMaster();
         PurchaseBrandQuery purchaseBrandQuery = new PurchaseBrandQuery();
         
 	  if(brandFlag)
-            itemMaster.setName(brand.getSelectedItem().toString());
+            purchaseMaster.setName(brand.getSelectedItem().toString());
        	
         DefaultComboBoxModel defaultComboBoxModel = (DefaultComboBoxModel)brand.getModel();
 
-         List<ItemMaster> list = purchaseBrandQuery.getPurchaseBrandDetails(itemMaster);
+         List<PurchaseMaster> list = purchaseBrandQuery.getPurchaseBrandDetails(purchaseMaster);
         if(!(brandFlag))
         {
 
@@ -1384,14 +1385,14 @@ public class PurchaseStock extends javax.swing.JFrame {
         defaultComboBoxModel.addElement("--Select--");
         defaultComboBoxModel.addElement("Add New");
        
-	   for(ItemMaster im: list)
-                defaultComboBoxModel.addElement(im.getName());
+	   for(PurchaseMaster im: list)
+                defaultComboBoxModel.addElement(im.getBrand());
         }
         else
 		{
-            for(ItemMaster im: list)
+            for(PurchaseMaster im: list)
             {
-                brand.setSelectedItem(im.getName());
+                brand.setSelectedItem(im.getBrand());
             }      
         }
         brand.setModel(defaultComboBoxModel);

@@ -7,6 +7,7 @@ package com.grocery.query;
 
 
 import com.grocery.bean.ItemMaster;
+import com.grocery.bean.PurchaseMaster;
 import com.grocery.util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +82,7 @@ public class ItemQuery
         return list;
     }
     
-    public List<ItemMaster> checkItem(ItemMaster itemMaster)
+    public List<ItemMaster> checkBrand(ItemMaster itemMaster)
     {
         List<ItemMaster> list = new ArrayList<>();
         
@@ -106,7 +107,59 @@ public class ItemQuery
         
         return list;
     }
-    
+
+        public List<ItemMaster> checkItem(ItemMaster itemMaster)
+    {
+        List<ItemMaster> list = new ArrayList<>();
+        
+         String query = "FROM ItemMaster WHERE brand = " + itemMaster.getBrand(); 
+         
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            list = q.list();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        
+        return list;
+    }
+        
+        public List<ItemMaster> checkBarcode(ItemMaster itemMaster)
+    {
+        List<ItemMaster> list = new ArrayList<>();
+        
+         String query = "FROM ItemMaster WHERE barCode = " + itemMaster.getBarCode(); 
+         
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            list = q.list();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        
+        return list;
+    }    
+
     public void insertItem(ItemMaster itemMaster)
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -294,4 +347,5 @@ public class ItemQuery
         
         return list;
     }
+
 }

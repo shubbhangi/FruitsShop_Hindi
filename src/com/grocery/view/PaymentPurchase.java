@@ -908,11 +908,7 @@ public class PaymentPurchase extends javax.swing.JFrame {
 
                    vendorBillMaster.setVendorMaster(vendorMaster);
                    vendorBillMasterQueryNew.insertIntoVendorBillMaster(vendorBillMaster);
- 
-    
 
-        
-        
         
         
         ItemAvailabilityPurchase itemAvailability = new ItemAvailabilityPurchase();    
@@ -942,7 +938,7 @@ public class PaymentPurchase extends javax.swing.JFrame {
                     purchaseMaster.setName(itemName);
                     purchaseMaster.setBrand(brandName);
                     purchaseMaster.setWeight(weight);
-                    purchaseMaster.setWeight(type);
+                   // purchaseMaster.setWeight(type);
                     purchaseMaster.setUnit(unitName);
                     purchaseMaster.setQuantity(quantity); 
                     purchaseMaster.setTotal(total);

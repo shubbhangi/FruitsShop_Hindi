@@ -118,4 +118,6 @@ public class CounterQuery
             session.close();
         }
     }
+    
+   
 }
