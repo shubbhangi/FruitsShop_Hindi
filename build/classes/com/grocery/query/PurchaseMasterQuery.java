@@ -5,6 +5,7 @@
  */
 package com.grocery.query;
 
+import com.grocery.bean.ItemMaster;
 import com.grocery.bean.PurchaseMaster;
 import com.grocery.util.HibernateUtil;
 import java.util.ArrayList;
@@ -80,21 +81,45 @@ import org.hibernate.Transaction;
         return list;
     }
     
+        public List<PurchaseMaster> getBrandDetails1(PurchaseMaster itemMaster)
+    {
+     
+        List<PurchaseMaster> list = new ArrayList<>();
+        
+        String query = "";
+
+        if(itemMaster.getName()!= null)
+            query = "FROM PurchaseMaster WHERE name = '" + itemMaster.getName()+ "'";
+        else
+            query = "FROM PurchaseMaster ORDER BY name ASC";
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            list = q.list();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        
+        return list;
+    }
+
+    
     public List<PurchaseMaster> checkItem(PurchaseMaster purchaseMaster)
     {
         List<PurchaseMaster> list = new ArrayList<>();
         
         String query = "FROM PurchaseMaster WHERE name = '" + purchaseMaster.getName() + "' "
-                +      "AND brand = '" + purchaseMaster.getBrand()+ "' "
-                +      "AND weight = '" + purchaseMaster.getWeight()+ "' "
-                +      "AND unit = '" + purchaseMaster.getUnit()+ "' "
-                +      "AND quantity = '" + purchaseMaster.getQuantity()+ "' "
-                +      "AND total = '" + purchaseMaster.getTotal()+ "' "
-                +      "AND gstType = '" + purchaseMaster.getGstType()+ "'"
-                +      "AND gst_percent ='" + purchaseMaster.getGstPercent() + "'"
-                +      "AND actual_amount = '" + purchaseMaster.getActualAmount()+ "' "
-                +      "AND gst_amount = '" + purchaseMaster.getGstAmount()+ "' "
-                +      "AND unitPrice = '" + purchaseMaster.getUnitPrice()+ "' ";
+                +      "AND brand = '" + purchaseMaster.getBrand()+ "' ";
                 
         Session session = HibernateUtil.getSessionFactory().openSession();
         

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -24,7 +25,8 @@ public class ItemAvailabilityPurchaseQuery {
         
         String query = "";
         
-         query = "FROM ItemAvailabilityPurchase ia JOIN ia.purchaseMaster im WHERE im.name = '" + itemAvailabilityPurchase.getPurchaseMaster().getName()+ "' ";
+         query = "FROM ItemAvailabilityPurchase ia JOIN ia.purchaseMaster im WHERE im.name = '" + itemAvailabilityPurchase.getPurchaseMaster().getName()+ "' "
+                 +" and im.brand = '" + itemAvailabilityPurchase.getPurchaseMaster().getBrand()+ "' ";
          Session session = HibernateUtil.getSessionFactory().openSession();
         
         try
@@ -56,8 +58,8 @@ public class ItemAvailabilityPurchaseQuery {
         
         try
         {
-            session.beginTransaction();
-           // Transaction transaction = session.beginTransaction();
+            
+            Transaction transaction = session.beginTransaction();
             ItemAvailabilityPurchase ia = (ItemAvailabilityPurchase)session.load(ItemAvailabilityPurchase.class, itemAvailabilityPurchase.getId());
            
 			//ItemAvailability ia = (ItemAvailability)session.load(ItemAvailability.class, iAvailability.getId());
@@ -66,7 +68,7 @@ public class ItemAvailabilityPurchaseQuery {
                 ia.setThreshold(itemAvailabilityPurchase.getThreshold());
             
             session.update(ia);
-           // transaction.commit();
+            transaction.commit();
         }
         catch(Exception e)
         {
