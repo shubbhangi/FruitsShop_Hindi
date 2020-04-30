@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -1260,6 +1261,52 @@ public class AddNewItemsPage extends javax.swing.JFrame {
         if (!(barCode1.getText().trim().isEmpty())) {
             // itemMaster.setName(item.getText().trim());
             itemMaster.setBarCode(barCode1.getText().trim());
+            ItemQuery itemQuery = new ItemQuery();
+            List<ItemMaster> itemlist = itemQuery.getItemByBarCode(itemMaster);
+            
+            if(!itemlist.isEmpty()){
+            ItemMaster ia = itemlist.get(0);
+            
+            DecimalFormat decimalFormat = new DecimalFormat("#0.000");
+
+            BigDecimal newQuantity ;
+            JFrame frame = new JFrame("Input");
+           
+            newQuantity = new BigDecimal(JOptionPane.showInputDialog(frame, "<HTML><FONT color=\"#000000\">Enter the quantity of: <strong><U>" + item.getName() + "</U></strong><br><strong><U> Quantity </U></strong></FONT></HTML>"));
+            
+            DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+            purchaseItemMaster cha primary key gheu foreighn key mhanun ok mhanject purchaseItemId karate thik he nao
+             defaultTableModel.addRow(new Object[]{PurchaseitemName,itemName, brandName,barCode,weight,unitName, unitPrice, quantity ,total, mfg, exp});   
+            
+           // defaultTableModel.addRow(new Object[]{ia.getName(),ia.getName(), ia.getBrand(), ia.getBarCode(), ia.getWeight(), ia.getUnit(), ia.getUnitPrice(), newQuantity, ia.getUnitPrice().multiply(new BigDecimal(quantity)), ia.getEfgDate(), ia.getExpDate()});
+            // defaultTableModel.addRow(new Object[]{ia.getItemMaster().getName(),ia.getItemMaster().getBrand(), ia.getItemMaster().getBarCode(),ia.getItemMaster().getWeight(), ia.getItemMaster().getUnit(),ia.getItemMaster().getUnitPrice(),ia.getAvailability(),ia.getItemMaster().getTotalAmount(),ia.getItemMaster().getEfgDate(),ia.getItemMaster().getExpDate()});
+        
+            jTable1.setModel(defaultTableModel);
+            /*ItemAvailability itemAvailability = new ItemAvailability();
+            itemAvailability.setItemMaster(item);
+            ItemAvailabilityQuery itemAvailabilityQuery = new ItemAvailabilityQuery();
+            List<Object[]> list = itemAvailabilityQuery.getBarcodeAvailability(itemAvailability);
+            
+              Object[] item1=list.get(0);
+                    ItemAvailability itmavl = (ItemAvailability)item1[0];
+
+                    List<ItemAvailability> itemAvailabilityList = itemAvailabilityQuery.checkItem(itemAvailability);
+                    for (ItemAvailability ia : itemAvailabilityList) {
+                        itemAvailability.setId(ia.getId());
+                    }
+                    itemAvailability.setAvailability(itmavl.getAvailability().add(newQuantity));
+
+                    itemAvailabilityQuery.updateItemAvailability(itemAvailability);
+                    
+            */
+            
+         
+        barCode1.setText("");
+            
+            }else{
+                 JOptionPane.showMessageDialog(null, MessageFormat.getMessage("This barcode item is not available please check barcode again"), "Error Message", JOptionPane.ERROR_MESSAGE);
+                System.out.println("This barcode item is not available please check barcode again");
+            }
             //getTotalBarCode();
             if (jTable1.getRowCount() > 0) {
                 boolean notfound = true;
@@ -1274,7 +1321,7 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                         jTable1.setValueAt((Integer.parseInt(jTable1.getValueAt(i, 7).toString().trim()) + 1), i, 7);
                         jTable1.setValueAt((new BigDecimal(jTable1.getValueAt(i, 8).toString().trim()).add(new BigDecimal(jTable1.getValueAt(i, 6).toString()))), i, 8);
                         barCode1.setText("");
-                        notfound = false;
+                           notfound = false;
                     }
                 }
                 if(notfound) {
@@ -1403,7 +1450,8 @@ public class AddNewItemsPage extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
      public void loadBarcodeItem(ItemMaster itemMaster) {
-        DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+        
+         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
         // defaultTableModel.setRowCount(0);
         List<ItemMaster> list = new ArrayList<>();
         int quantity = 1;
