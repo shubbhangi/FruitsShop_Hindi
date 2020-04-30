@@ -46,6 +46,9 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
     public SaleReturnBillDetails(int billId) {
         initComponents();
         
+        jLabel4.setVisible(false);
+        remark.setVisible(false);
+        
         jLabel6.setVisible(false);
         availableCash.setVisible(false);
         jLabel5.setVisible(false);
@@ -128,17 +131,17 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabelPurchased.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabelPurchased.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
         jLabelPurchased.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelPurchased.setText("Items Sold:");
+        jLabelPurchased.setText("सामान बिक चूका है:");
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Details Id", "Item Id", "Item Name", "HSN Code", "Unit Price", "Quantity", "GST %", "Final Total"
+                "Details Id", "सामान आईडी", "वस्तु का नाम", "बार कोड", "यूनिट मूल्य", "मात्रा", "जीएसटी %", "अंतिम कुल"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -156,17 +159,17 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jLabel17.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel17.setText("Returned Items:");
+        jLabel17.setText("लौटे आइटम :");
 
-        jTable2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTable2.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Details Id", "Item Id", "Item Name", "HSN Code", "Unit Price", "Quantity", "GST %", "Final Amount", "Index"
+                "विवरण आईडी", "सामान आईडी", "वस्तु का नाम", "बार कोड", "यूनिट मूल्य", "मात्रा", "जीएसटी %", "अंतिम कुल", "सूची"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -184,17 +187,18 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(jTable2);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel2.setText("Total:");
+        jLabel2.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
+        jLabel2.setText("कुल रकम:");
+        jLabel2.setToolTipText("total amount");
 
         total.setEditable(false);
         total.setBackground(new java.awt.Color(255, 255, 153));
-        total.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        total.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         total.setForeground(new java.awt.Color(255, 0, 0));
         total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        add.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        add.setText("Return");
+        add.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
+        add.setText(" वापसी");
         add.setMnemonic(KeyEvent.VK_R);
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,8 +206,8 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
             }
         });
 
-        remove.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        remove.setText("Remove");
+        remove.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
+        remove.setText("हटाना");
         remove.setMnemonic(KeyEvent.VK_M);
         remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,8 +215,8 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
             }
         });
 
-        save.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        save.setText("Save");
+        save.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
+        save.setText("सहेजें");
         save.setMnemonic(KeyEvent.VK_S);
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,8 +224,8 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
             }
         });
 
-        cancel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        cancel.setText("Cancel");
+        cancel.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
+        cancel.setText("रद्द करना");
         cancel.setMnemonic(KeyEvent.VK_C);
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,21 +233,21 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         jLabel4.setText("Remark:");
 
         remark.setEditable(false);
         remark.setBackground(new java.awt.Color(255, 255, 153));
-        remark.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        remark.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         remark.setForeground(new java.awt.Color(255, 0, 0));
         remark.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel5.setText("Balance");
+        jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
+        jLabel5.setText("संतुलन");
 
         balance.setEditable(false);
         balance.setBackground(new java.awt.Color(255, 255, 153));
-        balance.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        balance.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         balance.setForeground(new java.awt.Color(255, 0, 0));
         balance.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -257,27 +261,27 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
         deductBalance.setForeground(new java.awt.Color(255, 0, 0));
         deductBalance.setText("Deduct From Balance");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jLabel6.setText("Available Cash:");
+        jLabel6.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
+        jLabel6.setText("उपलब्ध नकदी:");
 
         availableCash.setEditable(false);
         availableCash.setBackground(new java.awt.Color(255, 255, 153));
-        availableCash.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        availableCash.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
         availableCash.setForeground(new java.awt.Color(255, 0, 0));
         availableCash.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Return Date:");
+        jLabel3.setText("वापसी की तिथि:");
 
-        returnDate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        returnDate.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Bill Details");
+        jLabel1.setText("बिल का विवरण");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -286,8 +290,8 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 414, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(147, 147, 147)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(137, 137, 137)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(returnDate, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -295,7 +299,7 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(returnDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(returnDate, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 11, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -310,12 +314,12 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelPurchased)
-                            .addComponent(jLabel17)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(payAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(deductBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(deductBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelPurchased, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(1207, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -530,8 +534,8 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
             {
                 SaleDetails sd = (SaleDetails)object[1];
                 defaultTableModel.addRow(new Object[]{sd.getId(), sd.getItemMaster().getId(), sd.getItemMaster().getName(), sd.getItemMaster().getBarCode(), sd.getUnitPrice(), sd.getQuantity(), sd.getGstPercent(), sd.getTotal()});
-                remark.setText(sd.getSaleMaster().getRemark());
-                balance.setText(String.valueOf(sd.getSaleMaster().getCustomerDetails().getBalance()));        
+             //   remark.setText(sd.getSaleMaster().getRemark());
+             //   balance.setText(String.valueOf(sd.getSaleMaster().getCustomerDetails().getBalance()));        
             }
 
             jTable1.setModel(defaultTableModel);
@@ -571,10 +575,10 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
             int detailsId = Integer.parseInt(jTable1.getValueAt(index, 0).toString());
             int itemId = Integer.parseInt(jTable1.getValueAt(index, 1).toString());
             String itemName = jTable1.getValueAt(index, 2).toString();
-            String hsnCode = jTable1.getValueAt(index, 3).toString();
+            String barCode = jTable1.getValueAt(index, 3).toString();
             float unitPrice = Float.parseFloat(jTable1.getValueAt(index, 4).toString());
             float quantity = Float.parseFloat(jTable1.getValueAt(index, 5).toString());
-            float gstPercent = Float.parseFloat(jTable1.getValueAt(index, 6).toString());     
+            //float gstPercent = Float.parseFlossssssat(jTable1.getValueAt(index, 6).toString());     
             float finalTotal = Float.parseFloat(jTable1.getValueAt(index, 7).toString());
 
             float gstAmount = 0;
@@ -599,17 +603,17 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
                 }
                 
                 newTotal = getTotal(unitPrice, returnedQuantity);
-                newGstAmount = getGstAmount(gstPercent, newTotal);
+            //    newGstAmount = getGstAmount(gstPercent, newTotal);
                 newFinalTotal = getFinalAmount(newGstAmount, newTotal);
                 
-                defaultTableModel.addRow(new Object[]{detailsId, itemId, itemName, hsnCode, unitPrice, decimalFormat.format(returnedQuantity), gstPercent, decimalFormat1.format(newFinalTotal), index});
+                defaultTableModel.addRow(new Object[]{detailsId, itemId, itemName, barCode, unitPrice, decimalFormat.format(returnedQuantity), 0, decimalFormat1.format(newFinalTotal), index});
                 
                 jTable2.setModel(defaultTableModel);
                 getTotal();
                 
                 quantity = quantity - returnedQuantity;
                 total = getTotal(unitPrice, quantity);
-                gstAmount = getGstAmount(gstPercent, total);
+              //  gstAmount = getGstAmount(gstPercent, total);
                 finalTotal = getFinalAmount(gstAmount, total);
                 
                 defaultTableModel1.setValueAt(decimalFormat.format(quantity), index, 5);
@@ -626,6 +630,7 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
         }
         catch(Exception e)
         {
+           // e.printStackTrace();
             JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select the Item you want to return"), "Error Message", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -643,7 +648,7 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
             int detailsId = Integer.parseInt(jTable2.getValueAt(index, 0).toString());
             int itemId = Integer.parseInt(jTable2.getValueAt(index, 1).toString());
             String itemName = jTable2.getValueAt(index, 2).toString();
-            String hsnCode = jTable1.getValueAt(index, 3).toString();
+            String barCode = jTable1.getValueAt(index, 3).toString();
             float unitPrice = Float.parseFloat(jTable2.getValueAt(index, 4).toString());
             float quantity = Float.parseFloat(jTable2.getValueAt(index, 5).toString());
             float gstPercent = Float.parseFloat(jTable2.getValueAt(index, 6).toString());
@@ -765,10 +770,10 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
                 int detailsId = Integer.parseInt(jTable1.getValueAt(i, 0).toString());
                 int itemId = Integer.parseInt(jTable1.getValueAt(i, 1).toString());
                 String itemName = jTable1.getValueAt(i, 2).toString();
-                String hsnCode = jTable1.getValueAt(i, 3).toString();
+                String barCode = jTable1.getValueAt(i, 3).toString();
                 float unitPrice = Float.parseFloat(jTable1.getValueAt(i, 4).toString());
                 float quantity = Float.parseFloat(jTable1.getValueAt(i, 5).toString());
-                float gstPercent = Float.parseFloat(jTable1.getValueAt(i, 6).toString());     
+                //float gstPercent = Float.parseFloat(jTable1.getValueAt(i, 6).toString());     
                 float finalTotal = Float.parseFloat(jTable1.getValueAt(i, 7).toString());
                 
                 saleDetails.setId(detailsId);
@@ -799,10 +804,10 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
                 int detailsId = Integer.parseInt(jTable2.getValueAt(i, 0).toString());
                 int itemId = Integer.parseInt(jTable2.getValueAt(i, 1).toString());
                 String itemName = jTable2.getValueAt(i, 2).toString();
-                String hsnCode = jTable1.getValueAt(i, 3).toString();
+                String barCode = jTable1.getValueAt(i, 3).toString();
                 float unitPrice = Float.parseFloat(jTable2.getValueAt(i, 4).toString());
                 float quantity = Float.parseFloat(jTable2.getValueAt(i, 5).toString());
-                float gstPercent = Float.parseFloat(jTable2.getValueAt(i, 6).toString());
+             //   float gstPercent = Float.parseFloat(jTable2.getValueAt(i, 6).toString());
                 float finalTotal = Float.parseFloat(jTable2.getValueAt(i, 7).toString());
                 
                 itemMaster.setId(itemId);
@@ -824,8 +829,8 @@ public class SaleReturnBillDetails extends javax.swing.JInternalFrame {
                 saleReturnDetails.setItemMaster(itemMaster);
                 saleReturnDetails.setQuantity(new BigDecimal(quantity));
                 saleReturnDetails.setUnitPrice(new BigDecimal(unitPrice));
-                saleReturnDetails.setGstPercent(new BigDecimal(gstPercent));
-                saleReturnDetails.setGstAmount(new BigDecimal(getGstAmount(gstPercent, (float)(unitPrice * quantity))));
+                //saleReturnDetails.setGstPercent(new BigDecimal(gstPercent));
+                //saleReturnDetails.setGstAmount(new BigDecimal(getGstAmount(gstPercent, (float)(unitPrice * quantity))));
                 saleReturnDetails.setFinalTotal(new BigDecimal(finalTotal));
                 
                 saleReturnDetailsQuery.insertIntoSaleReturnDetails(saleReturnDetails);

@@ -83,16 +83,17 @@ public class PurchaseReturnView extends javax.swing.JInternalFrame {
             jLabelPurchase.setText("Sales Return");
     
            // name.setText("Customer Name");
-            name.setText("Warehouse Name");
-            jLabelName.setText("Warehouse");
+            name.setText("ग्राहक का नाम");
+            jLabelName.setText("ग्राहक का नाम");
+           // jLabelName.setText("Warehouse");
             JTableHeader header= jTable1.getTableHeader();
             TableColumnModel colMod = header.getColumnModel();
             TableColumn tabCol = colMod.getColumn(3);
-            tabCol.setHeaderValue("Warehouse Name");
+            tabCol.setHeaderValue("ग्राहक का नाम");
             
             colMod = header.getColumnModel();
             tabCol = colMod.getColumn(2);
-            tabCol.setHeaderValue("Sales Date");
+            tabCol.setHeaderValue("बिक्री की तारीख");
             
             jTable1.getColumnModel().getColumn(5).setMinWidth(0);
             jTable1.getColumnModel().getColumn(5).setMaxWidth(0);

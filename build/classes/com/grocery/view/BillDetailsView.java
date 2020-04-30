@@ -41,6 +41,8 @@ public class BillDetailsView extends javax.swing.JInternalFrame {
     public BillDetailsView(boolean flag, int billId) {
         initComponents();
         
+        print.setVisible(false);
+        
         this.flag = flag;
         this.billId = billId;
         jTable1.getTableHeader().setFont(new Font("Arial Unicode MS", Font.BOLD, 11));
