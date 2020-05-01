@@ -32,11 +32,14 @@ import static net.sf.dynamicreports.report.builder.component.Components.currentD
  */
 public class AlertPage extends javax.swing.JFrame {
   private int currRow_g = 0;
+  private Date date = new Date();
     /**
      * Creates new form TableAlerts
      */
     public AlertPage() {
         initComponents();
+        
+        purchaseDate.setDate(date);
 
         jLabel3.setVisible(false);
         searchItem.setVisible(false);

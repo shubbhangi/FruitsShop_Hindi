@@ -944,7 +944,7 @@ public class PaymentPurchase extends javax.swing.JFrame {
                     purchaseMaster.setTotal(total);
                     purchaseMaster.setGstPercent(gst_percent);
                     purchaseMaster.setGstAmount(gstAmount);
-                    purchaseMaster.setUnitPrice(actualTotal1);
+                    purchaseMaster.setActualAmount(actualTotal1);
                     purchaseMaster.setGstType(type); 
                     
                     
@@ -1001,7 +1001,34 @@ public class PaymentPurchase extends javax.swing.JFrame {
                         }
                     }
                     i++;
-        }                
+        }      
+        JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Stock added successfully"));
+        
+        
+        clear();
+        
+//         DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+//                defaultTableModel.setRowCount(0);
+//                jTable1.setModel(defaultTableModel);
+       
+        
+        
+        
+    }
+    
+     private void clear() {
+        paymentMode.setSelectedIndex(0);
+        bank.setSelectedIndex(0);
+        totalAmount1.setText("0.00");
+        amount.setText("0.00");
+        discount1.setText("0.00");
+        finalAmount1.setText("0.00");
+        amount.setText("00");
+        vanNname.setText(" ");
+
+    }
+    
+
 //                    VendorBillMasterQuery vendorBillMasterQueryNew = new VendorBillMasterQuery();
 //     
 //                    VendorQuery vendorQuery = new VendorQuery();
@@ -1037,7 +1064,7 @@ public class PaymentPurchase extends javax.swing.JFrame {
 // 
 //    
 
-}
+
     
 
     

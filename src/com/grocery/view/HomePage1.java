@@ -20,7 +20,8 @@ public class HomePage1 extends javax.swing.JFrame {
 
     public HomePage1() {
         initComponents();
-
+        
+        jMenuItem22.setVisible(false);
         jMenuItem5.setVisible(false);
         jMenuItem20.setVisible(false);
         

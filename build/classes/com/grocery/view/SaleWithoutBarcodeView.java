@@ -28,6 +28,7 @@ import com.grocery.query.ItemMasterWithoutBarcodeQuery;
 import com.grocery.read.MessageFormat;
 import com.grocery.read.ReadFile;
 import com.grocery.util.MyConnection;
+//import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -60,6 +61,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class SaleWithoutBarcodeView extends javax.swing.JFrame {
 
+    private Date date = new Date();
     private boolean itemFlag;
     private boolean brandFlag;
     private int currRow_g = 0;
@@ -74,6 +76,9 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
      */
     public SaleWithoutBarcodeView() {
         initComponents();
+       
+        purchaseDate.setDate(date);
+       // editor = (JTextFieldDateEditor)purchaseDate.getDateEditor();
         loadItem();
         loadBrand();
         loadWarehouswe();
@@ -199,11 +204,11 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(181, 181, 181)
+                .addGap(166, 166, 166)
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(purchaseDate, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addGap(58, 58, 58))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1245,8 +1250,8 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             } else {
                 loadBarcodeItem(itemMaster);
             }
+            getTotal1();
         }
-
 
     }//GEN-LAST:event_barCode1KeyReleased
 
@@ -1743,7 +1748,8 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
 
         defaultTableModel.addRow(new Object[]{itemName, brandName, barCode, weight, unitName, unitPrice, quantity,total, mfg, exp});
         jTable1.setModel(defaultTableModel);
-        getTotal();
+       // getTotal();
+        getTotal1();
         clear();
         item.requestFocus();
 
@@ -1928,8 +1934,9 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             }
 
             //    saleMaster.setGstAmount(BigDecimal.valueOf(getTotalGSTAmount()));
-            saleMaster.setBillAmount(new BigDecimal(getTotalBillAmount()));
-            // saleMaster.setFinalBillAmount(new BigDecimal(total.getText().trim()));
+            saleMaster.setBillAmount(new BigDecimal(amount.getText().trim()));
+        //    saleMaster.setBillAmount(new BigDecimal(getTotalBillAmount()));
+          
             saleMaster.setFinalBillAmount(new BigDecimal(amount.getText().trim()));
             //           saleMaster.setDiscount(new BigDecimal(0));
             saleMaster.setDiscount(new BigDecimal(0.00));
@@ -2083,6 +2090,25 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         }
     }
 
+//      private void getTotal()
+//    {
+//        int index = jTable1.getRowCount();
+//        int i = 0;
+//        float sum = 0;
+//        
+//        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+//        
+//        while(i < index)
+//        {
+//            sum = sum + Float.parseFloat(jTable1.getValueAt(i, 5).toString());
+//            i++;
+//        }
+//        
+//        amount.setText(decimalFormat.format(sum));
+//        finalAmountPaid.setText(decimalFormat.format(sum));
+//    }
+     
+     
     
     double getTotalBillAmount() {
         int index = jTable1.getRowCount();
@@ -2101,10 +2127,11 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
 
         while (i < jTable1.getRowCount()) {
-            sum = sum + Float.parseFloat(jTable1.getValueAt(i, 6).toString());
+            sum = sum + Float.parseFloat(jTable1.getValueAt(i, 7).toString());
             i++;
         }
-        total.setText(decimalFormat.format(sum));
+       // total.setText(decimalFormat.format(sum));
+        amount.setText(decimalFormat.format(sum));
     }
 
     private void loadWarehouswe() {

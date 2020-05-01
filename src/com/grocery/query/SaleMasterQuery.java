@@ -246,7 +246,7 @@ public class SaleMasterQuery
         }
         catch(Exception e)
         {
-            
+           e.printStackTrace();
         }
         finally 
         {

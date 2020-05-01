@@ -1437,6 +1437,9 @@ public class PurchaseStock extends javax.swing.JFrame {
 
   private void clear()
     {
+        item.setSelectedIndex(0);
+        brand.setSelectedIndex(0);
+        
         quantity.setText("00");
         total.setText("0.00");
         item.setSelectedIndex(0);

@@ -55,7 +55,7 @@ public class VendorAccount extends javax.swing.JInternalFrame {
         }
         else
         {
-            vendorAccounts = new JLabel("Vendor Accounts");
+            vendorAccounts = new JLabel("Customer Accounts");
             vendorAccounts.setFont(new Font("Arial Unicode MS", Font.PLAIN, 18));
            // lable = label.setFont(new Font("Verdana", Font.PLAIN, 18));
             vendorAccounts.setText("ग्राहक खाते");
@@ -294,7 +294,8 @@ public class VendorAccount extends javax.swing.JInternalFrame {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select the row whose details you want to view"), "Error Message", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+           // JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select the row whose details you want to view"), "Error Message", JOptionPane.ERROR_MESSAGE);
         }
     }
 

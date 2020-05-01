@@ -58,13 +58,13 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelPurchased" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="payAmount" min="-2" pref="147" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="deductBalance" min="-2" pref="164" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel17" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <Component id="jLabelPurchased" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="1207" max="32767" attributes="0"/>
                           </Group>
@@ -174,10 +174,10 @@
             <Component class="javax.swing.JLabel" name="jLabelPurchased">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="12" style="1"/>
+                  <Font name="Arial Unicode MS" size="14" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="Items Sold:"/>
+                <Property name="text" type="java.lang.String" value="&#x938;&#x93e;&#x92e;&#x93e;&#x928; &#x92c;&#x93f;&#x915; &#x91a;&#x942;&#x915;&#x93e; &#x939;&#x948;:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator2">
@@ -192,19 +192,66 @@
                 <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="11" style="1"/>
+                      <Font name="Arial Unicode MS" size="14" style="1"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="8" rowCount="0">
                         <Column editable="false" title="Details Id" type="java.lang.Object"/>
-                        <Column editable="false" title="Item Id" type="java.lang.Object"/>
-                        <Column editable="false" title="Item Name" type="java.lang.Object"/>
-                        <Column editable="false" title="HSN Code" type="java.lang.Object"/>
-                        <Column editable="false" title="Unit Price" type="java.lang.Object"/>
-                        <Column editable="false" title="Quantity" type="java.lang.Object"/>
-                        <Column editable="false" title="GST %" type="java.lang.Object"/>
-                        <Column editable="false" title="Final Total" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x938;&#x93e;&#x92e;&#x93e;&#x928; &#x906;&#x908;&#x921;&#x940;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x935;&#x938;&#x94d;&#x924;&#x941; &#x915;&#x93e; &#x928;&#x93e;&#x92e;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x92c;&#x93e;&#x930; &#x915;&#x94b;&#x921;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x92f;&#x942;&#x928;&#x93f;&#x91f; &#x92e;&#x942;&#x932;&#x94d;&#x92f;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x92e;&#x93e;&#x924;&#x94d;&#x930;&#x93e;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x91c;&#x940;&#x90f;&#x938;&#x91f;&#x940; %" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x905;&#x902;&#x924;&#x93f;&#x92e; &#x915;&#x941;&#x932;" type="java.lang.Object"/>
                       </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -218,10 +265,10 @@
             <Component class="javax.swing.JLabel" name="jLabel17">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Georgia" size="12" style="1"/>
+                  <Font name="Arial Unicode MS" size="14" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="Returned Items:"/>
+                <Property name="text" type="java.lang.String" value="&#x932;&#x94c;&#x91f;&#x947; &#x906;&#x907;&#x91f;&#x92e; :"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator4">
@@ -236,20 +283,72 @@
                 <Component class="javax.swing.JTable" name="jTable2">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="11" style="1"/>
+                      <Font name="Arial Unicode MS" size="14" style="1"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="9" rowCount="0">
-                        <Column editable="false" title="Details Id" type="java.lang.Object"/>
-                        <Column editable="false" title="Item Id" type="java.lang.Object"/>
-                        <Column editable="false" title="Item Name" type="java.lang.Object"/>
-                        <Column editable="false" title="HSN Code" type="java.lang.Object"/>
-                        <Column editable="false" title="Unit Price" type="java.lang.Object"/>
-                        <Column editable="false" title="Quantity" type="java.lang.Object"/>
-                        <Column editable="false" title="GST %" type="java.lang.Object"/>
-                        <Column editable="false" title="Final Amount" type="java.lang.Object"/>
-                        <Column editable="false" title="Index" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x935;&#x93f;&#x935;&#x930;&#x923; &#x906;&#x908;&#x921;&#x940;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x938;&#x93e;&#x92e;&#x93e;&#x928; &#x906;&#x908;&#x921;&#x940;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x935;&#x938;&#x94d;&#x924;&#x941; &#x915;&#x93e; &#x928;&#x93e;&#x92e;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x92c;&#x93e;&#x930; &#x915;&#x94b;&#x921;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x92f;&#x942;&#x928;&#x93f;&#x91f; &#x92e;&#x942;&#x932;&#x94d;&#x92f;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x92e;&#x93e;&#x924;&#x94d;&#x930;&#x93e;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x91c;&#x940;&#x90f;&#x938;&#x91f;&#x940; %" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x905;&#x902;&#x924;&#x93f;&#x92e; &#x915;&#x941;&#x932;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x938;&#x942;&#x91a;&#x940;" type="java.lang.Object"/>
                       </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -263,9 +362,10 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="10" style="1"/>
+                  <Font name="Arial Unicode MS" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Total:"/>
+                <Property name="text" type="java.lang.String" value="&#x915;&#x941;&#x932; &#x930;&#x915;&#x92e;:"/>
+                <Property name="toolTipText" type="java.lang.String" value="total amount"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="total">
@@ -275,7 +375,7 @@
                   <Color blue="99" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="10" style="1"/>
+                  <Font name="Arial Unicode MS" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -288,9 +388,9 @@
             <Component class="javax.swing.JButton" name="add">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="11" style="1"/>
+                  <Font name="Arial Unicode MS" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Return"/>
+                <Property name="text" type="java.lang.String" value=" &#x935;&#x93e;&#x92a;&#x938;&#x940;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addActionPerformed"/>
@@ -304,9 +404,9 @@
             <Component class="javax.swing.JButton" name="remove">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="11" style="1"/>
+                  <Font name="Arial Unicode MS" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Remove"/>
+                <Property name="text" type="java.lang.String" value="&#x939;&#x91f;&#x93e;&#x928;&#x93e;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeActionPerformed"/>
@@ -318,9 +418,9 @@
             <Component class="javax.swing.JButton" name="save">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="11" style="1"/>
+                  <Font name="Arial Unicode MS" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Save"/>
+                <Property name="text" type="java.lang.String" value="&#x938;&#x939;&#x947;&#x91c;&#x947;&#x902;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveActionPerformed"/>
@@ -332,9 +432,9 @@
             <Component class="javax.swing.JButton" name="cancel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="11" style="1"/>
+                  <Font name="Arial Unicode MS" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Cancel"/>
+                <Property name="text" type="java.lang.String" value="&#x930;&#x926;&#x94d;&#x926; &#x915;&#x930;&#x928;&#x93e;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelActionPerformed"/>
@@ -346,7 +446,7 @@
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="10" style="1"/>
+                  <Font name="Arial Unicode MS" size="12" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remark:"/>
               </Properties>
@@ -358,7 +458,7 @@
                   <Color blue="99" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="10" style="1"/>
+                  <Font name="Arial Unicode MS" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -369,9 +469,9 @@
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="10" style="1"/>
+                  <Font name="Arial Unicode MS" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Balance"/>
+                <Property name="text" type="java.lang.String" value="&#x938;&#x902;&#x924;&#x941;&#x932;&#x928;"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="balance">
@@ -381,7 +481,7 @@
                   <Color blue="99" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="10" style="1"/>
+                  <Font name="Arial Unicode MS" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -420,9 +520,9 @@
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="10" style="1"/>
+                  <Font name="Arial Unicode MS" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Available Cash:"/>
+                <Property name="text" type="java.lang.String" value="&#x909;&#x92a;&#x932;&#x92c;&#x94d;&#x927; &#x928;&#x915;&#x926;&#x940;:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="availableCash">
@@ -432,7 +532,7 @@
                   <Color blue="99" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="10" style="1"/>
+                  <Font name="Arial Unicode MS" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -453,8 +553,8 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="414" max="32767" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="166" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" pref="96" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" pref="106" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="returnDate" min="-2" pref="173" max="-2" attributes="0"/>
                       </Group>
@@ -464,7 +564,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="returnDate" max="32767" attributes="0"/>
+                              <Component id="returnDate" pref="23" max="32767" attributes="0"/>
                               <Component id="jLabel3" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
@@ -477,31 +577,31 @@
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="12" style="1"/>
+                      <Font name="Arial Unicode MS" size="14" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Return Date:"/>
+                    <Property name="text" type="java.lang.String" value="&#x935;&#x93e;&#x92a;&#x938;&#x940; &#x915;&#x940; &#x924;&#x93f;&#x925;&#x93f;:"/>
                   </Properties>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="returnDate">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="11" style="1"/>
+                      <Font name="Arial Unicode MS" size="12" style="1"/>
                     </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="14" style="1"/>
+                      <Font name="Arial Unicode MS" size="14" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Bill Details"/>
+                    <Property name="text" type="java.lang.String" value="&#x92c;&#x93f;&#x932; &#x915;&#x93e; &#x935;&#x93f;&#x935;&#x930;&#x923;"/>
                   </Properties>
                 </Component>
               </SubComponents>

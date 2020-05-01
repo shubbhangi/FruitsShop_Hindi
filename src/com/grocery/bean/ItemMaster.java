@@ -12,8 +12,8 @@ import java.util.Set;
  */
 public class ItemMaster  implements java.io.Serializable {
 
-
-     private Integer id;
+private Integer id;
+     private PurchaseMaster purchaseMaster;
      private String name;
      private String brand;
      private String barCode;
@@ -33,14 +33,14 @@ public class ItemMaster  implements java.io.Serializable {
      private Integer isDeleted;
      private Set itemAvailabilities = new HashSet(0);
      private Set saleDetailses = new HashSet(0);
-     private Set stockDetailses = new HashSet(0);
      private Set saleReturnDetailses = new HashSet(0);
      private Set purchaseReturnDetailses = new HashSet(0);
 
     public ItemMaster() {
     }
 
-    public ItemMaster(String name, String brand, String barCode, BigDecimal weight, String unit, BigDecimal unitPrice, BigDecimal quantity, BigDecimal totalAmount, Date efgDate, Date expDate, BigDecimal gstPercent, BigDecimal sellingPrice, BigDecimal sellingGstPercent, BigDecimal finalSellingPrice, String gstType, BigDecimal igstPercent, Integer isDeleted, Set itemAvailabilities, Set saleDetailses, Set stockDetailses, Set saleReturnDetailses, Set purchaseReturnDetailses) {
+    public ItemMaster(PurchaseMaster purchaseMaster, String name, String brand, String barCode, BigDecimal weight, String unit, BigDecimal unitPrice, BigDecimal quantity, BigDecimal totalAmount, Date efgDate, Date expDate, BigDecimal gstPercent, BigDecimal sellingPrice, BigDecimal sellingGstPercent, BigDecimal finalSellingPrice, String gstType, BigDecimal igstPercent, Integer isDeleted, Set itemAvailabilities, Set saleDetailses, Set saleReturnDetailses, Set purchaseReturnDetailses) {
+       this.purchaseMaster = purchaseMaster;
        this.name = name;
        this.brand = brand;
        this.barCode = barCode;
@@ -60,7 +60,6 @@ public class ItemMaster  implements java.io.Serializable {
        this.isDeleted = isDeleted;
        this.itemAvailabilities = itemAvailabilities;
        this.saleDetailses = saleDetailses;
-       this.stockDetailses = stockDetailses;
        this.saleReturnDetailses = saleReturnDetailses;
        this.purchaseReturnDetailses = purchaseReturnDetailses;
     }
@@ -71,6 +70,13 @@ public class ItemMaster  implements java.io.Serializable {
     
     public void setId(Integer id) {
         this.id = id;
+    }
+    public PurchaseMaster getPurchaseMaster() {
+        return this.purchaseMaster;
+    }
+    
+    public void setPurchaseMaster(PurchaseMaster purchaseMaster) {
+        this.purchaseMaster = purchaseMaster;
     }
     public String getName() {
         return this.name;
@@ -205,13 +211,6 @@ public class ItemMaster  implements java.io.Serializable {
     public void setSaleDetailses(Set saleDetailses) {
         this.saleDetailses = saleDetailses;
     }
-    public Set getStockDetailses() {
-        return this.stockDetailses;
-    }
-    
-    public void setStockDetailses(Set stockDetailses) {
-        this.stockDetailses = stockDetailses;
-    }
     public Set getSaleReturnDetailses() {
         return this.saleReturnDetailses;
     }
@@ -226,9 +225,6 @@ public class ItemMaster  implements java.io.Serializable {
     public void setPurchaseReturnDetailses(Set purchaseReturnDetailses) {
         this.purchaseReturnDetailses = purchaseReturnDetailses;
     }
-
-
-
 
 }
 
