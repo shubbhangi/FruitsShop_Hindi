@@ -50,6 +50,7 @@ public class AddNewItemsPage extends javax.swing.JFrame {
         
         purchaseDate.setDate(date);
         jPanelDiscount.setVisible(false);
+        jPanelSearch.setVisible(false);
         loadItem();
         loadItemBrand();
         loadPurchaseItem();
@@ -1257,31 +1258,33 @@ public class AddNewItemsPage extends javax.swing.JFrame {
 
     private void barCodeSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barCodeSearchKeyReleased
     ItemMaster itemMaster = new ItemMaster();
-    String barCode = this.barCode1.getText().trim();
-        if (!(barCode1.getText().trim().isEmpty())) {
+    String barCode = this.barCodeSearch.getText().trim();
+        if (barCode!="") {
             // itemMaster.setName(item.getText().trim());
-            itemMaster.setBarCode(barCode1.getText().trim());
+            itemMaster.setBarCode(barCodeSearch.getText().trim());
             ItemQuery itemQuery = new ItemQuery();
             List<ItemMaster> itemlist = itemQuery.getItemByBarCode(itemMaster);
             
             if(!itemlist.isEmpty()){
-            ItemMaster ia = itemlist.get(0);
-            
-            DecimalFormat decimalFormat = new DecimalFormat("#0.000");
+                ItemMaster ia = itemlist.get(0);
 
-            BigDecimal newQuantity ;
-            JFrame frame = new JFrame("Input");
-           
-            newQuantity = new BigDecimal(JOptionPane.showInputDialog(frame, "<HTML><FONT color=\"#000000\">Enter the quantity of: <strong><U>" + item.getName() + "</U></strong><br><strong><U> Quantity </U></strong></FONT></HTML>"));
+                DecimalFormat decimalFormat = new DecimalFormat("#0.000");
+
+                BigDecimal newQuantity ;
+                JFrame frame = new JFrame("Input");
+
+                newQuantity = new BigDecimal(JOptionPane.showInputDialog(frame, "<HTML><FONT color=\"#000000\">Enter the quantity of: <strong><U>" + ia.getName() + "</U></strong><br><strong><U> Quantity </U></strong></FONT></HTML>"));
+
+                DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                String mfg = dateFormat.format(ia.getEfgDate());
+                String exp = dateFormat.format(ia.getExpDate());
+                 defaultTableModel.addRow(new Object[]{ia.getPurchaseMaster().getId(),ia.getName(), ia.getBrand(),ia.getBarCode(),ia.getWeight(),ia.getUnit(), ia.getUnitPrice(), newQuantity ,ia.getUnitPrice().multiply(newQuantity), mfg, exp});   
+
+               // defaultTableModel.addRow(new Object[]{ia.getName(),ia.getName(), ia.getBrand(), ia.getBarCode(), ia.getWeight(), ia.getUnit(), ia.getUnitPrice(), newQuantity, ia.getUnitPrice().multiply(new BigDecimal(quantity)), ia.getEfgDate(), ia.getExpDate()});
+                // defaultTableModel.addRow(new Object[]{ia.getItemMaster().getName(),ia.getItemMaster().getBrand(), ia.getItemMaster().getBarCode(),ia.getItemMaster().getWeight(), ia.getItemMaster().getUnit(),ia.getItemMaster().getUnitPrice(),ia.getAvailability(),ia.getItemMaster().getTotalAmount(),ia.getItemMaster().getEfgDate(),ia.getItemMaster().getExpDate()});
+                jTable1.setModel(defaultTableModel);
             
-            DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
-            purchaseItemMaster cha primary key gheu foreighn key mhanun ok mhanject purchaseItemId karate thik he nao
-             defaultTableModel.addRow(new Object[]{PurchaseitemName,itemName, brandName,barCode,weight,unitName, unitPrice, quantity ,total, mfg, exp});   
-            
-           // defaultTableModel.addRow(new Object[]{ia.getName(),ia.getName(), ia.getBrand(), ia.getBarCode(), ia.getWeight(), ia.getUnit(), ia.getUnitPrice(), newQuantity, ia.getUnitPrice().multiply(new BigDecimal(quantity)), ia.getEfgDate(), ia.getExpDate()});
-            // defaultTableModel.addRow(new Object[]{ia.getItemMaster().getName(),ia.getItemMaster().getBrand(), ia.getItemMaster().getBarCode(),ia.getItemMaster().getWeight(), ia.getItemMaster().getUnit(),ia.getItemMaster().getUnitPrice(),ia.getAvailability(),ia.getItemMaster().getTotalAmount(),ia.getItemMaster().getEfgDate(),ia.getItemMaster().getExpDate()});
-        
-            jTable1.setModel(defaultTableModel);
             /*ItemAvailability itemAvailability = new ItemAvailability();
             itemAvailability.setItemMaster(item);
             ItemAvailabilityQuery itemAvailabilityQuery = new ItemAvailabilityQuery();
@@ -1301,36 +1304,13 @@ public class AddNewItemsPage extends javax.swing.JFrame {
             */
             
          
-        barCode1.setText("");
             
             }else{
                  JOptionPane.showMessageDialog(null, MessageFormat.getMessage("This barcode item is not available please check barcode again"), "Error Message", JOptionPane.ERROR_MESSAGE);
                 System.out.println("This barcode item is not available please check barcode again");
             }
-            //getTotalBarCode();
-            if (jTable1.getRowCount() > 0) {
-                boolean notfound = true;
-                for (int i = 0; i < jTable1.getRowCount(); i++) {
-
-                    String barcode = jTable1.getValueAt(i, 3).toString();
-
-                    BigDecimal unitPrice = new BigDecimal(jTable1.getValueAt(i, 6).toString());
-                    BigDecimal quantity = new BigDecimal(jTable1.getValueAt(i, 7).toString());
-                    BigDecimal total = new BigDecimal(jTable1.getValueAt(i, 8).toString());
-                    if (itemMaster.getBarCode().equalsIgnoreCase(barcode)) {
-                        jTable1.setValueAt((Integer.parseInt(jTable1.getValueAt(i, 7).toString().trim()) + 1), i, 7);
-                        jTable1.setValueAt((new BigDecimal(jTable1.getValueAt(i, 8).toString().trim()).add(new BigDecimal(jTable1.getValueAt(i, 6).toString()))), i, 8);
-                        barCode1.setText("");
-                           notfound = false;
-                    }
-                }
-                if(notfound) {
-                      loadBarcodeItem(itemMaster);  
-                    }
-            } else {
-                loadBarcodeItem(itemMaster);
-            }
-            getTotal1();
+        barCode1.setText("");
+            
         }
     }//GEN-LAST:event_barCodeSearchKeyReleased
 
@@ -1784,10 +1764,17 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                             return;
                         } 
 
-                    PurchaseitemName = newPurchaseItem.getText().trim();
+                    PurchaseitemName = String.valueOf(itemList.get(0).getId());
                 }
-            }
+            }else{
             
+                PurchaseMasterQuery itemQuery = new PurchaseMasterQuery();
+                    PurchaseMaster itemMaster = new PurchaseMaster();
+                    itemMaster.setName(PurchaseitemName);
+                    itemMaster.setBrand(brandName);
+                    List<PurchaseMaster> itemList = itemQuery.checkItem(itemMaster);
+                PurchaseitemName = String.valueOf(itemList.get(0).getId());
+            }
 //            if (brandName.equalsIgnoreCase("--select--")) {
 //            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Brand"), "Error Message", JOptionPane.ERROR_MESSAGE);
 //            brand.requestFocus();
@@ -1939,10 +1926,10 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                     ItemAvailabilityPurchaseQuery itemAvailabilityPurchaseQuery = new ItemAvailabilityPurchaseQuery();
 
                     PurchaseMaster purchaseMaster = new PurchaseMaster();
-                    purchaseMaster.setName(purchaseItemName);
+                    purchaseMaster.setId(Integer.valueOf(purchaseItemName));
                     purchaseMaster.setBrand(brandName);
                     itemAvailabilityPurchase.setPurchaseMaster(purchaseMaster);
-                    List<Object[]> list1 = itemAvailabilityPurchaseQuery.getWeightAvailability(itemAvailabilityPurchase);
+                    List<Object[]> list1 = itemAvailabilityPurchaseQuery.getPurchaseAvailabilityById(itemAvailabilityPurchase);
                     Object[] item1=list1.get(0);
                     ItemAvailabilityPurchase itmavl = (ItemAvailabilityPurchase)item1[0];
 
@@ -1970,8 +1957,8 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Stock Details failed to save"), "Error Mesage", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
+            //JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Stock Details failed to save"), "Error Mesage", JOptionPane.ERROR_MESSAGE);
         }
     }
     private void remove() {
