@@ -48,6 +48,38 @@ public class ItemAvailabilityPurchaseQuery {
     }
  
   }
+  
+    public List<Object[]> getPurchaseAvailabilityById(ItemAvailabilityPurchase itemAvailabilityPurchase) {
+   {
+        List<Object[]> list = new ArrayList<>();
+        
+        String query = "";
+        
+         query = "FROM ItemAvailabilityPurchase ia JOIN ia.purchaseMaster im WHERE im.id = '" + itemAvailabilityPurchase.getPurchaseMaster().getId()+ "' "
+                 +" and im.brand = '" + itemAvailabilityPurchase.getPurchaseMaster().getBrand()+ "' ";
+         Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            list = q.list();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        
+        return list;
+    }
+ 
+  }
+  
+    
     public List<ItemAvailabilityPurchase> checkItem(ItemAvailabilityPurchase itemAvailabilityPurchase) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
