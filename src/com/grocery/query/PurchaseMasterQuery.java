@@ -119,7 +119,7 @@ import org.hibernate.Transaction;
         List<PurchaseMaster> list = new ArrayList<>();
         
         String query = "FROM PurchaseMaster WHERE name = '" + purchaseMaster.getName() + "' "
-                +      "AND brand = '" + purchaseMaster.getBrand()+ "' ";
+                +      "AND brand ='" + purchaseMaster.getBrand()+ "'";
                 
         Session session = HibernateUtil.getSessionFactory().openSession();
         

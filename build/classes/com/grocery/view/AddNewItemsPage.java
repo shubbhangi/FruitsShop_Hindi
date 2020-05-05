@@ -50,9 +50,11 @@ public class AddNewItemsPage extends javax.swing.JFrame {
         
         purchaseDate.setDate(date);
         jPanelDiscount.setVisible(false);
+        jPanelPurItem.setVisible(false);
         jPanelSearch.setVisible(false);
+        newBrand.setVisible(false);
         loadItem();
-        loadItemBrand();
+        //loadItemBrand();
         loadPurchaseItem();
         
         jLabel25.setVisible(false);
@@ -1035,38 +1037,7 @@ public class AddNewItemsPage extends javax.swing.JFrame {
 
     private void brandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandActionPerformed
         newBrand.setText("");
-        if(brand.getSelectedIndex() == 1)
-        jPanelBrand.setVisible(true);
-        else
-        jPanelBrand.setVisible(false);
-
-        newBrand.setText("");
-        try
-        {
-            if(brand.getItemCount() != 0)
-            {
-                if(brand.getSelectedIndex() == 0)
-                {
-                    brandFlag = false;
-                    // jPanelNewVendor.setVisible(false);
-                }
-                else
-                if(brand.getSelectedIndex() == 1)
-                {
-                    brandFlag = false;
-                    jPanelBrand.setVisible(true);
-                }
-                else
-                {
-                    brandFlag = true;
-                    jPanelBrand.setVisible(false);
-                    //loadBrand();
-                }
-            }
-        }
-        catch(Exception e)
-        {
-        }
+       
     }//GEN-LAST:event_brandActionPerformed
 
     private void itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemActionPerformed
@@ -1111,30 +1082,14 @@ public class AddNewItemsPage extends javax.swing.JFrame {
        // loadItemBrand();
         
         newItem.setText("");
-        if(item.getSelectedIndex() == 1)
-        jPanelPurItem.setVisible(true);
-        else
-        jPanelPurItem.setVisible(false);
-
-        newItem.setText("");
-
+       
         try
         {
             if(purchaseItem.getItemCount() != 0)
             {
-                if(purchaseItem.getSelectedIndex() == 0)
+                if(purchaseItem.getSelectedIndex() != 0)
                 {
-                    purItemFlag = false;
-                    // jPanelNewVendor.setVisible(false);
-                }
-                else
-                if(purchaseItem.getSelectedIndex() == 1)
-                {
-                    purItemFlag = false;
-                    jPanelPurItem.setVisible(true);
-                }
-                else
-                {
+                
                     purItemFlag = true;
                     jPanelPurItem.setVisible(false);
                       loadItemBrand();
@@ -1273,13 +1228,13 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                 BigDecimal newQuantity ;
                 JFrame frame = new JFrame("Input");
 
-                newQuantity = new BigDecimal(JOptionPane.showInputDialog(frame, "<HTML><FONT color=\"#000000\">Enter the quantity of: <strong><U>" + ia.getName() + "</U></strong><br><strong><U> Quantity </U></strong></FONT></HTML>"));
+                newQuantity = new BigDecimal(JOptionPane.showInputDialog(frame, "<HTML><FONT color=\"#000000\">Enter the quantity of:  <strong><U>" + ia.getName() + "</U></strong><br><strong><U> Quantity </U></strong></FONT></HTML>"));
 
                 DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
                 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
                 String mfg = dateFormat.format(ia.getEfgDate());
                 String exp = dateFormat.format(ia.getExpDate());
-                 defaultTableModel.addRow(new Object[]{ia.getPurchaseMaster().getId(),ia.getName(), ia.getBrand(),ia.getBarCode(),ia.getWeight(),ia.getUnit(), ia.getUnitPrice(), newQuantity ,ia.getUnitPrice().multiply(newQuantity), mfg, exp});   
+                defaultTableModel.addRow(new Object[]{ia.getPurchaseMaster().getId(),ia.getName(), ia.getBrand(),ia.getBarCode(),ia.getWeight(),ia.getUnit(), ia.getUnitPrice(), newQuantity ,ia.getUnitPrice().multiply(newQuantity), mfg, exp});   
 
                // defaultTableModel.addRow(new Object[]{ia.getName(),ia.getName(), ia.getBrand(), ia.getBarCode(), ia.getWeight(), ia.getUnit(), ia.getUnitPrice(), newQuantity, ia.getUnitPrice().multiply(new BigDecimal(quantity)), ia.getEfgDate(), ia.getExpDate()});
                 // defaultTableModel.addRow(new Object[]{ia.getItemMaster().getName(),ia.getItemMaster().getBrand(), ia.getItemMaster().getBarCode(),ia.getItemMaster().getWeight(), ia.getItemMaster().getUnit(),ia.getItemMaster().getUnitPrice(),ia.getAvailability(),ia.getItemMaster().getTotalAmount(),ia.getItemMaster().getEfgDate(),ia.getItemMaster().getExpDate()});
@@ -1524,7 +1479,7 @@ public class AddNewItemsPage extends javax.swing.JFrame {
             defaultComboBoxModel.removeAllElements();
 
             defaultComboBoxModel.addElement("--Select--");
-            defaultComboBoxModel.addElement("Add New");
+            //defaultComboBoxModel.addElement("Add New");
 
             for (PurchaseMaster im : list) {
                 defaultComboBoxModel.addElement(im.getName());
@@ -1573,7 +1528,9 @@ public class AddNewItemsPage extends javax.swing.JFrame {
         PurchaseMasterQuery itemQuery = new PurchaseMasterQuery();
 
         if (purchaseItem.getSelectedItem()=="--Select--" || purchaseItem.getSelectedItem()=="Add New" || purchaseItem.getSelectedItem()==null) {
-            purchaseMaster.setName(null);
+            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select an Purchase Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
+            item.requestFocus();
+            return;
             //itemMaster.setName(brand.getSelectedItem().toString());
         }else
             purchaseMaster.setName(purchaseItem.getSelectedItem().toString());
@@ -1586,7 +1543,7 @@ public class AddNewItemsPage extends javax.swing.JFrame {
             defaultComboBoxModel.removeAllElements();
 
             defaultComboBoxModel.addElement("--Select--");
-            defaultComboBoxModel.addElement("Add New");
+            //defaultComboBoxModel.addElement("Add New");
 
             for (PurchaseMaster im : list) {
                 defaultComboBoxModel.addElement(im.getBrand());
@@ -1733,11 +1690,11 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                     ItemQuery itemQuery = new ItemQuery();
                     ItemMaster itemMaster = new ItemMaster();
                     itemMaster.setBarCode(barCode1.getText().trim());
-                    itemMaster.setBarCode(newBrand.getText().trim());
+                    itemMaster.setBrand(newBrand.getText().trim());
                     List<ItemMaster> itemList = itemQuery.checkBrand(itemMaster);
                         if (!itemList.isEmpty()) {
                            // itemQuery.insertItem(itemMaster);
-                           JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the unique Brand Id of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
+                           JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please enter the unique Brand of the Item"), "Error Message", JOptionPane.ERROR_MESSAGE);
                           newBrand.requestFocus();
                             return;
                         } 
@@ -1889,14 +1846,17 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                     itemMaster.setTotalAmount(total);
                     itemMaster.setEfgDate(mfg);
                     itemMaster.setExpDate(exp);
+                    PurchaseMaster purchaseMaster = new PurchaseMaster();
+                    purchaseMaster.setId(Integer.valueOf(purchaseItemName));
+                    itemMaster.setPurchaseMaster(purchaseMaster);
                     
                     List<ItemMaster> itemList = itemQuery.checkBarcode(itemMaster);
                     if (itemList.isEmpty()) {
                         itemQuery.insertItem(itemMaster);
                     } else {
-                        for (ItemMaster im : itemList) {
-                            itemMaster.setId(im.getId());
-                        }
+                        ItemMaster im = (ItemMaster)itemList.get(0);
+                        itemMaster.setId(im.getId());
+                        
                         
                     }
             
@@ -1925,7 +1885,7 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                     ItemAvailabilityPurchase itemAvailabilityPurchase = new ItemAvailabilityPurchase();
                     ItemAvailabilityPurchaseQuery itemAvailabilityPurchaseQuery = new ItemAvailabilityPurchaseQuery();
 
-                    PurchaseMaster purchaseMaster = new PurchaseMaster();
+                  //  PurchaseMaster purchaseMaster = new PurchaseMaster();
                     purchaseMaster.setId(Integer.valueOf(purchaseItemName));
                     purchaseMaster.setBrand(brandName);
                     itemAvailabilityPurchase.setPurchaseMaster(purchaseMaster);
