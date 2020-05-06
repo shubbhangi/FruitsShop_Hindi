@@ -255,7 +255,7 @@ public class AddNewItemsPage extends javax.swing.JFrame {
         jLabel32.setToolTipText("Unit");
 
         unit1.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        unit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Units--", "Kg", "gm", "unit" }));
+        unit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Units--", "Kg", "gm" }));
         unit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unit1ActionPerformed(evt);
@@ -466,7 +466,7 @@ public class AddNewItemsPage extends javax.swing.JFrame {
                                 .addComponent(brand, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanelBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(24, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNewBaracodeLayout.createSequentialGroup()
                                 .addGap(480, 480, 480)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)

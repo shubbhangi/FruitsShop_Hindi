@@ -386,7 +386,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         jLabel32.setToolTipText("Unit");
 
         unit1.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        unit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Units--", "Kg", "gm", "unit" }));
+        unit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Units--", "Kg", "gm" }));
         unit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unit1ActionPerformed(evt);
@@ -842,6 +842,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(remove, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(change, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
