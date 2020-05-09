@@ -52,6 +52,8 @@ public class PurchaseReturnView extends javax.swing.JInternalFrame {
         
         editor = (JTextFieldDateEditor)to.getDateEditor();
         editor.setEditable(false);
+        name.setVisible(false);
+        jLabel43.setVisible(false);
         
         from.setDate(currentDate);
         to.setDate(currentDate);
@@ -63,6 +65,9 @@ public class PurchaseReturnView extends javax.swing.JInternalFrame {
         jPanelVendor.setVisible(false);
         jTable1.getColumnModel().getColumn(0).setMinWidth(0);
         jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+        
+        jTable1.getColumnModel().getColumn(3).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(3).setMaxWidth(0);
         
         jTable1.getColumnModel().getColumn(4).setMinWidth(0);
         jTable1.getColumnModel().getColumn(4).setMaxWidth(0);

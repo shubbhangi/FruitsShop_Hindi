@@ -255,6 +255,32 @@ public class SaleMasterQuery
         return list;
     }
     
+     public List<Object[]> getSaleBySalesId(SaleMaster saleMaster)
+    {
+        //String query = "FROM SaleMaster sm JOIN sm.customerDetails cm WHERE cm.id = " + customerDetails.getCustomerDetails().getId();
+        String query = "FROM SaleMaster WHERE id = " + saleMaster.getId();
+        
+        List<Object[]> list = new ArrayList<>();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            list = q.list();
+        }
+        catch(Exception e)
+        {
+           e.printStackTrace();
+        }
+        finally 
+        {
+            session.close();
+        }
+        return list;
+    }
+    
+    
     public List<Object[]> getSaleByBillId(SaleMaster saleMaster)
     {
         String query = "FROM SaleDetails sd JOIN sd.saleMaster sm JOIN sd.itemMaster JOIN sm.customerDetails "

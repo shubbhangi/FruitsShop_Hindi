@@ -25,6 +25,14 @@ public class ItemAvailabilityView extends javax.swing.JInternalFrame {
      */
     public ItemAvailabilityView() {
         initComponents();
+        
+        jTable1.getColumnModel().getColumn(4).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(4).setMaxWidth(0);
+        
+        jTable1.getColumnModel().getColumn(5).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
+        
+        
         jTable1.getTableHeader().setFont(new Font("Arial Unicode MS", Font.BOLD, 11)); 
 
         ItemMaster itemMaster = new ItemMaster();

@@ -78,6 +78,9 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
     public SaleWithoutBarcodeView() {
         initComponents();
        
+        jPanelTds.setVisible(false);
+        jPanelCustmoer.setVisible(false);
+        
         purchaseDate.setDate(date);
        // editor = (JTextFieldDateEditor)purchaseDate.getDateEditor();
         loadItem();
@@ -117,7 +120,6 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         purchaseDate = new com.toedter.calendar.JDateChooser();
         jButton3 = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
         jPanelWithoutBaracode = new javax.swing.JPanel();
         item = new javax.swing.JComboBox<String>();
         jLabel30 = new javax.swing.JLabel();
@@ -153,8 +155,6 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         save = new javax.swing.JButton();
         cancel1 = new javax.swing.JButton();
         fullPayment = new javax.swing.JButton();
-        warehouseName = new javax.swing.JComboBox<String>();
-        add1 = new javax.swing.JButton();
         withoutBbarcodeFlag = new javax.swing.JRadioButton();
         barcodeFlag = new javax.swing.JRadioButton();
         jPanelSearch = new javax.swing.JPanel();
@@ -169,6 +169,10 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         billId = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         counter = new javax.swing.JComboBox<String>();
+        jPanelCustmoer = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        warehouseName = new javax.swing.JComboBox<String>();
+        add1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -223,11 +227,6 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        jLabel17.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel17.setText("नाम :");
-        jLabel17.setToolTipText("Name");
 
         jPanelWithoutBaracode.setBackground(new java.awt.Color(255, 255, 255));
         jPanelWithoutBaracode.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "आइटम विवरण:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Unicode MS", 0, 12), new java.awt.Color(255, 0, 0))); // NOI18N
@@ -653,25 +652,6 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             }
         });
 
-        warehouseName.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        warehouseName.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select--", "--Add Customer--" }));
-        warehouseName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                warehouseNameActionPerformed(evt);
-            }
-        });
-
-        add1.setBackground(new java.awt.Color(0, 204, 51));
-        add1.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
-        add1.setForeground(new java.awt.Color(255, 255, 255));
-        add1.setText("जोड़ना");
-        add1.setToolTipText("Add");
-        add1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add1ActionPerformed(evt);
-            }
-        });
-
         withoutBbarcodeFlag.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(withoutBbarcodeFlag);
         withoutBbarcodeFlag.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
@@ -748,7 +728,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         jLabel34.setText("Payment Mode:");
 
         paymentMode.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        paymentMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select--", "Cash", "Card", "Sodexo" }));
+        paymentMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select--", "Cash", "Card" }));
         paymentMode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paymentModeActionPerformed(evt);
@@ -826,27 +806,79 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             }
         });
 
+        jLabel17.setFont(new java.awt.Font("Arial Unicode MS", 1, 12)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel17.setText("नाम :");
+        jLabel17.setToolTipText("Name");
+
+        warehouseName.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        warehouseName.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select--", "--Add Customer--" }));
+        warehouseName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                warehouseNameActionPerformed(evt);
+            }
+        });
+
+        add1.setBackground(new java.awt.Color(0, 204, 51));
+        add1.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
+        add1.setForeground(new java.awt.Color(255, 255, 255));
+        add1.setText("जोड़ना");
+        add1.setToolTipText("Add");
+        add1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelCustmoerLayout = new javax.swing.GroupLayout(jPanelCustmoer);
+        jPanelCustmoer.setLayout(jPanelCustmoerLayout);
+        jPanelCustmoerLayout.setHorizontalGroup(
+            jPanelCustmoerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCustmoerLayout.createSequentialGroup()
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
+                .addComponent(warehouseName, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(add1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanelCustmoerLayout.setVerticalGroup(
+            jPanelCustmoerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCustmoerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(warehouseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(add1)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(fullPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(136, 136, 136))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelWithoutBaracode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(fullPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(remove, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(change, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel34)
                         .addGap(18, 18, 18)
                         .addComponent(paymentMode, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -860,36 +892,25 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                 .addGap(58, 58, 58))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(counter, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel17)
-                .addGap(18, 18, 18)
-                .addComponent(warehouseName, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(add1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel33)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(billId, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(barcodeFlag)
-                .addGap(18, 18, 18)
-                .addComponent(withoutBbarcodeFlag)
-                .addGap(187, 187, 187))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelWithoutBaracode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(counter, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(jPanelCustmoer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(billId, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(barcodeFlag)
+                        .addGap(18, 18, 18)
+                        .addComponent(withoutBbarcodeFlag)
+                        .addGap(187, 187, 187))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -903,11 +924,9 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                                 .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(billId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(warehouseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(add1)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(counter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanelCustmoer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -925,7 +944,12 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57))
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(save)
+                            .addComponent(cancel1)
+                            .addComponent(fullPayment))
+                        .addGap(15, 15, 15))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(remove, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -936,12 +960,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(paymentMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanelTds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(save)
-                    .addComponent(cancel1)
-                    .addComponent(fullPayment))
-                .addGap(15, 15, 15))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1394,6 +1413,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanelCustmoer;
     private javax.swing.JPanel jPanelSearch;
     private javax.swing.JPanel jPanelTds;
     private javax.swing.JPanel jPanelWithoutBaracode;
@@ -1873,16 +1893,16 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                 return;
             }
             String paymentMode = this.paymentMode.getSelectedItem().toString();
-            String warehouseName = this.warehouseName.getSelectedItem().toString();
+          // .. String warehouseName = this.warehouseName.getSelectedItem().toString();
 
             SaleMaster saleMaster = new SaleMaster();
             SaleMasterQuery saleMasterQuery = new SaleMasterQuery();
 
-            if (warehouseName.equalsIgnoreCase("--Select--")) {
-                JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select a Warehouswe"), "Error message", JOptionPane.ERROR_MESSAGE);
-                this.warehouseName.requestFocus();
-                return;
-            }
+//            if (warehouseName.equalsIgnoreCase("--Select--")) {
+//                JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select a Warehouswe"), "Error message", JOptionPane.ERROR_MESSAGE);
+//                this.warehouseName.requestFocus();
+//                return;
+//            }
 
             if (paymentMode.equalsIgnoreCase("--Select--")) {
                 JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select a payment Mode"), "Error message", JOptionPane.ERROR_MESSAGE);
@@ -1906,9 +1926,9 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             saleMaster.setCounter(counter);
             saleMaster.setId(1);
 
-            CustomerDetails customerDetails = new CustomerDetails();
+/*...            CustomerDetails customerDetails = new CustomerDetails();
             CustomerDetailsQuery customerDetailsQuery = new CustomerDetailsQuery();
-            customerDetails.setName(warehouseName);
+        //    customerDetails.setName(warehouseName);
 
             List<CustomerDetails> list = customerDetailsQuery.getCustomerDetails(customerDetails);
             if (list.isEmpty()) // customerDetailsQuery.insertWarehouse(customerDetails);        
@@ -1931,7 +1951,8 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             // customerPartialPayment.setPaidAmount(new BigDecimal(total.getText().trim()));
             customerPartialPayment.setPaidAmount(new BigDecimal(amount.getText().trim()));
             CustomerPartialPaymentQuery customerPartialPaymentQuery = new CustomerPartialPaymentQuery();
-            if ((paymentMode.equalsIgnoreCase("Cash"))) {
+  */
+          if ((paymentMode.equalsIgnoreCase("Cash"))) {
             }
 
             if ((paymentMode.equalsIgnoreCase("Card"))) {
@@ -1946,21 +1967,21 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             saleMaster.setDiscount(new BigDecimal(0.00));
             //saleMaster.setFinalBillAmount(new BigDecimal(total.getText().trim()));
             saleMaster.setFinalBillAmount(new BigDecimal(amount.getText().trim()));
-            customerPartialPayment.setPaidAmount(new BigDecimal(amount.getText().trim()));
+//..            customerPartialPayment.setPaidAmount(new BigDecimal(amount.getText().trim()));
             //   customerPartialPayment.setPaidAmount(new BigDecimal(total.getText().trim()));
 
             int confirm = JOptionPane.showConfirmDialog(null, MessageFormat.getMessage("Are you sure of this Sale?"));
             if (confirm == JOptionPane.YES_OPTION) {
                 //saleMaster.setId(Integer.parseInt(billId.getText()));
-                saleMaster.setCustomerDetails(customerDetails);
+//..                saleMaster.setCustomerDetails(customerDetails);
 
                 //  saleMaster.setStoreDetails(customerDetails);
                //  saleMaster.setCounter(counter);
-                saleMaster.setCustomerDetails(customerDetails);
+//..                saleMaster.setCustomerDetails(customerDetails);
                 saleMaster.setStatus("1");
                 saleMasterQuery.insertIntoSaleMaster(saleMaster);
 
-                customerPartialPaymentQuery.insertIntoCustomerPartialPaymentView(customerPartialPayment);
+//..                customerPartialPaymentQuery.insertIntoCustomerPartialPaymentView(customerPartialPayment);
                 saveSaleDetails(saleMaster);
                 
                 ItemMaster itemMaster = new ItemMaster();
@@ -2040,17 +2061,17 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
 			+ " store_details.`website` AS store_details_website,\n"
 			+ " store_details.`email` AS store_details_email,\n"
 			+ " store_details.`gstNumber` AS store_details_gstNumber,\n"
-			+ " store_details.`photo` AS store_details_photo,\n"   
+			+ " store_details.`photo` AS store_details_photo \n"   
 			 
-			+ " customer_details.`Id` AS customer_details_Id,\n"
-			+ " customer_details.`name` AS customer_details_name,\n"
-			+ " customer_details.`contact` AS customer_details_contact,\n"
-			+ " customer_details.`address` AS customer_details_address,\n"
-			+ " customer_details.`balance` AS customer_details_balance \n"
+//			+ " customer_details.`Id` AS customer_details_Id,\n"
+//			+ " customer_details.`name` AS customer_details_name,\n"
+//			+ " customer_details.`contact` AS customer_details_contact,\n"
+//			+ " customer_details.`address` AS customer_details_address,\n"
+//			+ " customer_details.`balance` AS customer_details_balance \n"
 			+ "FROM \n"
 			+ " `item_master` item_master INNER JOIN `sale_details` sale_details ON item_master.`Id` = sale_details.`itemId` \n"
 			+ " INNER JOIN `sale_master` sale_master ON sale_details.`saleId` = sale_master.`Id` \n"
-			+ " INNER JOIN `customer_details` customer_details ON sale_master.`customerId` = customer_details.`Id`\n"
+//			+ " INNER JOIN `customer_details` customer_details ON sale_master.`customerId` = customer_details.`Id`\n"
 			+ " INNER JOIN `store_details` store_details ON sale_master.`storeId` = store_details.`Id` \n"
 			+ "    WHERE sale_master.id = " + saleMaster.getId(); 
         try {
