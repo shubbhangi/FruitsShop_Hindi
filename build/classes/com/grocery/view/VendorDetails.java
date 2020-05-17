@@ -261,10 +261,23 @@ public class VendorDetails extends javax.swing.JFrame {
         jLabel43.setText("विक्रेता जी.एस.टी.");
         jLabel43.setToolTipText("Vendor GST ");
 
+        gstNo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                gstNoKeyTyped(evt);
+            }
+        });
+
         jLabel22.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel22.setText("पिन कोड");
         jLabel22.setToolTipText("Pin Code");
+
+        pincode.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        pincode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pincodeKeyTyped(evt);
+            }
+        });
 
         jLabel23.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -539,9 +552,12 @@ public class VendorDetails extends javax.swing.JFrame {
         address.setText(jTable1.getValueAt(index, 3).toString());
         city.setText(jTable1.getValueAt(index, 4).toString());
         state.setText(jTable1.getValueAt(index, 5).toString());
+       
+        pincode.setText(jTable1.getValueAt(index, 6).toString());
 
         // this.gstPercent.setSelectedItem(String.valueOf(gstPercent));
-        this.pincode.setText(String.valueOf(pincode));
+ //       this.pincode.setText(String.valueOf(pincode));
+       
         // this.pincode.setText(jTable1.getValueAt(index, 5).toString());
         gstNo.setText(jTable1.getValueAt(index, 7).toString());
 
@@ -594,9 +610,16 @@ public class VendorDetails extends javax.swing.JFrame {
     }//GEN-LAST:event_contactActionPerformed
 
     private void contactKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contactKeyTyped
+//        char c = evt.getKeyChar();
+//        if(!(Character.isDigit(c) || c == '-'))
+//        evt.consume();
         char c = evt.getKeyChar();
         if(!(Character.isDigit(c) || c == '-'))
         evt.consume();
+        
+        if ((contact.getText() + evt.getKeyChar()).length() > 10) {
+          evt.consume();
+        }
     }//GEN-LAST:event_contactKeyTyped
 
     private void newVendorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_newVendorFocusGained
@@ -653,6 +676,19 @@ public class VendorDetails extends javax.swing.JFrame {
         evt.consume();
 
     }//GEN-LAST:event_vendorNameKeyTyped
+
+    private void pincodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pincodeKeyTyped
+       if ((pincode.getText() + evt.getKeyChar()).length() > 6) {
+          evt.consume();
+        }
+    }//GEN-LAST:event_pincodeKeyTyped
+
+    private void gstNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gstNoKeyTyped
+//        char c = evt.getKeyChar();
+//        if(!(Character.isDigit(c) || c == '-' || c == ',' || c =='.'))
+//        evt.consume();  
+        
+    }//GEN-LAST:event_gstNoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -879,6 +915,9 @@ public class VendorDetails extends javax.swing.JFrame {
             VendorQuery vendorQuery = new VendorQuery();
   
             vendorMaster.setName(newVendor.getText().trim());
+            vendorMaster.setContact(contact.getText().trim());
+            vendorMaster.setAddress(address.getText().trim());
+            vendorMaster.setGstNumber(gstNo.getText().trim());
             vendorMaster.setId(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()));
             
             List<VendorMaster> list = vendorQuery.checkVendor(vendorMaster);
@@ -892,6 +931,8 @@ public class VendorDetails extends javax.swing.JFrame {
             vendorMaster.setName(newVendor.getText().trim());
             vendorMaster.setContact(contact.getText().trim());
             vendorMaster.setAddress(address.getText().trim());
+          
+            vendorMaster.setPincode(Integer.parseInt(pincode.getText().trim()));
             
             vendorMaster.setGstNumber(gstNo.getText().trim());
             

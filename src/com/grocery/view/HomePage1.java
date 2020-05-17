@@ -24,7 +24,7 @@ public class HomePage1 extends javax.swing.JFrame {
         jMenuItem22.setVisible(false);
         jMenuItem5.setVisible(false);
         jMenuItem20.setVisible(false);
-        jMenuItem23.setVisible(false);
+       // jMenuItem23.setVisible(false);
         
         jMenuItem11.setVisible(false);
         jMenuItem3.setVisible(false);
@@ -805,12 +805,32 @@ public class HomePage1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        VendorAccount storeDetails = new VendorAccount(jDesktopPane1, false);
-       // storeDetails.setTitle("Vendor Account");
-        jDesktopPane1.add(storeDetails);
-        SetDimension setDimension = new SetDimension();
-        setDimension.setInternalFrameLocation(jDesktopPane1, storeDetails);
-        storeDetails.setVisible(true);
+        //ethun to page visible karaycha
+        SalesBillDetails salesBillDetails = new SalesBillDetails();
+        salesBillDetails.setVisible(true);
+//        PurchaseHistory storeDetails = new PurchaseHistory(jDesktopPane1, false, 0);
+//            if(false)
+//                storeDetails.setTitle("Purchase History");
+//            else
+//                
+////             vendorAccounts = new JLabel("Vendor Accounts");
+////             vendorAccounts.setBounds(50, 50, 100, 30);
+////             vendorAccounts.setFont(new Font("Arial Unicode MS", Font.PLAIN, 18));
+//            
+//                
+//               // storeDetails.setTitle("Sale History");
+//            storeDetails.setTitle("बिक्री का इतिहास");
+//            jDesktopPane1.add(storeDetails);
+//            SetDimension setDimension = new SetDimension();
+//            setDimension.setInternalFrameLocation(jDesktopPane1, storeDetails);
+//            storeDetails.setVisible(true);
+//        VendorAccount storeDetails = new VendorAccount(jDesktopPane1, false);
+//       // storeDetails.setTitle("Vendor Account");
+//        jDesktopPane1.add(storeDetails);
+//        SetDimension setDimension = new SetDimension();
+//        setDimension.setInternalFrameLocation(jDesktopPane1, storeDetails);
+//        storeDetails.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed

@@ -725,8 +725,8 @@ public class PurchaseReportView extends javax.swing.JInternalFrame {
             JRResultSetDataSource resultSetDataSource = new JRResultSetDataSource(resultSet);
             Map<String, Object> map = new HashMap<>();
             
-            map.put("from", dateFormat.format(sqlFromDate));
-            map.put("to", dateFormat.format(sqlToDate));
+            map.put("from", sqlFromDate);
+            map.put("to", sqlToDate);
             
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, resultSetDataSource);
             JasperViewer.viewReport(jasperPrint, false);

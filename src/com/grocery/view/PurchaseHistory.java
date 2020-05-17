@@ -218,23 +218,16 @@ public class PurchaseHistory extends javax.swing.JInternalFrame {
         }
         else
         {
-            CustomerDetails customerDetails = new CustomerDetails();
-            customerDetails.setId(id);
             
-           SaleMaster saleMaster = new SaleMaster();
-            saleMaster.setCustomerDetails(customerDetails);
-            
+            SaleMaster saleMaster = new SaleMaster();
             SaleMasterQuery saleMasterQuery = new SaleMasterQuery();
             
-            List<Object[]> list = saleMasterQuery.getSaleByWarehouseId(saleMaster);
+            List<SaleMaster> list = saleMasterQuery.getSales(saleMaster);
             
-            for(Object[] object: list)
-            {
-                SaleMaster sm = (SaleMaster)object[0];
-                
+            for(SaleMaster sm: list)
                     
                 defaultTableModel.addRow(new Object[]{sm.getCustomerDetails().getId(), sm.getCustomerDetails().getName(),"",  sm.getId(), dateFormat.format(sm.getDate()),"", sm.getBillAmount(), 0.00, sm.getFinalBillAmount(), "Non_GST"});
-            }
+            
         }
         
         jTable1.setModel(defaultTableModel);
