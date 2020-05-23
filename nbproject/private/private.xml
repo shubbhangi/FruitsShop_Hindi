@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/view/PurchaseReportView.java</file>
-            <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/view/SaleWithoutBarcodeView.java</file>
+            <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/view/SalesBillDetails.java</file>
             <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/view/HomePage1.java</file>
-            <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/view/AddNewItemsPage.java</file>
+            <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/view/BillDetailsSalesView.java</file>
             <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/view/PurchaseStock.java</file>
         </group>
     </open-files>
