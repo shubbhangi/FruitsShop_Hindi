@@ -72,8 +72,8 @@ public class PurchaseReturnView extends javax.swing.JInternalFrame {
         jTable1.getColumnModel().getColumn(4).setMinWidth(0);
         jTable1.getColumnModel().getColumn(4).setMaxWidth(0);
         
-        jTable1.getColumnModel().getColumn(5).setMinWidth(0);
-        jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
+//        jTable1.getColumnModel().getColumn(5).setMinWidth(0);
+//        jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
         
         jTable1.getTableHeader().setFont(new Font("Arial Unicode MS", Font.BOLD, 11));
         
@@ -99,9 +99,9 @@ public class PurchaseReturnView extends javax.swing.JInternalFrame {
             colMod = header.getColumnModel();
             tabCol = colMod.getColumn(2);
             tabCol.setHeaderValue("बिक्री की तारीख");
-            
-            jTable1.getColumnModel().getColumn(5).setMinWidth(0);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
+//            
+//            jTable1.getColumnModel().getColumn(5).setMinWidth(0);
+//            jTable1.getColumnModel().getColumn(5).setMaxWidth(0);
             
             loadWarehouse();
         }
@@ -356,11 +356,11 @@ public class PurchaseReturnView extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "विक्रेता पहचान", "बिल आईडी", "खरीद की तारीख", "विक्रेता का नाम", "संदर्भ", "चालान #", "बिल की राशि", "छूट", "अंतिम बिल राशि"
+                "बिल आईडी", "खरीद की तारीख", "बिल की राशि", "छूट", "अंतिम बिल राशि"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -787,13 +787,13 @@ public class PurchaseReturnView extends javax.swing.JInternalFrame {
                             saleMaster.setDate(fromDate);
                             saleMaster.setTo(toDate);
 
-                            List<Object[]> list = saleMasterQuery.getSale(saleMaster);
+                            List<SaleMaster> list = saleMasterQuery.getSale(saleMaster);
 
-                            for(Object[] object: list)
+                            for(SaleMaster sm: list)
                             {
-                                SaleMaster sm = (SaleMaster) object[0];
+                                
                                // defaultTableModel.addRow(new Object[]{sm.getCustomerDetails().getId(), sm.getId(), dateFormat.format(sm.getDate()), sm.getCustomerDetails().getName(), sm.getReference(),"", sm.getBillAmount(), sm.getDiscount(), sm.getFinalBillAmount()});
-                                defaultTableModel.addRow(new Object[]{sm.getCustomerDetails().getId(), sm.getId(), dateFormat.format(sm.getDate()), sm.getCustomerDetails().getName(), sm.getReference(),"", sm.getBillAmount(), sm.getDiscount(), sm.getFinalBillAmount()});
+                                defaultTableModel.addRow(new Object[]{sm.getId(), dateFormat.format(sm.getDate()),"", sm.getBillAmount(), sm.getDiscount(), sm.getFinalBillAmount()});
                             }
 
                             jTable1.setModel(defaultTableModel);
@@ -806,13 +806,13 @@ public class PurchaseReturnView extends javax.swing.JInternalFrame {
                     return;
                 }
             
-            List<Object[]> list = saleMasterQuery.getSale(saleMaster);
+            List<SaleMaster> list = saleMasterQuery.getSale(saleMaster);
 
-            for(Object[] object: list)
+            for(SaleMaster sm: list)
             {
-                SaleMaster sm = (SaleMaster) object[0];
+                
               //  defaultTableModel.addRow(new Object[]{sm.getCustomerDetails().getId(), sm.getId(), dateFormat.format(sm.getDate()), sm.getCustomerDetails().getName(), sm.getReference(), "", sm.getBillAmount(), sm.getDiscount(), sm.getFinalBillAmount()});
-                defaultTableModel.addRow(new Object[]{sm.getCustomerDetails().getId(), sm.getId(), dateFormat.format(sm.getDate()), sm.getCustomerDetails().getName(), sm.getReference(), "", sm.getBillAmount(), sm.getDiscount(), sm.getFinalBillAmount()});
+                defaultTableModel.addRow(new Object[]{ sm.getId(), dateFormat.format(sm.getDate()), sm.getBillAmount(), sm.getDiscount(), sm.getFinalBillAmount()});
             }
         }
         jTable1.setModel(defaultTableModel);
@@ -822,31 +822,32 @@ public class PurchaseReturnView extends javax.swing.JInternalFrame {
     {
         try
         {
-            int billID = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+            int billID = Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
             
-            if(flag)
-            {
-                PurchaseReturnBillDetails purchaseReturnBillDetails = new PurchaseReturnBillDetails(billID, true);
-                purchaseReturnBillDetails.setTitle("Bill Details");
-                jDesktopPane.add(purchaseReturnBillDetails);
-                SetDimension setDimension = new SetDimension();
-                setDimension.setInternalFrameLocation(jDesktopPane, purchaseReturnBillDetails);
-                purchaseReturnBillDetails.setVisible(true);
-            }
-            else
-            {
+//            if(flag)
+//            {
+//                PurchaseReturnBillDetails purchaseReturnBillDetails = new PurchaseReturnBillDetails(billID, true);
+//                purchaseReturnBillDetails.setTitle("Bill Details");
+//                jDesktopPane.add(purchaseReturnBillDetails);
+//                SetDimension setDimension = new SetDimension();
+//                setDimension.setInternalFrameLocation(jDesktopPane, purchaseReturnBillDetails);
+//                purchaseReturnBillDetails.setVisible(true);
+//            }
+//            else
+//            {
                 SaleReturnBillDetails saleReturnBillDetails = new SaleReturnBillDetails(billID);
                 saleReturnBillDetails.setTitle("Bill Details");
                 jDesktopPane.add(saleReturnBillDetails);
                 SetDimension setDimension = new SetDimension();
                 setDimension.setInternalFrameLocation(jDesktopPane, saleReturnBillDetails);
                 saleReturnBillDetails.setVisible(true);
-            }
+        //    }
             
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select the row whose details you want to view"), "Error Message", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            //JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select the row whose details you want to view"), "Error Message", JOptionPane.ERROR_MESSAGE);
         }
     }
 

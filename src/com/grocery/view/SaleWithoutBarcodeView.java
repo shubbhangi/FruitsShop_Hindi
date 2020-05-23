@@ -1926,32 +1926,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             saleMaster.setCounter(counter);
             saleMaster.setId(1);
 
-/*...            CustomerDetails customerDetails = new CustomerDetails();
-            CustomerDetailsQuery customerDetailsQuery = new CustomerDetailsQuery();
-        //    customerDetails.setName(warehouseName);
 
-            List<CustomerDetails> list = customerDetailsQuery.getCustomerDetails(customerDetails);
-            if (list.isEmpty()) // customerDetailsQuery.insertWarehouse(customerDetails);        
-            {
-                customerDetailsQuery.insertCustomer(customerDetails);
-            } else {
-                for (CustomerDetails cm : list) {
-                    customerDetails.setId(cm.getId());
-                    customerDetails.setBalance(cm.getBalance().add(new BigDecimal(0.00)));
-                }
-                customerDetailsQuery.updateCustomerBalance(customerDetails);
-            }
-            CustomerPartialPayment customerPartialPayment = new CustomerPartialPayment();
-            customerPartialPayment.setPaymentMode(paymentMode);
-            customerPartialPayment.setBank("N/A");
-            customerPartialPayment.setChequeOrCardNumber(this.number.getText());
-            customerPartialPayment.setCustomerDetails(customerDetails);
-            customerPartialPayment.setDate(this.purchaseDate.getDate());
-            customerPartialPayment.setStatus("1");
-            // customerPartialPayment.setPaidAmount(new BigDecimal(total.getText().trim()));
-            customerPartialPayment.setPaidAmount(new BigDecimal(amount.getText().trim()));
-            CustomerPartialPaymentQuery customerPartialPaymentQuery = new CustomerPartialPaymentQuery();
-  */
           if ((paymentMode.equalsIgnoreCase("Cash"))) {
             }
 
@@ -2004,6 +1979,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Sale successful"));
 
                 printBill(saleMaster);
+                printBillwithoutBarcode(saleMaster);
                 clear();
                 //clear1();
                 DefaultTableModel defaultTableModel = (DefaultTableModel) jTable1.getModel();
@@ -2025,61 +2001,154 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
 
         DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
       
-            String joinQuery = "SELECT\n"  
-			+ " item_master.`Id` AS item_master_Id,\n"
-			+ " item_master.`name` AS item_master_name,\n"
-			+ " item_master.`unitPrice` AS item_master_unitPrice,\n"
-			+ " item_master.`barCode` AS barCode,\n"
-			+ " item_master.`efgDate` AS item_master_efgDate,\n"
-			+ " item_master.`expDate` AS item_master_expDate,\n"
-			 
-			+ " sale_details.`Id` AS sale_details_Id,\n"
-			+ " sale_details.`saleId` AS sale_details_saleId,\n"
-			+ " sale_details.`itemId` AS sale_details_itemId,\n"
-			+ " sale_details.`unitPrice` AS sale_details_unitPrice,\n"
-			+ " sale_details.`quantity` AS sale_details_quantity,\n"
-			+ " sale_details.`sellingPrice` AS sale_details_sellingPrice,\n"
-			+ " sale_details.`total` AS sale_details_total,\n"
-			 
-			+ " sale_master.`Id` AS sale_master_Id,\n"
-			+ " sale_master.`date` AS sale_master_date,\n"
-			+ " sale_master.`storeId` AS sale_master_storeId,\n"
-			+ " sale_master.`customerId` AS sale_master_customerId,\n"
-			+ " sale_master.`billAmount` AS sale_master_billAmount,\n"
-			+ " sale_master.`discount` AS sale_master_discount,\n"
-			+ " sale_master.`gstAmount` AS sale_master_gstAmount,\n"
-			+ " sale_master.`finalBillAmount` AS sale_master_finalBillAmount,\n"
-			+ " sale_master.`status` AS sale_master_status,\n"
-			 
-			+ " store_details.`Id` AS store_details_Id,\n"
-			+ " store_details.`name` AS store_details_name,\n"
-			+ " store_details.`address` AS store_details_address,\n"
-			+ " store_details.`city` AS store_details_city,\n"
-			+ " store_details.`state` AS store_details_state,\n"
-			+ " store_details.`pincode` AS store_details_pincode,\n"
-			+ " store_details.`phone` AS store_details_phone,\n"
-			+ " store_details.`website` AS store_details_website,\n"
-			+ " store_details.`email` AS store_details_email,\n"
-			+ " store_details.`gstNumber` AS store_details_gstNumber,\n"
-			+ " store_details.`photo` AS store_details_photo \n"   
-			 
-//			+ " customer_details.`Id` AS customer_details_Id,\n"
-//			+ " customer_details.`name` AS customer_details_name,\n"
-//			+ " customer_details.`contact` AS customer_details_contact,\n"
-//			+ " customer_details.`address` AS customer_details_address,\n"
-//			+ " customer_details.`balance` AS customer_details_balance \n"
-			+ "FROM \n"
-			+ " `item_master` item_master INNER JOIN `sale_details` sale_details ON item_master.`Id` = sale_details.`itemId` \n"
-			+ " INNER JOIN `sale_master` sale_master ON sale_details.`saleId` = sale_master.`Id` \n"
-//			+ " INNER JOIN `customer_details` customer_details ON sale_master.`customerId` = customer_details.`Id`\n"
-			+ " INNER JOIN `store_details` store_details ON sale_master.`storeId` = store_details.`Id` \n"
-			+ "    WHERE sale_master.id = " + saleMaster.getId(); 
+            String joinQuery = "SELECT   \n" +
+"                            \n" +
+"                              item_master.`Id` AS item_master_Id,\n" +
+"                             item_master.`name` AS item_master_name,\n" +
+"                             item_master.`unitPrice` AS item_master_unitPrice,\n" +
+"                             item_master.`gstPercent` AS item_master_gstPercent,\n" +
+"                             item_master.`sellingPrice` AS item_master_sellingPrice,\n" +
+"                             item_master.`sellingGstPercent` AS item_master_sellingGstPercent,\n" +
+"                             item_master.`finalSellingPrice` AS item_master_finalSellingPrice,\n" +
+"                             item_master.`barCode` AS barCode,\n" +
+"                             item_master.`efgDate` AS item_master_efgDate,\n" +
+"                             item_master.`expDate` AS item_master_expDate,\n" +
+"                \n" +
+"\n" +
+"                             sale_details.`Id` AS sale_details_Id,\n" +
+"                             sale_details.`saleId` AS sale_details_saleId,\n" +
+"                             sale_details.`itemId` AS sale_details_itemId,\n" +
+"                             sale_details.`unitPrice` AS sale_details_unitPrice,\n" +
+"                             sale_details.`gstPercent` AS sale_details_gstPercent,\n" +
+"                             sale_details.`sellingPrice` AS sale_details_sellingPrice,\n" +
+"                             sale_details.`quantity` AS sale_details_quantity,\n" +
+"                             sale_details.`total` AS sale_details_total,\n" +
+"                             sale_master.`Id` AS sale_master_Id,\n" +
+"                             sale_master.`date` AS sale_master_date,\n" +
+"                             sale_master.`storeId` AS sale_master_storeId,\n" +
+"                             sale_master.`counterId` AS sale_master_counterId,\n" +
+"                             sale_master.`customerId` AS sale_master_customerId,\n" +
+"                             sale_master.`billAmount` AS sale_master_billAmount,\n" +
+"                             sale_master.`gstAmount` AS sale_master_gstAmount,\n" +
+"                             sale_master.`discount` AS sale_master_discount,\n" +
+"                             sale_master.`finalBillAmount` AS sale_master_finalBillAmount,\n" +
+"                             sale_master.`status` AS sale_master_status,\n" +
+"                             sale_master.`remark` AS sale_master_remark,\n" +
+"                             store_details.`Id` AS store_details_Id,\n" +
+"                             store_details.`name` AS store_details_name,\n" +
+"                             store_details.`address` AS store_details_address,\n" +
+"                             store_details.`city` AS store_details_city,\n" +
+"                             store_details.`state` AS store_details_state,\n" +
+"                             store_details.`pincode` AS store_details_pincode,\n" +
+"                             store_details.`phone` AS store_details_phone,\n" +
+"                             store_details.`website` AS store_details_website,\n" +
+"                             store_details.`email` AS store_details_email,\n" +
+"                             store_details.`gstNumber` AS store_details_gstNumber,\n" +
+"                             store_details.`photo` AS store_details_photo\n" +
+"                              \n" +
+"                           FROM \n" +
+"                             `item_master` item_master INNER JOIN `sale_details` sale_details ON item_master.`Id` = sale_details.`itemId` \n" +
+"                             INNER JOIN `sale_master` sale_master ON sale_details.`saleId` = sale_master.`Id`\n" +
+"                             INNER JOIN `store_details` store_details ON sale_master.`storeId` = store_details.`Id`  \n" +
+"                             WHERE sale_master.id='" + saleMaster.getId()+"'"; 
         try {
             connection = MyConnection.createConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(joinQuery);
 
             String reportSource = ReadFile.getPath() + "SalePage.jrxml";
+ 
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
+            JRResultSetDataSource resultSetDataSource = new JRResultSetDataSource(resultSet);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, resultSetDataSource);
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) { /* ignored */
+
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) { /* ignored */
+
+                }
+            }
+
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+
+                }
+            }
+        }
+    }
+
+         private void printBillwithoutBarcode(SaleMaster saleMaster) {
+   // private void printBill(SaleMaster saleMaster, String flag) {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+      
+            String joinQuery = "SELECT   \n" +
+"                            \n" +
+"                              item_master_without_barcode.`Id` AS item_master_without_barcode_Id,\n" +
+"                             item_master_without_barcode.`name` AS item_master_without_barcode_name,\n" +
+"                             item_master_without_barcode.`unitPrice` AS item_master_without_barcode_unitPrice,\n" +
+"                             \n" +
+"                             \n" +
+"                             item_master_without_barcode.`brand` AS brand,\n" +
+"                             item_master_without_barcode.`weight` AS weight,\n" +
+"                             item_master_without_barcode.`unit` AS unit,\n" +
+"                             item_master_without_barcode.`quantity` AS quantity,\n" +
+"                             item_master_without_barcode.`totalAmount` AS totalAmount,\n" +
+"                             item_master_without_barcode.`efgDate` AS item_master_without_barcode_efgDate,\n" +
+"                             item_master_without_barcode.`expDate` AS item_master_without_barcode_expDate,\n" +
+"                \n" +
+"\n" +
+"                             sale_master.`Id` AS sale_master_Id,\n" +
+"                             sale_master.`date` AS sale_master_date,\n" +
+"                             sale_master.`storeId` AS sale_master_storeId,\n" +
+"                             \n" +
+"                             sale_master.`billAmount` AS sale_master_billAmount,\n" +
+"                             sale_master.`gstAmount` AS sale_master_gstAmount,\n" +
+"                             sale_master.`discount` AS sale_master_discount,\n" +
+"                             sale_master.`finalBillAmount` AS sale_master_finalBillAmount,\n" +
+"                             sale_master.`status` AS sale_master_status,\n" +
+"                             sale_master.`remark` AS sale_master_remark,\n" +
+"                             store_details.`Id` AS store_details_Id,\n" +
+"                             store_details.`name` AS store_details_name,\n" +
+"                             store_details.`address` AS store_details_address,\n" +
+"                             store_details.`city` AS store_details_city,\n" +
+"                             store_details.`state` AS store_details_state,\n" +
+"                             store_details.`pincode` AS store_details_pincode,\n" +
+"                             store_details.`phone` AS store_details_phone,\n" +
+"                             store_details.`website` AS store_details_website,\n" +
+"                             store_details.`email` AS store_details_email,\n" +
+"                             store_details.`gstNumber` AS store_details_gstNumber,\n" +
+"                             store_details.`photo` AS store_details_photo\n" +
+"                              \n" +
+"                           FROM \n" +
+"                             `item_master_without_barcode` item_master_without_barcode INNER JOIN `sale_master` sale_master ON item_master_without_barcode.`saleId` = sale_master.`Id`\n" +
+"                             INNER JOIN `store_details` store_details ON sale_master.`storeId` = store_details.`Id`  \n" +
+"                             where sale_master.id='" + saleMaster.getId()+"'"; 
+        try {
+            connection = MyConnection.createConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(joinQuery);
+
+           // String reportSource = ReadFile.getPath() + "SalePage.jrxml";
+            String reportSource = ReadFile.getPath() + "SalePageWithoutBarcode.jrxml";
  
             JasperReport jasperReport = JasperCompileManager.compileReport(reportSource);
             JRResultSetDataSource resultSetDataSource = new JRResultSetDataSource(resultSet);
@@ -2289,6 +2358,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
            itemMasterWithoutBarcode.setUnitPrice(unitPrice);
            itemMasterWithoutBarcode.setQuantity(quantity);
            itemMasterWithoutBarcode.setTotalAmount(total);
+           itemMasterWithoutBarcode.setSaleMaster(saleMaster);
 //           itemMasterWithoutBarcode.setEfgDate(mfg);
 //           itemMasterWithoutBarcode.setExpDate(exp);
 

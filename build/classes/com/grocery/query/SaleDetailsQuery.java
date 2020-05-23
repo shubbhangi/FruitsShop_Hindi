@@ -169,7 +169,8 @@ public class SaleDetailsQuery
     
     public List<Object[]> getSaleDetails(SaleDetails saleDetails)
     {
-        String query = "FROM SaleMaster sm JOIN sm.saleDetailses sd JOIN sd.itemMaster im JOIN sm.customerDetails WHERE sm.id = " + saleDetails.getSaleMaster().getId();
+       // String query = "FROM SaleMaster sm JOIN sm.saleDetailses sd JOIN sd.itemMaster im JOIN sm.customerDetails WHERE sm.id = " + saleDetails.getSaleMaster().getId();
+        String query = "FROM SaleMaster sm JOIN sm.saleDetailses sd JOIN sd.itemMaster  WHERE sm.id = " + saleDetails.getSaleMaster().getId();
         
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Object[]> list = new ArrayList<>();

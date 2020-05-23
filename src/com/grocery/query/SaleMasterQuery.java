@@ -286,7 +286,7 @@ public class SaleMasterQuery
     
     public List<Object[]> getSaleByBillId(SaleMaster saleMaster)
     {
-        String query = "FROM SaleDetails sd JOIN sd.saleMaster sm JOIN sd.itemMaster "
+        String query = "FROM SaleDetails sd JOIN sd.saleMaster sm "
                 +      "WHERE sm.id = " + saleMaster.getId();
         
 //        String query = "FROM SaleDetails sd JOIN sd.saleMaster sm JOIN sd.itemMaster JOIN sm.customerDetails "
@@ -311,25 +311,52 @@ public class SaleMasterQuery
         }
         return list;
     }
-    
-    public List<Object[]> getSale(SaleMaster saleMaster)
-    {
-        String query = "";
         
+    public List<Object[]> getWithoutBarcodeSaleByBillId(SaleMaster saleMaster)
+    {
+        String query = "FROM ItemMasterWithoutBarcode iw JOIN iw.saleMaster sm "
+                +      "WHERE sm.id = " + saleMaster.getId();
+        
+//        String query = "FROM SaleDetails sd JOIN sd.saleMaster sm JOIN sd.itemMaster JOIN sm.customerDetails "
+//                +      "WHERE sm.id = " + saleMaster.getId();
+//        
         List<Object[]> list = new ArrayList<>();
         Session session = HibernateUtil.getSessionFactory().openSession();
         
+        try
+        {
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            list = q.list();
+        }
+        catch(Exception e)
+        {
+            
+        }
+        finally 
+        {
+            session.close();
+        }
+        return list;
+    }
+ 
+    public List<SaleMaster> getSale(SaleMaster saleMaster)
+    {
+        String query = "";
+        
+        List<SaleMaster> list = new ArrayList<>();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
         if(saleMaster.getId() != null)
-            query = "FROM SaleMaster sm JOIN sm.customerDetails WHERE sm.id = " + saleMaster.getId();
-            else
-            if(saleMaster.getCustomerDetails()!= null)
-                query = "FROM SaleMaster sm JOIN sm.customerDetails WHERE sm.customerDetails = " + saleMaster.getCustomerDetails().getId();
+            query = "FROM SaleMaster sm  WHERE sm.id = " + saleMaster.getId();
+//        else if(saleMaster.getCustomerDetails()!= null)
+//                query = "FROM SaleMaster sm JOIN sm.customerDetails WHERE sm.customerDetails = " + saleMaster.getCustomerDetails().getId();
             else
             {
                 java.sql.Date fromDate = new java.sql.Date(saleMaster.getDate().getTime());
                 java.sql.Date toDate = new java.sql.Date(saleMaster.getTo().getTime());
 
-                query = "FROM SaleMaster sm JOIN sm.customerDetails WHERE sm.date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+                query = "FROM SaleMaster sm  WHERE sm.date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
             }
         try
         {

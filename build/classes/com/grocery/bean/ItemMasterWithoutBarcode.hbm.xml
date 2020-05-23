@@ -41,5 +41,8 @@
         <property name="isDeleted" type="java.lang.Integer">
             <column name="is_deleted" />
         </property>
+        <many-to-one name="saleMaster" class="com.grocery.bean.SaleMaster" fetch="select">
+            <column name="saleId" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

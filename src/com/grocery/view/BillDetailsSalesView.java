@@ -5,6 +5,7 @@
  */
 package com.grocery.view;
 
+import com.grocery.bean.ItemMasterWithoutBarcode;
 import com.grocery.bean.SaleDetails;
 import com.grocery.bean.SaleMaster;
 import com.grocery.query.SaleMasterQuery;
@@ -458,14 +459,28 @@ public class BillDetailsSalesView extends javax.swing.JFrame {
             saleMaster.setId(billId);
             
             SaleMasterQuery saleMasterQuery = new SaleMasterQuery();
-            List<Object[]> list = saleMasterQuery.getSaleByBillId(saleMaster);
+            List<Object[]> barcodelist = saleMasterQuery.getSaleByBillId(saleMaster);
+            List<Object[]> withoutbarcodelist = saleMasterQuery.getWithoutBarcodeSaleByBillId(saleMaster);
             
-            for(Object[] object: list)
+            
+            for(Object[] object: withoutbarcodelist)
+            {
+                ItemMasterWithoutBarcode iw = (ItemMasterWithoutBarcode)object[0];
+                
+                defaultTableModel.addRow(new Object[]{iw.getName(), iw.getBarCode(), iw.getQuantity(), iw.getUnitPrice(), iw.getTotalAmount()});
+            
+            date.setText(dateFormat.format(iw.getSaleMaster().getDate()));
+                bill.setText(String.valueOf(iw.getSaleMaster().getId()));
+               // remark.setText(sd.getSaleMaster().getRemark());
+                
+                discount.setText(String.valueOf(iw.getSaleMaster().getDiscount()));
+                finalTotal.setText(String.valueOf(iw.getSaleMaster().getFinalBillAmount()));
+            }for(Object[] object: barcodelist)
             {
                 SaleDetails sd = (SaleDetails)object[0];
                 
                 defaultTableModel.addRow(new Object[]{sd.getItemMaster().getName(), sd.getItemMaster().getBarCode(), sd.getQuantity(), sd.getUnitPrice(), sd.getTotal()});
-                
+            
 //                name.setText(sd.getSaleMaster().getCustomerDetails().getName());
                 date.setText(dateFormat.format(sd.getSaleMaster().getDate()));
                 bill.setText(String.valueOf(sd.getSaleMaster().getId()));
@@ -473,8 +488,8 @@ public class BillDetailsSalesView extends javax.swing.JFrame {
                 
                 discount.setText(String.valueOf(sd.getSaleMaster().getDiscount()));
                 finalTotal.setText(String.valueOf(sd.getSaleMaster().getFinalBillAmount()));
-            }
-       // }
+            
+       }
         
         jTable1.setModel(defaultTableModel);
         getTotal();

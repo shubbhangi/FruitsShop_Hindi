@@ -472,7 +472,7 @@ public class SalesReportView extends javax.swing.JInternalFrame {
                     defaultTableModel.addRow(new Object[]{dateFormat.format(object[0]), object[1], object[2]});
                 }
                 jTable1.setModel(defaultTableModel);
-                getTotal(1, billAmount);
+              //  getTotal(1, billAmount);
               //  getTotal(2, discount);
                 getTotal(2, finalAmount);
             }

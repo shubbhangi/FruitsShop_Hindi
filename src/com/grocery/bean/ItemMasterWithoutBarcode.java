@@ -23,11 +23,12 @@ public class ItemMasterWithoutBarcode  implements java.io.Serializable {
      private Date efgDate;
      private Date expDate;
      private Integer isDeleted;
+     private SaleMaster saleMaster;
 
     public ItemMasterWithoutBarcode() {
     }
 
-    public ItemMasterWithoutBarcode(Integer id, String name, String brand, String barCode, BigDecimal weight, String unit, BigDecimal unitPrice, BigDecimal quantity, BigDecimal totalAmount, Date efgDate, Date expDate, Integer isDeleted) {
+    public ItemMasterWithoutBarcode(Integer id, String name, String brand, String barCode, BigDecimal weight, String unit, BigDecimal unitPrice, BigDecimal quantity, BigDecimal totalAmount, Date efgDate, Date expDate, Integer isDeleted, SaleMaster saleMaster) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -40,6 +41,7 @@ public class ItemMasterWithoutBarcode  implements java.io.Serializable {
         this.efgDate = efgDate;
         this.expDate = expDate;
         this.isDeleted = isDeleted;
+        this.saleMaster = saleMaster;
     }
 
     public Integer getId() {
@@ -137,6 +139,16 @@ public class ItemMasterWithoutBarcode  implements java.io.Serializable {
     public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
+
+    public SaleMaster getSaleMaster() {
+        return saleMaster;
+    }
+
+    public void setSaleMaster(SaleMaster saleMaster) {
+        this.saleMaster = saleMaster;
+    }
+
+    
 
    
 }
