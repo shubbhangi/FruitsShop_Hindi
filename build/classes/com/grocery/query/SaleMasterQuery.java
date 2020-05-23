@@ -6,6 +6,7 @@
 package com.grocery.query;
 
 
+import com.grocery.bean.CustomerDetails;
 import com.grocery.bean.SaleMaster;
 import com.grocery.util.HibernateUtil;
 import java.util.ArrayList;
@@ -258,7 +259,9 @@ public class SaleMasterQuery
      public List<Object[]> getSaleBySalesId(SaleMaster saleMaster)
     {
         //String query = "FROM SaleMaster sm JOIN sm.customerDetails cm WHERE cm.id = " + customerDetails.getCustomerDetails().getId();
-        String query = "FROM SaleMaster WHERE id = " + saleMaster.getId();
+        String query = "FROM SaleMaster ";
+       // String query = "SELECT id, DATE, billAmount FROM SaleMaster ";
+      //  String query = "FROM SaleMaster WHERE id = " + saleMaster.getId();
         
         List<Object[]> list = new ArrayList<>();
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -283,9 +286,12 @@ public class SaleMasterQuery
     
     public List<Object[]> getSaleByBillId(SaleMaster saleMaster)
     {
-        String query = "FROM SaleDetails sd JOIN sd.saleMaster sm JOIN sd.itemMaster JOIN sm.customerDetails "
+        String query = "FROM SaleDetails sd JOIN sd.saleMaster sm JOIN sd.itemMaster "
                 +      "WHERE sm.id = " + saleMaster.getId();
         
+//        String query = "FROM SaleDetails sd JOIN sd.saleMaster sm JOIN sd.itemMaster JOIN sm.customerDetails "
+//                +      "WHERE sm.id = " + saleMaster.getId();
+//        
         List<Object[]> list = new ArrayList<>();
         Session session = HibernateUtil.getSessionFactory().openSession();
         
@@ -315,7 +321,7 @@ public class SaleMasterQuery
         
         if(saleMaster.getId() != null)
             query = "FROM SaleMaster sm JOIN sm.customerDetails WHERE sm.id = " + saleMaster.getId();
-        else
+            else
             if(saleMaster.getCustomerDetails()!= null)
                 query = "FROM SaleMaster sm JOIN sm.customerDetails WHERE sm.customerDetails = " + saleMaster.getCustomerDetails().getId();
             else
@@ -341,6 +347,46 @@ public class SaleMasterQuery
         }
         return list;
     }
+    
+    
+      public List<Object[]> getSaleReturn(SaleMaster saleMaster)
+    {
+        String query = "";
+        
+        List<Object[]> list = new ArrayList<>();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+       // if(saleMaster.getId())
+          //  query = "FROM SaleMaster sm JOIN sm.customerDetails WHERE sm.id = " + saleMaster.getId();
+            query = "FROM SaleMaster sm WHERE sm.id = " + saleMaster.getId();
+      //  else
+      //      if(saleMaster.getCustomerDetails()!= null)
+      //          query = "FROM SaleMaster sm JOIN sm.customerDetails WHERE sm.customerDetails = " + saleMaster.getCustomerDetails().getId();
+      //      else
+            {
+                java.sql.Date fromDate = new java.sql.Date(saleMaster.getDate().getTime());
+                java.sql.Date toDate = new java.sql.Date(saleMaster.getTo().getTime());
+
+             //   query = "FROM SaleMaster sm JOIN sm.customerDetails WHERE sm.date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+                query = "FROM SaleMaster sm WHERE sm.date BETWEEN '" + fromDate + "' AND '" + toDate + "'";
+            }
+        try
+        {
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            list = q.list();
+        }
+        catch(Exception e)
+        {
+            
+        }
+        finally 
+        {
+            session.close();
+        }
+        return list;
+    }
+    
     
     public void updateBillAmount(SaleMaster saleMaster)
     {
@@ -373,6 +419,30 @@ public class SaleMasterQuery
                 +      "JOIN sm.customerDetails WHERE sm.id LIKE '" + saleMaster.getId() + "%'";
         
         List<Object[]> list = new ArrayList<>();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        try
+        {
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            list = q.list();
+        }
+        catch(Exception e)
+        {
+            
+        }
+        finally 
+        {
+            session.close();
+        }
+        return list;
+    }
+
+    public List<SaleMaster> getSales(SaleMaster saleMaster) {
+        
+     String query = "FROM SaleMaster ";
+        
+        List<SaleMaster> list = new ArrayList<>();
         Session session = HibernateUtil.getSessionFactory().openSession();
         
         try

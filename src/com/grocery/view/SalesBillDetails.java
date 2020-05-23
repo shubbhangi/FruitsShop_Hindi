@@ -6,7 +6,10 @@
 package com.grocery.view;
 
 import com.grocery.bean.SaleMaster;
+import com.grocery.bean.VendorBillMaster;
+import com.grocery.bean.VendorMaster;
 import com.grocery.query.SaleMasterQuery;
+import com.grocery.query.VendorBillMasterQuery;
 import com.grocery.read.MessageFormat;
 import java.awt.Font;
 import java.text.DateFormat;
@@ -135,7 +138,7 @@ public class SalesBillDetails extends javax.swing.JFrame {
         try
         {
            
-              BillDetailsSalesView storeDetails = new BillDetailsSalesView(flag, Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 3 ).toString()));
+              BillDetailsSalesView storeDetails = new BillDetailsSalesView(false, Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()));
            
             
          //   BillDetailsSalesView storeDetails = new BillDetailsSalesView(flag , Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 3 ).toString()));
@@ -152,7 +155,8 @@ public class SalesBillDetails extends javax.swing.JFrame {
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select the row whose details you want to view"), "Error Message", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            //JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select the row whose details you want to view"), "Error Message", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_billDetailsActionPerformed
 
@@ -200,34 +204,28 @@ public class SalesBillDetails extends javax.swing.JFrame {
     private javax.swing.JLabel purchase;
     // End of variables declaration//GEN-END:variables
 
-    private void loadTable() 
+     private void loadTable() 
     {
         DefaultTableModel defaultTableModel = (DefaultTableModel)jTable1.getModel();
         defaultTableModel.setRowCount(0);
         
         DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-
-//        CustomerDetails customerDetails = new CustomerDetails();
-//            customerDetails.setId(id);
+        
             
-           SaleMaster saleMaster = new SaleMaster();
-//            saleMaster.setCustomerDetails(customerDetails);
-            
+            SaleMaster saleMaster = new SaleMaster();
             SaleMasterQuery saleMasterQuery = new SaleMasterQuery();
             
-           // List<Object[]> list = saleMasterQuery.getSaleByWarehouseId(saleMaster);
+            List<SaleMaster> list = saleMasterQuery.getSales(saleMaster);
             
-            List<Object[]> list = saleMasterQuery.getSaleBySalesId(saleMaster);
-            
-            for(Object[] object: list)
-            {
-                SaleMaster sm = (SaleMaster)object[0];
+            for(SaleMaster sm: list)
                     
                 defaultTableModel.addRow(new Object[]{ sm.getId(), dateFormat.format(sm.getDate()), sm.getFinalBillAmount()});
-            }
-       
+            
+        
         
         jTable1.setModel(defaultTableModel);
     }
+
+    
 }
 

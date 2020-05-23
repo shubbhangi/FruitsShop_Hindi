@@ -6,10 +6,12 @@
 package com.grocery.view;
 
 import com.grocery.bean.CustomerDetails;
+import com.grocery.bean.SaleMaster;
 import com.grocery.bean.VendorMaster;
 import com.grocery.dimension.SetDimension;
 import com.grocery.query.VendorQuery;
 import com.grocery.query.CustomerDetailsQuery;
+import com.grocery.query.SaleMasterQuery;
 import com.grocery.read.MessageFormat;
 import java.awt.Font;
 import java.util.List;
@@ -257,13 +259,13 @@ public class VendorAccount extends javax.swing.JInternalFrame {
         }
         else
         {
-            CustomerDetails customerDetails = new CustomerDetails();
-            CustomerDetailsQuery warehoseDetailsQuery = new CustomerDetailsQuery();
+            SaleMaster saleMaster = new SaleMaster();
+            SaleMasterQuery saleMasterQuery = new SaleMasterQuery();
             
-            List<CustomerDetails> list = warehoseDetailsQuery.getCustomerDetails(customerDetails);
+            List<SaleMaster> list = saleMasterQuery.getSales(saleMaster);
             
-            for(CustomerDetails cm: list)
-                defaultTableModel.addRow(new Object[]{cm.getId(), cm.getName(), cm.getBalance()});
+            for(SaleMaster cm: list)
+                defaultTableModel.addRow(new Object[]{cm.getId(), cm.getBillAmount(), cm.getDate()});
         }
        
         jTable1.setModel(defaultTableModel);
