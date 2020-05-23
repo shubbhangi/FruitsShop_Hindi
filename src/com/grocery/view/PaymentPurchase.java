@@ -982,7 +982,8 @@ public class PaymentPurchase extends javax.swing.JFrame {
 
                      
                     itemAvailability.setPurchaseMaster(purchaseMaster);
-                    itemAvailability.setAvailability(quantity);
+                   // itemAvailability.setAvailability(quantity);
+                    itemAvailability.setAvailability(new BigDecimal(weight));
                     itemAvailability.setThreshold(thresholdPercent.multiply(quantity));
                     
                     List<ItemAvailabilityPurchase> itemAvailabilityList = itemAvailabilityQueryNew.checkItem(itemAvailability);
