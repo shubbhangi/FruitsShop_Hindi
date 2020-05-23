@@ -694,6 +694,8 @@ public class PurchaseReportView extends javax.swing.JInternalFrame {
                         + " vendor_bill_master.`challan` AS vendor_bill_master_challan,\n"
                         + " vendor_bill_master.`remark` AS vendor_bill_master_remark,\n"
                         + " vendor_bill_master.`billAmount` AS billAmount,\n" 
+                        + " vendor_bill_master.`discount` AS discount,\n" 
+                        + " vendor_bill_master.`finalBillAmount` AS finalBillAmount,\n" 
                         + " store_details.`Id` AS store_details_Id,\n"
                         + " store_details.`name` AS store_details_name,\n"
                         + " store_details.`address` AS store_details_address,\n"

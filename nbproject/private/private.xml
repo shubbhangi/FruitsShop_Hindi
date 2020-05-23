@@ -4,8 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/view/SalesReportView.java</file>
-            <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/view/SalesBillDetails.java</file>
+            <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/view/PurchaseReportView.java</file>
             <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/view/HomePage1.java</file>
+            <file>file:/G:/GitHubPro_Hindi/FruitsShop_Hindi/src/com/grocery/query/SaleDetailsQuery.java</file>
         </group>
     </open-files>
 </project-private>

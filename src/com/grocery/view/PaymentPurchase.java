@@ -18,6 +18,7 @@ import com.grocery.query.PurchaseMasterQuery;
 import com.grocery.query.StockDetailsQuery;
 import com.grocery.query.StoreDetailsQuery;
 import com.grocery.query.VendorBillMasterQuery;
+import com.grocery.query.VendorPartialPaymentQuery;
 import com.grocery.query.VendorQuery;
 import com.grocery.read.MessageFormat;
 import com.toedter.calendar.JTextFieldDateEditor;
@@ -847,6 +848,14 @@ public class PaymentPurchase extends javax.swing.JFrame {
     }
 
     public void addStock() throws ParseException {
+          
+        String paymentMode = this.paymentMode.getSelectedItem().toString();
+        if (paymentMode.equalsIgnoreCase("--Select--")) {
+            JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select a paymentMode"), "Error message", JOptionPane.ERROR_MESSAGE);
+            this.paymentMode.requestFocus();
+            return;
+        }
+        
         DefaultTableModel tm = (DefaultTableModel) this.jTable1;
         String itemName = "";
         String brandName = "";
@@ -1002,7 +1011,35 @@ public class PaymentPurchase extends javax.swing.JFrame {
                         }
                     }
                     i++;
-        }      
+        }     
+        
+        
+        String chequeNumber = cheque.getText();
+        String sudexo = tdsNo.getText();
+        
+        String bankName = bank.getSelectedItem().toString();
+        String status = "";
+
+        vendorPartialPayment.setDate(new Date(new SimpleDateFormat("dd/MM/yyyy").format(purDate.getDate())));
+        vendorPartialPayment.setVendorMaster(vendorMaster);
+        vendorPartialPayment.setPaidAmount(new BigDecimal(amount.getText().trim()).subtract(new BigDecimal(discount1.getText())));
+        vendorPartialPayment.setPaymentMode(paymentMode);
+       // vendorPartialPayment.setChequeCardNumber(cheque);
+        vendorPartialPayment.setChequeCardNumber(chequeNumber);
+        vendorPartialPayment.setChequeDate(chequeDate.getDate());
+        vendorPartialPayment.setBank(bankName);
+      //  vendorPartialPayment.setStatus("1");
+        vendorPartialPayment.setStatus("Full");
+        VendorPartialPaymentQuery vendorPartialPaymentQuery = new VendorPartialPaymentQuery();
+        vendorPartialPaymentQuery.insertIntoVendorPartialPayment(vendorPartialPayment);
+        JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Sale successful"));
+        this.dispose();
+   // }
+        
+        
+        
+        
+        
         JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Stock added successfully"));
         
         
