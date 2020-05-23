@@ -86,7 +86,7 @@ public class ItemQuery
     {
         List<ItemMaster> list = new ArrayList<>();
         
-         String query = "FROM ItemMaster WHERE barCode = " + itemMaster.getBarCode(); 
+         String query = "FROM ItemMaster WHERE brand ='" + itemMaster.getBrand()+"'"; 
          
         Session session = HibernateUtil.getSessionFactory().openSession();
         
@@ -138,7 +138,7 @@ public class ItemQuery
     {
         List<ItemMaster> list = new ArrayList<>();
         
-         String query = "FROM ItemMaster WHERE barCode = " + itemMaster.getBarCode(); 
+         String query = "FROM ItemMaster WHERE barCode='" + itemMaster.getBarCode()+"'"; 
          
         Session session = HibernateUtil.getSessionFactory().openSession();
         

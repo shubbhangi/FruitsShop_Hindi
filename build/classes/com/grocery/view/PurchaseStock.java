@@ -203,6 +203,11 @@ public class PurchaseStock extends javax.swing.JFrame {
                 quantityFocusLost(evt);
             }
         });
+        quantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quantityActionPerformed(evt);
+            }
+        });
         quantity.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 quantityKeyReleased(evt);
@@ -391,7 +396,7 @@ public class PurchaseStock extends javax.swing.JFrame {
         jLabel31.setToolTipText("Unit");
 
         units.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        units.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Units--", "Kg", "gm", "unit" }));
+        units.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Units--", "Kg", "gm" }));
         units.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unitsActionPerformed(evt);
@@ -1198,7 +1203,20 @@ public class PurchaseStock extends javax.swing.JFrame {
     }//GEN-LAST:event_weightKeyReleased
 
     private void unitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unitsActionPerformed
-        // TODO add your handling code here:
+       float weight1;
+        weight1 = Float.parseFloat(this.weight.getText().trim());
+        float quantity = Float.parseFloat(this.quantity.getText().trim());
+	
+        if(units.getSelectedIndex() == 0)
+        {
+        weight1  = weight1 * quantity * 1000;   
+       // return weight1;
+        }
+        else
+        {
+	// weight1 = Float.parseFloat(this.weight.getText().trim());
+            weight1 = weight1 * quantity;
+        }
     }//GEN-LAST:event_unitsActionPerformed
 
     private void amountKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountKeyReleased
@@ -1211,6 +1229,23 @@ public class PurchaseStock extends javax.swing.JFrame {
             finalAmountPaid.setText(String.valueOf(amount));
         }
     }//GEN-LAST:event_amountKeyReleased
+
+    private void quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityActionPerformed
+         float weight1;
+        weight1 = Float.parseFloat(this.weight.getText().trim());
+        float quantity = Float.parseFloat(this.quantity.getText().trim());
+	
+        if(units.getSelectedIndex() == 0)
+        {
+         weight1  = weight1 * quantity * 1000;    
+       // return weight1;
+        }
+        else
+        {
+            weight1  = weight1 * quantity ;
+	// weight1 = Float.parseFloat(this.weight.getText().trim());
+        }
+    }//GEN-LAST:event_quantityActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1439,6 +1474,8 @@ public class PurchaseStock extends javax.swing.JFrame {
     {
         item.setSelectedIndex(0);
         brand.setSelectedIndex(0);
+        units.setSelectedIndex(0);
+        weight.setText("00");
         
         quantity.setText("00");
         total.setText("0.00");
@@ -1451,6 +1488,31 @@ public class PurchaseStock extends javax.swing.JFrame {
         purchaseGstAmountNew.setText("0.00");
     }
   
+  private float calculateKgToGm()
+    {
+        float weight1;
+        weight1 = Float.parseFloat(this.weight.getText().trim());
+        float quantity = Float.parseFloat(this.quantity.getText().trim());
+	
+        if(units.getSelectedIndex() == 1)
+        {
+        weight1  = weight1 * quantity * 1000;   
+        return weight1;
+        }
+        else
+        {
+            weight1  = weight1 * quantity ;
+	    return weight1;
+        }
+    }
+  
+ /*  private float calculateKgToGm(float weight1)
+    {
+        float quantity = Float.parseFloat(this.quantity.getText().trim());
+        float kgToGm  = quantity * 1000;   
+        return kgToGm;
+    }
+  */
    private float calculatePer(float gst_percent)
     {
         float gstPer = 1+(gst_percent ) /100;      
@@ -1497,7 +1559,8 @@ public class PurchaseStock extends javax.swing.JFrame {
         String brandName = item.getSelectedItem().toString();
       //  String weight1 = this.weight.toString();
         float weight = Float.parseFloat(this.weight.getText().trim());
-        String unitName = this.units.getSelectedItem().toString();
+       // String unitName = this.units.getSelectedItem().toString();
+        String unitName = "gm";
         /**
          * *********************manifacturing and Expairy Date Add to jTAble in
          * save *******************
@@ -1626,10 +1689,14 @@ public class PurchaseStock extends javax.swing.JFrame {
             sellingIGstPercent = 0;
         }
 
+       
         if (gstTaken.isSelected()) {
-            defaultTableModel.addRow(new Object[]{itemName, brandName,weight,unitName, quantity, total, decimalFormat.format(gst_percent), decimalFormat.format(gstAmount),decimalFormat.format(actualTotal1), type});
+           
+            defaultTableModel.addRow(new Object[]{itemName, brandName,calculateKgToGm(),unitName, quantity, total, decimalFormat.format(gst_percent), decimalFormat.format(gstAmount),decimalFormat.format(actualTotal1), type});
         }  else {
-            defaultTableModel.addRow(new Object[]{itemName, brandName,weight,unitName, quantity, total, decimalFormat.format(0.0), decimalFormat.format(0.0),decimalFormat.format(actualTotal1), type});
+            
+            defaultTableModel.addRow(new Object[]{itemName, brandName,calculateKgToGm(),unitName, quantity, total, decimalFormat.format(0.0), decimalFormat.format(0.0),decimalFormat.format(actualTotal1), type});
+            //defaultTableModel.addRow(new Object[]{itemName, brandName,weight,unitName, quantity, total, decimalFormat.format(0.0), decimalFormat.format(0.0),decimalFormat.format(actualTotal1), type});
         }
         jTable1.setModel(defaultTableModel);
         getTotal();

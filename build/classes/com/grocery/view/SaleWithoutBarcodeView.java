@@ -14,6 +14,7 @@ import com.grocery.bean.ItemMasterWithoutBarcode;
 import com.grocery.bean.SaleDetails;
 import com.grocery.bean.SaleMaster;
 import com.grocery.bean.StoreDetails;
+import com.grocery.query.BillDetailsQuery;
 //import com.grocery.bean.CustomerDetails;
 //import com.grocery.bean.CustomerPartialPayment;
 import com.grocery.query.CounterQuery;
@@ -87,7 +88,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         // getTotal();
 
         jLabel33.setVisible(false);
-        billId.setVisible(false);
+     //   billId.setVisible(false);
 
         ItemMaster itemMaster = new ItemMaster();
         //loadTable(itemMaster);
@@ -96,6 +97,8 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         defaultTableModel.setRowCount(0);
         jTable1.setModel(defaultTableModel);
         getTotal();
+        
+         billId.setText(getInvoiceNumber().toString());
     }
 
     /**
@@ -383,7 +386,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
         jLabel32.setToolTipText("Unit");
 
         unit1.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        unit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Units--", "Kg", "gm", "unit" }));
+        unit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select Units--", "Kg", "gm" }));
         unit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unit1ActionPerformed(evt);
@@ -839,6 +842,7 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(remove, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(change, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2319,5 +2323,10 @@ public class SaleWithoutBarcodeView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, MessageFormat.getMessage("Please select the Item you want to change the quantity of"), "Error Message", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+
+     private Integer getInvoiceNumber() {
+        BillDetailsQuery billDetailsQuery = new BillDetailsQuery();
+        return billDetailsQuery.getInvoiceNumber() + 1;
     }
 }

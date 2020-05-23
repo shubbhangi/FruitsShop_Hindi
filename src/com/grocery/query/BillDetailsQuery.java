@@ -57,4 +57,27 @@ public class BillDetailsQuery {
         } 
         
     }
+
+    public int getInvoiceNumber() {
+      Session session = HibernateUtil.getSessionFactory().openSession();
+         int invoiceNumber = 0;
+        
+        try
+        {
+            //SELECT MAX(id) FROM sale_master
+            invoiceNumber = (Integer)session.createQuery("select MAX(id) from SaleMaster").list().get(0);
+
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            session.close();
+        }
+        return invoiceNumber;
+    }  
+        
+    
 }
